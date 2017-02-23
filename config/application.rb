@@ -11,5 +11,11 @@ module Kypsy
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
+    config.time_zone = "Pacific Time (US & Canada)"
+
+    config.i18n.enforce_available_locales = false
+    config.generators do |g|
+      g.factory_girl false
+    end
   end
 end
