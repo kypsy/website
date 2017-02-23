@@ -1,0 +1,215 @@
+/* browse-happy... */
+.browse-happy {
+  font-size: 150%;
+}
+/* ...browse-happy */
+
+/* bootstrap additions... */
+.form-inline {
+  display: inline-block
+}
+
+.btn-cancel {
+  text-align: left !important;
+}
+
+/* ...bootstrap additions */
+
+/* person in media block... */
+.person img,
+.conversation img {
+  max-width:  100px;
+}
+
+.person .p-name {
+  display: inline !important;
+}
+/* ...person in media block */
+
+
+/* pagination... */
+#pagination {
+  text-align: center;
+}
+/* ...pagination */
+
+
+/* buttons... */
+/* makes these the last button in a group. */
+/* needed because they're inside of a form and the first button in the group isn't. */
+#unbookmark button,
+#new_secret_crush button {
+  -webkit-border-top-left-radius:    0;
+  -webkit-border-bottom-left-radius: 0;
+  -moz-border-radius-topleft:        0;
+  -moz-border-radius-bottomleft:     0;
+  border-top-left-radius:            0;
+  border-bottom-left-radius:         0;
+}
+
+
+/* TODO HACK Button classes on <li> instead of <a> */
+/* /photos/new?getting=started */
+.actions li form,
+.actions li {
+  display: inline-block;
+}
+/* ...buttons */
+
+/* site header... */
+header[role=banner] {
+  background: black;
+  color: white;
+  line-height: 150%;
+  padding: 10px 0;
+  margin-bottom: 1em;
+  font-size: 100%;
+  overflow: hidden;
+}
+
+header[role=banner] h1 {
+  letter-spacing: -.02em;
+  font-weight: normal;
+  line-height: 125%;
+  display: inline-block;
+  float: left;
+  margin-top: 10px;
+  font-size: 16px;
+}
+
+header[role=banner] a {
+  text-decoration: none;
+  color: white;
+}
+
+nav[role=navigation]:first-of-type {
+  float: left;
+  margin-left: 10px;
+}
+
+nav[role=navigation] {
+  float: right;
+  display: inline-block;
+  margin-top:  10px;
+
+}
+
+[role=search] {
+  // display: inline-block;
+  float: left;
+  margin-top: 5px;
+  // outline: 1px solid red;
+}
+
+[role=search] input {
+  background-color: #222;
+  color: gray;
+  border-color: gray;
+  display: inline-block;
+
+  &:focus {
+    color: #eee;
+    background-color: #333;
+    & + button {
+      opacity: 1;
+    }
+  }
+}
+nav[role=navigation] input + button {
+  opacity: 0.9;
+}
+
+nav[role=navigation] a {
+  padding: .5em;
+
+}
+/* ...site header */
+
+/* forms... */
+/* TODO clone bootstrap error styles */
+label .field_with_errors + span,
+label .field_with_errors + span a,
+.field_with_errors {
+  color: #b94a48;
+}
+
+/* TODO clone bootstrap error styles */
+.field_with_errors input,
+.field_with_errors select {
+  border-color: #b94a48;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+     -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+
+}
+
+/* TODO clone bootstrap error styles */
+label .field_with_errors {
+  display: inline-block;
+}
+/* ...forms */
+
+
+/* DANGER ZONE... */
+/* lovingly inspired by GitHub's Danger Zone™ */
+#danger-zone {
+  margin-top: 7em;
+  outline: 1px solid #c00;
+}
+
+#danger-zone h2 {
+  background: #c00;
+  padding: .5em;
+  color: white;
+  font-weight: bold;
+}
+
+#danger-zone > div {
+  padding: 1em;
+  overflow: hidden;
+}
+
+#danger-zone p {
+  margin-bottom: 1em;
+}
+
+#danger-zone b {
+  color: #c00;
+}
+/* ...DANGER ZONE */
+
+
+
+/* site footer... */
+footer[role=contentinfo] {
+  margin-top:     4em;
+  padding-top:    1em;
+  padding-bottom: 4em;
+}
+/* ...site footer */
+
+
+/* maps... */
+
+
+.js-user {
+  display: block;
+  width: 280px;
+  overflow: hidden;
+  border-bottom: 1px solid gray;
+  padding: 5px 0;
+  .js-photo {
+    width: 70px;
+    margin-right: 10px;
+    float: left
+  }
+  &:nth-last-child(1) {
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+  &:first-child {
+    padding-top: 0;
+  }
+}
+
+/* ...maps */

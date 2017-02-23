@@ -1,0 +1,19 @@
+.groups-of-one h1 {
+  margin-top: 0;
+}
+
+.groups-of-one ul {
+  margin-bottom: 0;
+}
+
+.groups-of-one li {
+  display: inline;
+}
+
+.groups-of-one li:after {
+  content: ", ";
+}
+
+.groups-of-one li:last-child:after {
+  content: ".";
+}

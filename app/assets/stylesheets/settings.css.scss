@@ -1,0 +1,95 @@
+#settings {
+  .note {
+    color: #999;
+    margin-top: 1em;
+  }
+
+  .note + .note {
+    margin-bottom: 3em;
+  }
+  
+  #user_bio {
+    height: 500px;
+  }
+
+  #drug-use th,
+  #drug-use td {
+    text-align: center;
+  }
+
+  #drug-use tr th:first-child {
+    text-align: left;
+  }
+
+  .actions {
+    margin-top:    2em;
+    margin-bottom: 2em;
+  }
+
+  /* photo settings... */
+  main[role=main] h1 {
+    font-weight: bold;
+    font-size: 1.5em;
+    letter-spacing: -.04em;
+  }
+
+  #preview {
+    margin-top: .5em;
+  }
+
+  #controls {
+    margin: 1em 0;
+  }
+
+  #preview img {
+    max-width: 100%;
+  }
+
+  #photo_submit {
+    margin-top: 1em;
+  }
+
+  #getting-started .info {
+    margin-top: 1em;
+  }
+
+  #getting-started img {
+    margin-bottom: 1em;
+  }
+  /* ...photo settings */
+}
+/* #settings */
+
+/* iphone portrait... */
+@media screen and (max-device-width: 480px) and (orientation:portrait) {
+  #settings {
+    #settings textarea,
+    #settings input[type=text],
+    #settings input[type=password] {
+      width: 288px;
+    }
+
+    #settings select {
+      width: 300px;
+    }
+  }
+  /* ...iphone portrait */
+}
+/* #settings */
+
+/* iphone landscape... */
+@media screen and (max-device-width: 480px) and (orientation:landscape) {
+  #settings {
+    #settings textarea,
+    #settings input[type=text],
+    #settings input[type=password] {
+      width: 448px;
+    }
+
+    #settings select {
+      width: 460px;
+    }
+  }
+  /* ...iphone landscape */
+}
+/* #settings */

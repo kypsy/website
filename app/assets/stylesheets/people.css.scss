@@ -1,0 +1,104 @@
+/* bootstrap override... */
+@media (max-width: 480px) { body .hidden-xs { display: none   !important; } }
+@media (min-width: 481px) { body .hidden-xs { display: inline !important; } }
+/* ...bootstrap override */
+
+main {
+  margin-bottom: 5em;
+}
+
+#people .media-body {
+  display: block;
+  clear: both;
+  float: none;
+  width: 100%;
+}
+
+#people .media .u-url {
+  display: block;
+  clear: both;
+  float: none;
+  margin-bottom: 5px;
+}
+
+#people .person .u-photo {
+  display: block;
+  clear: both;
+  float: none;
+  width:     260px;
+  height:    auto;
+  max-width: 100%;
+}
+
+.person {
+  clear: both;
+  padding: 1em 0;
+  min-height: 4em;
+}
+
+.person .media-heading {
+  color: #ccc;
+  font-weight: normal;
+}
+
+.person .u-photo {
+  width:  100px;
+  height: 100px;
+}
+
+.person .p-name {
+  font-weight: bold;
+}
+
+#people .person .u-email {
+  display: none;
+}
+
+/* profile actions... */
+.actions .btn-group a b {
+  font-weight: normal;
+}
+
+@media (max-device-width: 480px) {
+  .actions .btn-group a b {
+    display: none !important;
+  }
+}
+/* ...profile actions */
+
+#person {
+  #photos {
+    margin-top: 1em;
+  }
+
+  #photos ul,
+  #photos li {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  #photos .h-entry {
+    margin-bottom: 2em;
+  }
+
+  #photos li img {
+    max-width: 100%;
+    margin-top: 1em;
+  }
+
+  .note {
+    margin-top: 1em;
+  }
+
+  .note p {
+    margin-bottom: .5em;
+  }
+
+}
+
+form#edit_user,
+form#new_user {
+  
+}
+/* #people */

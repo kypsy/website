@@ -1,0 +1,111 @@
+#inbox,
+#messages {
+  .person .u-email {
+    display: block;
+    margin-bottom: 1em;
+  }
+
+  /* TODO TEMP */
+  #new_message {
+    margin-top: 1em;
+  }
+
+  .conversations {
+    margin: 0;
+    padding: 0;
+  }
+
+  .conversation {
+    list-style-type: none;
+    opacity: 0.5;
+    margin: 0 0 10px 0;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+  }
+
+  .conversation .media img {
+    width:  40px;
+    height: 40px;
+  }
+
+  .conversation a {
+    color: black;
+    text-decoration: none;
+  }
+
+  .well p:last-child {
+    margin-bottom: 0;
+  }
+
+  .message-counterpart {
+    color: gray;
+  }
+
+  .p-name {
+    font-weight: bold;
+    display: block;
+  }
+
+  .unread {
+    background: #eee;
+    opacity: 1;
+  }
+
+  #reply h1 {
+    font-weight: bold;
+    font-size: 1.5em;
+    margin-bottom: .5em;
+  }
+
+  #reply textarea {
+    height: 6em;
+    margin-bottom: 1em;
+  }
+
+  /* inbox... */
+  #conversation {
+    hgroup {
+      margin-bottom: 1em;
+    }
+
+    .e-content {
+      .message,
+      .messages {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .message .person {
+        margin-bottom: 1em;
+        overflow: hidden;
+      }
+
+      .message {
+        margin-bottom:  2em;
+        padding-bottom: 2em;
+        border-bottom: 1px solid #efefef;
+      }
+    }
+  }
+  /* ...inbox */
+
+  .h-entry .dt-published {
+    color: #ccc;
+    margin-bottom: 1em;
+    display: block;
+    font-size: 0.9em;
+  }
+}
+/* #messages */
+
+/* inbox only... */
+#inbox {
+  .h-entry .p-x-age,
+  .h-entry .h-adr,
+  .h-entry .actions {
+    display: none;
+  }
+}
+/* ...inbox only */
+

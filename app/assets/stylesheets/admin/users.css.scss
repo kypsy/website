@@ -1,0 +1,4 @@
+.drug-friendliness b:after            { content: ":"; }
+.drug-friendliness i                  { font-style: normal; }
+.drug-friendliness i:after            { content: ","; }
+.drug-friendliness i:last-child:after { content: "."; }
