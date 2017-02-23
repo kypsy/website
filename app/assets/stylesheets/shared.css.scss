@@ -177,39 +177,3 @@ label .field_with_errors {
   color: #c00;
 }
 /* ...DANGER ZONE */
-
-
-
-/* site footer... */
-footer[role=contentinfo] {
-  margin-top:     4em;
-  padding-top:    1em;
-  padding-bottom: 4em;
-}
-/* ...site footer */
-
-
-/* maps... */
-
-
-.js-user {
-  display: block;
-  width: 280px;
-  overflow: hidden;
-  border-bottom: 1px solid gray;
-  padding: 5px 0;
-  .js-photo {
-    width: 70px;
-    margin-right: 10px;
-    float: left
-  }
-  &:nth-last-child(1) {
-    padding-bottom: 0;
-    border-bottom: none;
-  }
-  &:first-child {
-    padding-top: 0;
-  }
-}
-
-/* ...maps */

@@ -33,15 +33,11 @@ Rails.application.routes.draw do
 
   # Static-y pages
   root to: "welcome#index"
-  get "/sponsors",                to: "about#sponsors", as: :sponsors
-  get "/stats",                   to: "about#stats",    as: :stats
-  get "/terms",                   to: "about#terms",    as: :terms
-  get "/privacy-policy",          to: "about#privacy",  as: :privacy
-  get "/about",                   to: "about#us",       as: :about
-  get "/grid",                    to: "about#grid",     as: :grid
-  get "/goodbye",                 to: "about#goodbye",  as: :goodbye
-  get "/page/:page",              to: "welcome#index"
-  get "/map",                     to: "map#index",      as: :map
+  get "/terms",      to: "about#terms",    as: :terms
+  get "/privacy",    to: "about#privacy",  as: :privacy
+  get "/about",      to: "about#us",       as: :about
+  get "/goodbye",    to: "about#goodbye",  as: :goodbye
+  get "/page/:page", to: "welcome#index"
 
   # Auth
   get "/signout",                 to: "sessions#destroy", as: :signout
