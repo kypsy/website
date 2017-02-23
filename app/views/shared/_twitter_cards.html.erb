@@ -1,0 +1,18 @@
+<% if @user %>
+  <meta name="twitter:card"        content="summary">
+  <meta name="twitter:site"        content="@kypsy">
+  <meta name="twitter:title"       content="@<%= @user.username %>'s profile on Kypsy : The Straightedge Dating Site">
+  <meta name="twitter:description" content="Bio: <%= truncate(@user.bio, length: 195) %>">
+  <meta name="twitter:creator"     content="@kypsy">
+  <meta name="twitter:image:src"   content="<%= @user.avatar %>">
+  <meta name="twitter:domain"      content="https://kypsy.com">
+<% else %>
+  <meta name="twitter:card"        content="summary">
+  <meta name="twitter:site"        content="@kypsy">
+  <meta name="twitter:title"       content="Kypsy : The Straightedge Dating Site">
+  <meta name="twitter:description" content="A simple, fun dating site for people who are straightedge. And for the people that love them. …or who want to love them. Join to find a person just like you. Keep it positive. Be friendly. Have fun.">
+  <meta name="twitter:creator"     content="@kypsy">
+  <meta name="twitter:image:src"   content="https://kypsy.com/apple-touch-icon-144x144-precomposed.png">
+  <meta name="twitter:domain"      content="https://kypsy.com">
+<% end %>
+

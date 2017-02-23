@@ -1,0 +1,38 @@
+<div class="page-header">
+  <h1>
+    <%= @title_text %>
+  </h1>
+</div>
+
+  <div class="row">
+    <div class="col-sm-6">
+      <ul class="list-unstyled">
+        <% @groups.each do |name, count| %>
+          <% unless count == 1 %>
+            <li>
+              <h1 class="h3">
+                <%= link_to name.capitalize, search_path(search: [params[:column].to_sym, name]) %>
+                <small>(<%= count %>)</small>
+              </h1>
+            </li>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
+
+    <div class="col-sm-6">
+      <% if groups_of_one? %>
+        <div class="well groups-of-one">
+          <h1>Groups of One</h1>
+
+          <ul class="list-unstyled">
+            <% @groups.sort_by{ |group| group.first }.each do |name, count| %>
+              <% if count == 1 %>
+                <li class="group-of-one"><%= link_to name.capitalize, search_path(search: [:genders, name]) %></li>
+              <% end %>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+  </div>

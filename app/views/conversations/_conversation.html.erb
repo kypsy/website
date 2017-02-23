@@ -1,0 +1,34 @@
+<% user = conversation.counterpart(current_user) %>
+
+<li class="row person conversation h-entry <%= 'unread' if conversation.unread?(current_user) %>">
+
+  <div class="media col-xs-12">
+    <%= link_to conversation_path(user.username), class: "pull-left" do %>
+      <%= image_tag user.avatar(:tiny).to_s, class: "u-photo img media-object", alt: current_user.username %>
+    <% end %>
+
+    <div class="media-body">
+
+      <div class="pull-right">
+        <%= button_to delete_conversation_path(user.username),
+                      method:  :delete,
+                      data: { confirm: "Uhhh&hellip; Are you sure you want to delete this conversation? There is NO undo.".html_safe },
+                      class:   "btn btn-default btn-lg media-object" do %>
+          <i class="fa fa-lg fa-times"></i>
+        <% end %>
+      </div>
+
+      <h4 class="media-heading p-author"><%= user.username %></h4>
+
+      <p>
+        <%= link_to conversation_path(user.username) do %>
+          <span class="p-name"></span>
+          <span class="e-content"><%= strip_links user_inputed_text(conversation.messages.last.body) %></span>
+          <time class="dt-published" datetime="<%= conversation.messages.last.created_at.xmlschema %>"><%= conversation.messages.last.created_at.strftime("%Y-%m-%d %H:%M%p") %></time>
+        <% end %>
+      </p>
+
+    </div> <!-- .media-body -->
+  </div> <!-- .media -->
+
+</li> <!-- .person -->

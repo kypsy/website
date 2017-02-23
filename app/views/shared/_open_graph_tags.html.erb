@@ -1,0 +1,13 @@
+<% if @user %>
+  <meta property="og:image"     content="<%= @user.avatar %>" />
+  <meta property="og:title"     content="@<%= @user.username %>'s profile on Kypsy : The Straightedge Dating Site" />
+  <meta property="og:url"       content="https://kypsy.com/@<%= @user.username %>" />
+  <meta property="og:site_name" content="Kypsy" />
+  <meta property="og:type"      content="website" />
+<% else %>
+  <meta property="og:image"     content="https://kypsy.com/apple-touch-icon-144x144-precomposed.png" />
+  <meta property="og:title"     content="Kypsy : The Straightedge Dating Site" />
+  <meta property="og:url"       content="https://kypsy.com" />
+  <meta property="og:site_name" content="Kypsy" />
+  <meta property="og:type"      content="website" />
+<% end %>

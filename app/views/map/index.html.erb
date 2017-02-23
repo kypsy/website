@@ -1,0 +1,75 @@
+<div
+  data-small-icon="<%= image_path('map/000-marker.png') %>"
+  data-medium-icon="<%= image_path('map/333-marker.png') %>"
+  data-large-icon="<%= image_path('map/666-marker.png') %>"
+  data-current-lat-lng="<%= [@lat_lng.lat.to_f, @lat_lng.lng.to_f] if @lat_lng%>"
+  data-api-url="<%= api_url %>"
+  id='map'>
+</div>
+
+<div class='row subheader-container'>
+  <%= link_to "#", class: "show-filters-button", data: {selector: ".subheader"} do %>
+    Filters
+    <i class='fa fa-lg down fa-angle-double-down'></i>
+    <i class='fa fa-lg up fa-angle-double-up'></i>
+  <% end %>
+
+  <div class='subheader filters'>
+    <%= form_tag api_url("/users"), class: "filter", method: :get do %>
+      <div class='col-lg-4 col-lg-offset-1'>
+        <fieldset>
+          <legend>Straightedginess</legend>
+
+          <% Label.all.each do |label| %>
+            <div>
+              <%= check_box_tag 'label_id[]', label.id, false, id: "label_id_#{label.id}", class: "user-filter" %>
+              <%= label_tag "label_id_#{label.id}", label.name.capitalize %>
+            </div>
+          <% end %>
+        </fieldset>
+      </div>
+      <div class='col-lg-4'>
+        <fieldset>
+          <legend>Diet</legend>
+          <% Diet.all.each do |diet| %>
+            <div>
+              <%= check_box_tag 'diet_id[]', diet.id, false, id: "diet_id_#{diet.id}", class: "user-filter" %>
+              <%= label_tag "diet_id_#{diet.id}", diet.name.capitalize %>
+            </div>
+        </fieldset>
+        <% end %>
+      </div>
+      <div class='col-lg-3'>
+        <fieldset>
+          <legend>Gender</legend>
+
+          <% User.uniq_gender_groups(3).each do |gender| %>
+            <div>
+              <%= check_box_tag 'me_gender[]', gender, false, id: "me_gender_#{gender}", class: "user-filter" %>
+              <%= label_tag "me_gender_male", gender.capitalize %>
+            </div>
+          <% end %>
+        </fieldset>
+      </div>
+    <% end %>
+
+
+  </div>
+</div>
+
+
+<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key=AIzaSyBUsS11chK_veOLCCks6o2U2jp1XDD6wgU"></script>
+<%= javascript_include_tag 'markerclusterer' %>
+<script type='text/javascript' src="//cdnjs.cloudflare.com/ajax/libs/mustache.js/0.8.1/mustache.js"></script>
+
+<script id="js-user-card" type="x-tmpl-mustache">
+  <li class="js-user">
+    <a href="/@{{username}}">
+      <img class='js-photo' src='{{ avatar }}' />
+      <strong class="p-name fn n">{{ username }}</strong>
+      <div class='js-user-location'>
+        {{ location }}
+      </div>
+    </a>
+  </li>
+</script>

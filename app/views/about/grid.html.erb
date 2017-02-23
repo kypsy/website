@@ -1,0 +1,90 @@
+<style>
+img {
+  width:  20px;
+  height: 20px;
+}
+</style>
+
+
+
+
+<%
+bads = [
+  '<img alt="Avatar photo" src="https://kypsy.s3.amazonaws.com/uploads/photos/users/1004/2559/avatar_photo.gif" />',
+  '<img alt="Avatar photo" src="https://kypsy.s3.amazonaws.com/uploads/photos/users/1070/2719/avatar_photo.gif" />',
+  '<img alt="Avatar photo" src="https://kypsy.s3.amazonaws.com/uploads/photos/users/108/271/avatar_photo.gif" />',
+  '<img alt="Avatar photo" src="https://kypsy.s3.amazonaws.com/uploads/photos/users/1124/2874/avatar_photo.png" />',
+  '<img alt="Avatar photo" src="https://kypsy.s3.amazonaws.com/uploads/photos/users/1158/2969/avatar_photo.gif" />',
+  '<img alt="Avatar photo" src="https://kypsy.s3.amazonaws.com/uploads/photos/users/1188/3060/avatar_photo.png" />',
+  '<img alt="Avatar photo" src="https://kypsy.s3.amazonaws.com/uploads/photos/users/1262/3322/avatar_photo.gif" />',
+  '<img alt="Avatar photo" src="https://kypsy.s3.amazonaws.com/uploads/photos/users/1274/3349/avatar_photo.png" />',
+  '<img alt="Avatar photo" src="https://kypsy.s3.amazonaws.com/uploads/photos/users/1284/3368/avatar_photo.gif" />',
+  '<img alt="Avatar photo" src="https://kypsy.s3.amazonaws.com/uploads/photos/users/1403/3687/avatar_photo.gif" />',
+  '<img alt="Avatar photo" src="https://kypsy.s3.amazonaws.com/uploads/photos/users/1459/3853/avatar_photo.png" />',
+  '<img alt="Avatar photo" src="https://kypsy.s3.amazonaws.com/uploads/photos/users/1477/3895/avatar_photo.png" />',
+  '<img alt="Avatar photo" src="https://kypsy.s3.amazonaws.com/uploads/photos/users/1544/4080/avatar_photo.png" />',
+  '<img alt="Avatar photo" src="https://kypsy.s3.amazonaws.com/uploads/photos/users/1567/4167/avatar_photo.png" />',
+  '<img alt="Avatar photo" src="https://kypsy.s3.amazonaws.com/uploads/photos/users/1591/4239/avatar_photo.gif" />',
+  '<img alt="Avatar photo" src="https://kypsy.s3.amazonaws.com/uploads/photos/users/1617/4286/avatar_photo.png" />',
+  '<img alt="Avatar photo" src="https://kypsy.s3.amazonaws.com/uploads/photos/users/1644/4333/avatar_photo.png" />',
+  '<img alt="Avatar photo" src="https://kypsy.s3.amazonaws.com/uploads/photos/users/1803/4651/avatar_photo.gif" />',
+  '<img alt="Avatar photo" src="https://kypsy.s3.amazonaws.com/uploads/photos/users/1847/4761/avatar_photo.gif" />',
+  '<img alt="Avatar photo" src="https://kypsy.s3.amazonaws.com/uploads/photos/users/1887/4883/avatar_photo.png" />',
+  '<img alt="Avatar photo" src="https://kypsy.s3.amazonaws.com/uploads/photos/users/1923/4986/avatar_photo.gif" />',
+  '<img alt="Avatar photo" src="https://kypsy.s3.amazonaws.com/uploads/photos/users/2030/5261/avatar_photo.png" />',
+  '<img alt="Avatar photo" src="https://kypsy.s3.amazonaws.com/uploads/photos/users/2050/5312/avatar_photo.gif" />',
+  '<img alt="Avatar photo" src="https://kypsy.s3.amazonaws.com/uploads/photos/users/2098/5444/avatar_photo.png" />',
+  '<img alt="Avatar photo" src="https://kypsy.s3.amazonaws.com/uploads/photos/users/2162/5703/avatar_photo.gif" />',
+  '<img alt="Avatar photo" src="https://kypsy.s3.amazonaws.com/uploads/photos/users/2166/5714/avatar_photo.gif" />',
+  '<img alt="Avatar photo" src="https://kypsy.s3.amazonaws.com/uploads/photos/users/2179/5767/avatar_photo.gif" />',
+  '<img alt="Avatar photo" src="https://kypsy.s3.amazonaws.com/uploads/photos/users/2214/5877/avatar_photo.gif" />',
+  '<img alt="Avatar photo" src="https://kypsy.s3.amazonaws.com/uploads/photos/users/2268/6047/avatar_photo.png" />',
+  '<img alt="Avatar photo" src="https://kypsy.s3.amazonaws.com/uploads/photos/users/2295/6129/avatar_photo.png" />',
+  '<img alt="Avatar photo" src="https://kypsy.s3.amazonaws.com/uploads/photos/users/2296/6130/avatar_photo.png" />',
+  '<img alt="Avatar photo" src="https://kypsy.s3.amazonaws.com/uploads/photos/users/2371/6363/avatar_photo.png" />',
+  '<img alt="Avatar photo" src="https://kypsy.s3.amazonaws.com/uploads/photos/users/2396/6431/avatar_photo.gif" />',
+  '<img alt="Avatar photo" src="https://kypsy.s3.amazonaws.com/uploads/photos/users/251/695/avatar_photo.png" />',
+  '<img alt="Avatar photo" src="https://kypsy.s3.amazonaws.com/uploads/photos/users/38/126/avatar_photo.gif" />',
+  '<img alt="Avatar photo" src="https://kypsy.s3.amazonaws.com/uploads/photos/users/400/1027/avatar_photo.png" />',
+  '<img alt="Avatar photo" src="https://kypsy.s3.amazonaws.com/uploads/photos/users/725/1874/avatar_photo.gif" />',
+  '<img alt="Avatar photo" src="https://kypsy.s3.amazonaws.com/uploads/photos/users/815/2101/avatar_photo.png" />',
+  '<img alt="Avatar photo" src="https://kypsy.s3.amazonaws.com/uploads/photos/users/828/2126/avatar_photo.gif" />',
+  '<img alt="Avatar photo" src="https://kypsy.s3.amazonaws.com/uploads/photos/users/2984/8244/avatar_photo.png" />',
+  '<img alt="Avatar photo" src="https://kypsy.s3.amazonaws.com/uploads/photos/users/3223/8934/avatar_photo.jpeg" />',
+  '<img alt="Avatar photo" src="https://kypsy.s3.amazonaws.com/uploads/photos/users/2984/8244/avatar_photo.png" />',
+  '<img alt="Avatar photo" src="https://kypsy.s3.amazonaws.com/uploads/photos/users/264/731/avatar_photo.jpg" />',
+  '<img alt="Avatar photo" src="https://kypsy.s3.amazonaws.com/uploads/photos/users/1849/4763/avatar_photo.gif" />',
+  '<img alt="Avatar photo" src="https://kypsy.s3.amazonaws.com/uploads/photos/users/2608/7159/avatar_photo.png" />',
+  '<img alt="Avatar photo" src="https://kypsy.s3.amazonaws.com/uploads/photos/users/2607/7157/avatar_photo.gif" />',
+  '<img alt="Avatar photo" src="https://kypsy.s3.amazonaws.com/uploads/photos/users/1102/2799/avatar_photo.gif" />',
+  '<img alt="Avatar photo" src="https://kypsy.s3.amazonaws.com/uploads/photos/users/2773/7663/avatar_photo.jpeg" />',
+  '<img alt="Avatar photo" src="https://kypsy.s3.amazonaws.com/uploads/photos/users/1669/4383/avatar_photo.jpeg" />',
+  '<img alt="Avatar photo" src="https://kypsy.s3.amazonaws.com/uploads/photos/users/619/1560/avatar_photo.jpg" />',
+  '<img alt="Avatar photo" src="https://kypsy.s3.amazonaws.com/uploads/photos/users/1253/3285/avatar_photo.jpeg" />',
+  '<img alt="Avatar photo" src="https://kypsy.s3.amazonaws.com/uploads/photos/users/1114/2824/avatar_photo.jpg" />',
+  '<img alt="Avatar photo" src="https://kypsy.s3.amazonaws.com/uploads/photos/users/2789/7698/avatar_photo.png" />',
+  '<img alt="Avatar photo" src="https://kypsy.s3.amazonaws.com/uploads/photos/users/3080/8543/avatar_photo.png" />',
+  '<img alt="Avatar photo" src="https://kypsy.s3.amazonaws.com/uploads/photos/users/3299/9181/avatar_photo.png" />',
+  '<img alt="Avatar photo" src="https://kypsy.s3.amazonaws.com/uploads/photos/users/3316/9200/avatar_photo.png" />',
+  '<img alt="Avatar photo" src="https://kypsy.s3.amazonaws.com/uploads/photos/users/3344/9232/avatar_photo.png" />',
+  '<img alt="Avatar photo" src="https://kypsy.s3.amazonaws.com/uploads/photos/users/3365/9255/avatar_photo.jpeg" />',
+  '<img alt="Avatar photo" src="https://kypsy.s3.amazonaws.com/uploads/photos/users/3387/9270/avatar_photo.png" />',
+  '<img alt="Avatar photo" src="https://kypsy.s3.amazonaws.com/uploads/photos/users/480/1220/avatar_photo.gif" />',
+  '<img alt="Avatar photo" src="https://kypsy.s3.amazonaws.com/uploads/photos/users/654/1675/avatar_photo.gif" />',
+  '<img alt="Avatar photo" src="https://kypsy.s3.amazonaws.com/uploads/photos/users/2496/6794/avatar_photo.png" />',
+  '<img alt="Avatar photo" src="https://kypsy.s3.amazonaws.com/uploads/photos/users/2808/7753/avatar_photo.png" />',
+  '<img alt="Avatar photo" src="https://kypsy.s3.amazonaws.com/uploads/photos/users/3187/8826/avatar_photo.png" />',  
+]
+%>
+
+<%
+images = ""
+User.all.each do |user|
+  image = image_tag(user.avatar)
+  unless image.match(/placeholder/) || bads.include?(image)
+    images << link_to(image, person_path(user.username))
+  end
+end
+%>
+
+<%= images.html_safe %>

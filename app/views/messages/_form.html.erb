@@ -1,0 +1,31 @@
+<ul class="nav nav-tabs">
+  <li class="active"><a href="#message_body" data-toggle="tab">Write</a></li>
+  <li><a href="#preview" data-toggle="tab">Preview</a></li>
+</ul>
+
+  
+  
+<%= form_for @message, url: messages_path(@user.username), html: { class: "form" } do |f| %>
+  <div class="form-group">
+    <div class='message-form tab-content'>
+      <div id='preview' class='well lead markdown-preview tab-pane'></div>
+      <%= f.label :body, "Body", class: "sr-only" %>
+      <%= f.text_area :body,
+                      autocapitalize: "sentences",
+                      class:          "form-control tab-pane active",
+                      required:       true,
+                      rows:           6,
+                      placeholder:    "Say something nice and more than &lsquo;hey...&rsquo;".html_safe %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-6">
+      <a href="" class="btn btn-default btn-lg btn-cancel">Cancel</a>
+    </div>
+
+    <div class="col-xs-6">
+      <%= f.submit "Send", data: { disable_with: "Sending..." }, class: "btn btn-success btn-block btn-lg" %>
+    </div>
+  </div>
+<% end %>

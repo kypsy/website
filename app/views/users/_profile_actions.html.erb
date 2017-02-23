@@ -1,0 +1,64 @@
+<% if mine? %>
+  <%= link_to new_photo_path, class: "btn btn-success" do %>
+    <i class='fa fa-picture-o'></i>&nbsp;&nbsp;Add Photo
+  <% end %>
+
+  <%= link_to settings_path,  class: "btn btn-default" do %>
+    <i class='fa fa-pencil'></i><span class="hidden-xs">&nbsp;&nbsp;Edit Profile</span>
+  <% end %>
+
+<% elsif not_mine? %>
+  <div class="actions">
+
+    <span class="btn-group">
+      <%# MESSAGE BUTTON %>
+      <%= link_to "<i class='fa fa-comment'></i>".html_safe, new_message_path(username: user.username), class: "btn btn-info message" %>
+
+      <%# BOOKMARK BUTTON %>
+      <% hide_show = im.bookmarking?(user) ? ["block", "none"] : ["none", "block"] %>
+
+      <%# bookmarked %>
+      <div class="btn-group">
+        <%= link_to "<i class='fa fa-star text-primary'></i>".html_safe,
+                    action_unbookmark_path(user.username),
+                    method:            :delete,
+                    id:                "unbookmark",
+                    class:             "bookmark form-inline btn btn-default",
+                    "data-username" => user.username,
+                    style:             "display: #{hide_show.first}" %>
+      </div>
+
+      <%= link_to "<i class='fa fa-star'></i>".html_safe,
+                  action_bookmark_path(user.username),
+                  method:            :post,
+                  id:                "new_secret_crush",
+                  class:             "bookmark form-inline btn btn-primary",
+                  "data-username" => user.username,
+                  style:             "display: #{hide_show.last}" %>
+
+
+      <%# CRUSH BUTTON %>
+      <% hide_show = im.crushing_on?(user) ? ["block", "none"] : ["none", "block"] %>
+
+      <%= link_to uncrush_path(user.username),
+                  class:             "crush btn btn-default",
+                  "data-username" => user.username,
+                  method:            :delete,
+                  style:             "display: #{hide_show.first}" do %>
+        <b class="text-danger">
+          <i class='fa fa-heart'></i>
+          Uncrush
+        </b>
+      <% end %>
+
+      <%= link_to crush_path(user.username),
+                  class: "crush btn btn-danger",
+                  "data-username" => user.username,
+                  method:            :post,
+                  style:             "display: #{hide_show.last}" do %>
+        <i class='fa fa-heart'></i>&nbsp;&nbsp;Crush
+      <% end %>
+
+    </span>
+  </div><!-- .actions -->
+<% end %>

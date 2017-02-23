@@ -1,0 +1,32 @@
+<div id="conversation" class="h-feed">
+  <div class="page-header">
+    <h1>
+      Coversation with
+      <% if @user.real_name_public? %>
+        <%= link_to @user.name, person_path(@user.username) %>
+        (<%= link_to @user.username, person_path(@user.username) %>)
+      <% else %>
+        <%= link_to @user.username, person_path(@user.username) %>
+      <% end %>
+    </h1>
+  </div>
+
+  <ol class="messages list list-unstyled">
+    <% @messages.each_with_index do |message, index| %>
+      <li class="h-entry message <%= "from-me" if message.sender == current_user %>">
+        <%= render message.sender %>
+
+        <div class="e-content message-body <%= "well lead" if index == (@conversation.messages.length - 1) %>">
+          <%= user_inputed_text(message.body).html_safe %>
+        </div>
+
+        <time class="dt-published" datetime="<%= message.created_at.xmlschema %>"><%= message.created_at.strftime("%Y-%m-%d %H:%M%p") %></time>
+      </li>
+    <% end %>
+  </ol>
+
+  <div id="reply">
+    <h1>Reply</h1>
+    <%= render "/messages/form" %>
+  </div>
+</div>

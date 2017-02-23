@@ -1,0 +1,52 @@
+<%# social sidebar %>
+<aside class="col-md-4 col-md-offset-1 col-sm-12">
+  <%= render "/shared/sponsor" %>
+
+  <% if show_section?(:contact) %>
+    <h1 class="h3">Contact Info</h1>
+
+    <table class="table">
+      <% if @user.email_public? %>
+        <tr>
+          <th>Email</th>
+          <td><%= mail_to @user.email, @user.email, class: "u-email email" %></td>
+        </tr>
+      <% end %>
+
+      <% if @user.website? %>
+        <tr>
+          <th>Website</th>
+          <td><%= link_to @user.website, @user.website, class: "u-url url" %></td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
+
+
+  <% if show_section?(:social) %>
+    <h1 class="h3">Social</h1>
+
+    <table class="table">
+
+      <%# TODO pull this out into either the user model settings or a URL model %>
+      <% social_sites.each do |site, url| %>
+        <% unless @user.send("#{site.downcase.gsub(/ /, "")}_username").blank? %>
+          <tr>
+            <th><%= site %></th>
+            <td>
+              <% if url == "@@@" %>
+                <%= @user.send("#{site.downcase}_username") %>
+              <% else %>
+                <%= link_to @user.send("#{site.downcase.gsub(/ /, "")}_username"),
+                            url.gsub(/@@@/, @user.send("#{site.downcase.gsub(/ /, "")}_username")), rel: "me" %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      <% end %>
+
+    </table>
+  <% end %>
+
+  <%#= render "/users/social/this_is_my_jam" %>
+</aside>

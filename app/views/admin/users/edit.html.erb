@@ -1,0 +1,30 @@
+<h1>Edit <%= link_to @user.username, @user %></h1>
+<%= form_for [:admin, @user], url: admin_update_user_path(@user) do |f| -%>
+  <div class='form-group'>
+    <label for='user_admin' class='checkbox'>
+      <%= f.check_box :admin, {checked: @user.admin?}, true, "false" %> Admin
+    </label>
+  </div>
+  <div class='form-group'>
+    <label for='user_featured' class='checkbox'>
+      <%= f.check_box :featured, {checked: @user.featured?}, true, "false" %> Featured
+    </label>
+  </div>
+  
+  <%= f.submit "Update", class: 'btn btn-success' %>
+<% end -%>
+
+  <div class="col-12" id="danger-zone">
+    <h2>DANGER ZONE</h2>
+
+    <div>
+      <p>
+        <b>There is no undo. No regrets.</b>
+      </p>
+      <%= link_to "DELETE #{@user.username}", admin_user_path(@user), 
+        method:  :delete, 
+        class:   "btn btn-danger btn-block btn-lg",
+        data:    { confirm: "Uhhhh&hellip; Are you sure you want to delete your profile?".html_safe }
+      %>
+    </div>
+  </div> <!-- #danger-zone -->

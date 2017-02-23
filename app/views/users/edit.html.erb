@@ -1,0 +1,288 @@
+  <div class="page-header">
+    <h1>Settings</h1>
+  </div>
+
+<% unless @user.twitter? && @user.facebook? %>
+    <div class="col-12">
+      <div class="buttons">
+        <% if @user.twitter? %>
+          <%= button_to_sign_in_with(:facebook) %>
+        <% elsif @user.facebook? %>
+          <%= button_to_sign_in_with(:twitter) %>
+        <% end %>
+      </div>
+
+      <p class="note">
+        Connecting both your Twitter and Facebook accounts makes it easier to fill out your Kypsy profile, which helps you find people.
+      </p>
+
+      <p class="note">
+        And if Twitter or Facebook ever has downtime, you can use the other to sign in to Kypsy.
+      </p>
+    </div>
+<% end %>
+
+<%= render "errors" %>
+
+<%= form_for @user, url: update_settings_path, html: { class: "form" } do |f| %>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= f.label      :name %>
+        <%= f.text_field :name, autocapitalize: "words", class: "form-control" %>
+
+        <div class="checkbox">
+          <label>
+            <%= f.check_box :real_name_public %>
+            Show publicly?
+          </label>
+        </div>
+        <hr>
+      </div>
+
+      <% if @user.username.blank? %>
+        <div class="form-group">
+          <%= f.label      :username %>
+          <%= f.text_field :username, autocapitalize: "off", autocorrect: "off", class: "form-control" %>
+        </div>
+      <% end %>
+
+      <div class="form-group">
+        <%= f.label       :email %>
+        <%= f.email_field :email, autocapitalize: "off", autocorrect: "off", class: "form-control", required: true %>
+
+        <div class="checkbox">
+          <label>
+            <%= f.check_box :email_public %>
+            Show publicly?
+          </label>
+        </div>
+
+        <%= f.label     :website %>
+        <%= f.url_field :website, autocapitalize: "off", autocorrect: "off", class: "form-control" %>
+        <hr>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :birthday %>
+        <%= birthday_select_tag(f) %>
+
+        <div class="checkbox">
+          <label>
+            <%= f.check_box :birthday_public %>
+            Show publicly?
+          </label>
+        </div>
+        <hr>
+      </div>
+
+      <div class="form-group">
+        <%= f.label      :city %>
+        <%= f.text_field :city, autocapitalize: "words", class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label  :state %>
+        <%= f.select :state_id, State.options_for_select, { include_blank: true }, { class: "form-control" } %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label      :zipcode %>
+        <%= f.text_field :zipcode, autocapitalize: "characters", class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label  :country %>
+        <%= f.select :country_id, Country.options_for_select, { include_blank: true }, { class: "form-control" } %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label     :bio %>
+        <%= f.text_area :bio, autocapitalize: "sentences", class: "form-control", rows: 8 %>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= f.label  :diet, "My Diet" %>
+            <%= f.select :diet_id, Diet.options_for_select, { include_blank: true }, { class: "form-control" } %>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= f.label :your_labels_attributes, "Desired Diet" %>
+            <%= render "/labels/form", f: f, collection: Diet.all %>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= f.label      :me_gender,  "My Gender" %>
+            <%= f.text_field :me_gender,  autocapitalize: "words", class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= f.label      :you_gender, "Desired Gender" %>
+            <%= f.text_field :you_gender, autocapitalize: "words", class: "form-control" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= f.label  :label_id, "My Straightedginess" %>
+            <%= f.select :label_id, Label.options_for_select, { include_blank: true }, { class: "form-control" } %>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= f.label :your_labels_attributes, "Desired Straightedginess" %>
+            <%= render "/labels/form", f: f, collection: Label.all %>
+          </div>
+        </div>
+      </div>
+
+      <%# TODO show this when a person clicks on  "drug-friendly" on my straightedginess %>
+      <%# TODO hide this when a person clicks off "drug-friendly" on my straightedginess %>
+      <div class="col-12 <%= 'hidden' unless @user.label.try(:drug_friendly?) %>" id="drug-use">
+        <h5>My Drug-Friendliness</h5>
+        <div class="alert alert-warning">
+          <strong>Note:</strong>
+          We are not cops. We won't give you up to cops.
+          But anything you put into this table is publicly visible.
+          Act accordingly.
+        </div>
+
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>&nbsp;</th>
+              <th scope="col">Never</th>
+              <th scope="col">Light</th>
+              <th scope="col">Socially</th>
+              <th scope="col">Some</th>
+              <th scope="col">Lots</th>
+            </tr>
+          </thead>
+
+          <tbody>
+
+            <tr>
+              <th scope="row">Alcohol</th>
+              <td><%= f.radio_button :alcohol, "never" %></td>
+              <td><%= f.radio_button :alcohol, "light" %></td>
+              <td><%= f.radio_button :alcohol, "socially" %></td>
+              <td><%= f.radio_button :alcohol, "some" %></td>
+              <td><%= f.radio_button :alcohol, "lots" %></td>
+            </tr>
+            <tr>
+              <th scope="row">Cigarettes</th>
+              <td><%= f.radio_button :cigarettes, "never" %></td>
+              <td><%= f.radio_button :cigarettes, "light" %></td>
+              <td><%= f.radio_button :cigarettes, "socially" %></td>
+              <td><%= f.radio_button :cigarettes, "some" %></td>
+              <td><%= f.radio_button :cigarettes, "lots" %></td>
+            </tr>
+            <tr>
+              <th scope="row">Marijuana</th>
+              <td><%= f.radio_button :marijuana, "never" %></td>
+              <td><%= f.radio_button :marijuana, "light" %></td>
+              <td><%= f.radio_button :marijuana, "socially" %></td>
+              <td><%= f.radio_button :marijuana, "some" %></td>
+              <td><%= f.radio_button :marijuana, "lots" %></td>
+            </tr>
+            <tr>
+              <th scope="row">&ldquo;Drugs&rdquo;</th>
+              <td><%= f.radio_button :drugs, "never" %></td>
+              <td><%= f.radio_button :drugs, "light" %></td>
+              <td><%= f.radio_button :drugs, "socially" %></td>
+              <td><%= f.radio_button :drugs, "some" %></td>
+              <td><%= f.radio_button :drugs, "lots" %></td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+      <div class="row" id="social-media">
+        <div class="col-sm-12">
+          <div class="page-header">
+            <h1>Social</h1>
+          </div>
+        </div>
+
+        <% social_sites.map{|k,v| k}.each do |site| %>
+          <div class="col-sm-6">
+              <div class="form-group">
+                <%# TODO wire this up to user settings instead of one column/method per site %>
+                <%= f.label      "#{site.downcase.gsub(/ /, "")}_username".to_sym, "#{site} Username" %>
+                <%= f.text_field "#{site.downcase.gsub(/ /, "")}_username".to_sym, class: "form-control", placeholder: "#{site} Username" %>
+              </div>
+          </div>
+        <% end %>
+
+      </div>
+      <div class="row" id="social-media">
+        <div class="col-sm-12">
+          <div class="page-header">
+            <h1>Notifications</h1>
+          </div>
+          <div class="checkbox">
+            <label>
+              <%= f.check_box :email_crushes %>
+              <%= f.label     :email_crushes, "Notify me when someone crushes me" %>
+            </label>
+          </div>
+          <div class="checkbox">
+            <label>
+              <%= f.check_box :email_messages %>
+              <%= f.label     :email_messages, "Notify me when someone messages me" %>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 actions">
+    <%= f.submit "Save Changes", data: {disable_with: "Saving&hellip;".html_safe}, class: "btn btn-success btn-block btn-lg" %>
+  </div>
+<% end %>
+
+
+
+<div class="col-12" id="danger-zone">
+  <h2>DANGER ZONE</h2>
+
+  <div>
+    <p>
+      If you want to leave this place, that&rsquo;s your decision.
+      We&rsquo;ll be sad to see you go, but we can respect that.
+    </p>
+
+    <p>
+      All of your user profile and related data will be immediately deleted.
+      No Twitter or Facebook information will be further stored.
+    </p>
+
+    <p>
+      <b>There is no undo. No regrets.</b>
+    </p>
+
+    <%= button_to "I Want to Delete My Profile",
+                  user_path(@user),
+                  method:  :delete,
+                  data:    { confirm: "Uhhhh&hellip; Are you sure you want to delete your profile?".html_safe },
+                  class:   "btn btn-danger btn-block btn-lg" %>
+  </div>
+</div> <!-- #danger-zone -->

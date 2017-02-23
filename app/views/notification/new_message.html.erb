@@ -1,0 +1,10 @@
+<b>Hi @<%= @recipient.username %>!</b>
+
+<p>
+  <b><%= link_to "@#{@sender.username}", user_url(@sender) %></b> sent you a message.
+  <%= link_to "Read it", conversation_url(@sender) %> on Kypsy.
+</p>
+
+<p>
+  <%= link_to conversation_url(@sender), conversation_url(@sender) %>
+</p>

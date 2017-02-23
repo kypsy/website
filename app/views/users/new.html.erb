@@ -1,0 +1,38 @@
+<div class="page-header">
+  <h1>Before we start we just need 3 things from you.</h1>
+</div>
+
+<%= render "errors" %>
+
+<%= form_for @user, url: user_create_path, html: { class: "form" } do |f| %>
+  <div class="form-group">
+    <%= f.label       :username %>
+    <%= f.text_field  :username, autocapitalize: "off", autocorrect: "off", class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label       :email %>
+    <%= f.email_field :email,    autocapitalize: "off", autocorrect: "off", class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label       :birthday %>
+    <%= birthday_select_tag(f) %>
+  </div>
+
+  <b>Pretty simple rules:</b>
+  <ol>
+    <li>Don't be a creep.</li>
+    <li>Keep it positive.</li>
+    <li>Have fun.</li>
+  </ol>
+
+  <div class="checkbox">
+    <label for="user_agreed_to_terms_at">
+       <%= f.check_box :agreed_to_terms_at, { checked: @user.agreed_to_terms_at }, Time.now %>
+       <b>I agree to the <%= link_to "terms", terms_path, target: :blank %></b>
+     </label>
+   </div>
+
+  <%= f.submit "Submit", data: { disable_with: "Submitting..." }, class: "btn btn-success btn-block btn-lg" %>
+<% end %>

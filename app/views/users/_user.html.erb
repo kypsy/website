@@ -1,0 +1,38 @@
+<div class="row person media">
+
+  <div class="media col-xs-12">
+    <%= link_to_avatar(user, @avatar_size) %>
+
+    <div class="media-body">
+      <% cache user do %>
+        <h4 class="media-heading">
+          <% if user.real_name_public? %>
+            <span class="p-name fn n"><%= link_to user.name, person_path(user.username) %></span>
+            (<span class="p-nickname nickname"><%= link_to user.username, person_path(user.username) %></span>)<%= render partial: "/users/age", locals: { user: user } %>
+          <% else %>
+            <span class="p-name fn n"><%= link_to user.username, person_path(user.username) %></span><%= render partial: "/users/age", locals: { user: user } %>
+          <% end %>
+        </h4>
+
+        <p class="p-adr h-adr">
+          <%= link_to google_map_url(user) do %>
+            <% unless user.city.blank? %>
+              <span class="p-locality locality"><%= user.city %></span>,
+            <% end %>
+            <% unless user.state.blank? %>
+              <span class="p-region region"><%= user.state %></span>,
+            <% end %>
+            <% unless user.country.blank? %>
+              <span class="p-country country"><%= user.country.name %></span>
+            <% end %>
+          <% end %>
+        </p>
+      <% end %>
+
+      <% if user_profile? %>
+        <%= render partial: "/users/profile_actions", locals: { user: user } %>
+      <% end %>
+    </div>
+  </div>
+
+</div> <!-- .person -->

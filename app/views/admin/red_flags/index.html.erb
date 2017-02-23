@@ -1,0 +1,22 @@
+<div class="row">
+  <%
+  {
+    "Flagged Users"  => @flagged_users,
+    "Flagged Photos" => @flagged_photos
+  }.each do |title, collection|
+  %>
+    <div class="col-sm-6">
+      <h1><%= title %></h1>
+
+      <table class='table'>
+        <% collection.each do |slug, count| %>
+          <%= content_tag "tr", class: red_flag_classes(count) do %>
+            <td><%= link_to slug, admin_red_flag_path(slug) %></td>
+            <td><%= count %></td>
+          <% end %>
+        <% end %>
+      </table>
+
+    </div>
+  <% end %>
+</div>

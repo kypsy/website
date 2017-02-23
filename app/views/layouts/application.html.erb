@@ -1,14 +1,55 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Kypsy</title>
-    <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all' %>
-    <%= javascript_include_tag 'application' %>
-  </head>
+<html dir="ltr" lang="en" id="<%= @slug %>" class="no-js">
+<%= render partial: "/shared/head" %>
 
-  <body>
+<%= opening_body_tag %>
+
+  <% if welcome? %>
+    <%= render partial: "/shared/welcome_header" %>
+  <% else %>
+    <%= render partial: "/shared/header" %>
+  <% end %>
+
+  <section role="main" class="container">
+    <%= render partial: "/shared/browse_happy" %>
+
+    <% unless logged_in? || controller_name == "welcome" %>
+      <%= render partial: "/shared/social_posting_info" %>
+    <% end %>
+
+    <% if show_update_profile? %>
+      <p class="alert alert-success">
+        Completed profiles have the best success.
+        <b><%= link_to "Go update yours now! &rarr;".html_safe, settings_path, class: "alert-link" %></b>
+      </p>
+    <% end %>
+    <%= render partial: "/shared/flashes" %>
+
     <%= yield %>
-  </body>
+  </section>
+
+  <footer role="contentinfo" class="container">
+    <%# sponsor in footer on all pages except profiles (in sidebar) %>
+    <%= render "/shared/sponsor" unless @slug == "person" %>
+
+    <ul class="nav nav-pills pull-left row">
+      <li class="col-xs-12"><%= link_to "About Kypsy", about_path %></li>
+      <li class="col-xs-12"><%= link_to "Sponsors",        sponsors_path %></li>
+      <li class="col-xs-12"><%= link_to "Stats",           stats_path %></li>
+      <li class="col-xs-12"><%= link_to "Blog",            "http://blog.kypsy.com", rel: "external" %></li>
+      <li class="col-xs-12"><%= link_to "Terms",           terms_path %></li>
+      <li class="col-xs-12"><%= link_to "Privacy Policy",  privacy_path %></li>
+    </ul>
+
+    <ul class="nav nav-pills pull-right">
+      <% if logged_in? %>
+        <li class="col-xs-12"><%= link_to_unless_current "Sign Out", signout_path %></li>
+      <% end %>
+    </ul>
+  </footer>
+
+  <%= render partial: "/shared/foot" %>
+
+</body>
 </html>

@@ -1,0 +1,11 @@
+<%= render partial: "/shared/print_css" %>
+
+<%= javascript_include_tag "application" %>
+
+<%# jQuery from CDN %>
+<%= javascript_include_tag "https://code.jquery.com/jquery.js" %>
+<%# Latest compiled and minified Bootstrap JavaScript %>
+<%= content_for :javascripts %>
+
+<%= javascript_include_tag "//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js" %>
+<%= render partial: "/shared/google_analytics" %>

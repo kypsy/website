@@ -1,0 +1,152 @@
+<%= render @user %>
+
+<p class="well lead">
+  I am
+
+  <%= @user.diet ? @user.diet.name.indefinite_article : "a" %>
+
+  <% if @user.diet %>
+    <b><%= link_to @user.diet.name.downcase, search_path(search: [:diets, @user.diet.name]) %></b>
+  <% end %>
+
+  <% if @user.label %>
+    <b><%= link_to @user.label.name.downcase, search_path(search: [:straightedgeness, @user.label.name]) %></b>
+  <% end %>
+
+  <b><%= link_to @user.me_gender, search_path(search: [:genders, @user.me_gender]) %></b>.
+
+
+  <br class="xs-hidden" />
+
+
+  I&rsquo;m looking for
+
+  <% if @user.desired_diets.blank? %>
+    a
+  <% else %>
+    <%= @user.desired_diets.map(&:name).join.indefinite_article %>
+    <%= labels_list(@user, :diets) %>
+  <% end %>
+
+  <%= labels_list(@user, :straightedgeness) %>
+
+  <b><%= link_to @user.you_gender, search_path(search: [:genders, @user.you_gender]) %></b>.
+
+
+  <% if @user.drug_friendly? %>
+    <% unless drug_friendly_all_nevers?(@user) %>
+
+      <br />
+      <span class="drug-friendliness">
+        My drug-friendliness is:
+        <% @user.drug_use.each do |k, v| %>
+          <b><%= k %></b>
+          <i><%= v %></i>
+        <% end %>
+      </span>
+
+    <% end %>
+  <% end %>
+</p>
+
+<div class="row">
+
+  <main class="col-md-7 col-sm-12">
+    <% if @user.bio %>
+      <div id="bio" class="e-note note">
+        <%= user_inputed_text(@user.bio) %>
+      </div>
+    <% end %>
+
+    <div id="photos">
+      <ul class="h-feed">
+        <% @user.photos.each do |photo| %>
+          <li class="h-entry">
+            <%= image_tag photo.image_url(:large).to_s %>
+            <div class="caption lead">
+              <%= simple_format photo.caption %>
+            </div>
+
+            <div class="actions">
+              <% if mine? %>
+                <%= link_to "<i class='fa fa-edit'></i>&nbsp;&nbsp;Edit Photo".html_safe, edit_photo_path(photo), class: "btn btn-default" %>
+
+                <%= form_for photo, html: { class: "form-inline", role: "form" } do |f| %>
+                  <%= f.hidden_field :avatar, value: true %>
+                  <%= f.button "<i class='fa fa-circle-o'></i>&nbsp;&nbsp;Use as Avatar".html_safe, class: "btn btn-default" %>
+                <% end %>
+              <% elsif logged_in? %><%# not mine and logged in %>
+
+                <% if flagged?(photo) %>
+                  <%= unflag_button photo, class: "delete-flag btn btn-warning" %>
+                <% else %>
+                  <%= form_for RedFlag.new, url: flag_path(photo) do |f| %>
+                    <%= f.hidden_field :flaggable_type, value: "Photo" %>
+                    <button class="btn btn-default" type="submit">
+                      <b class='text-warning'>
+                        <i class='fa fa-flag-o'></i>
+                        &nbsp;&nbsp;Flag this photo as inappropriate
+                      </b>
+                    </button>
+                    <% end %>
+                <% end %>
+
+              <% end %>
+            </div> <!-- .actions -->
+
+          </li>
+        <% end %>
+      </ul>
+    </div> <!-- #photos -->
+  </main>
+
+  <%= render "sidebar" %>
+
+</div> <!-- .row -->
+
+<div id="flags">
+  <% if @user && not_mine? %>
+    <div class="row">
+      <div class="col-sm-6">
+        <% if flagged?(@user) %>
+
+          <%= unflag_button @user, class: "delete-flag btn btn-block btn-warning" %>
+
+        <% else %>
+
+          <%= form_for RedFlag.new, url: flag_path(@user.id) do |f| %>
+            <%= f.hidden_field :flaggable_type, value: "User" %>
+
+            <button class="btn btn-default btn-block" type="submit">
+              <b class='text-warning'>
+                <i class='fa fa-flag-o'></i>
+                Flag @<%= @user.username %> as inappropriate
+              </b>
+            </button>
+          <% end %>
+
+        <% end %>
+      </div>
+
+      <div class="col-sm-6">
+        <% if blocked? %>
+
+          <%= link_to action_unblock_path(@user.username), method: :delete, class: "btn btn-danger btn-block col-sm-6" do %>
+            <i class='fa fa-ban'></i> Unblock @<%= @user.username %>
+          <% end %>
+
+        <% else %>
+
+          <%= link_to action_block_path(@user.username), method: :post, class: "btn btn-default btn-block col-sm-6" do %>
+            <b class='text-danger'>
+              <i class='fa fa-ban'></i>
+              Block @<%= @user.username %>
+            </b>
+          <% end %>
+
+        <% end %>
+      </div>
+
+    </div>
+  <% end %>
+</div>

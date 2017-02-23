@@ -1,0 +1,41 @@
+<div id="people">
+  <h1><%= link_to "Thousands of People are on Kypsy".html_safe, people_path %></h1>
+
+  <div class="sign-in buttons">
+    <h3>Sign in to get started</h3>
+
+    <%= button_to_sign_in_with(:twitter) %>
+    <%= button_to_sign_in_with(:facebook) %>
+  </div>
+</div>
+
+<div id="about">
+  <p>
+    <b>Kypsy</b> is a simple, fun dating site for people who are straightedge.
+    And for the people that love them. &hellip;or who <i>want to love them</i>.
+  </p>
+
+  <p>
+    Are you tired of other dating sites that are out of step with your
+    needs and desires? So are we.
+  </p>
+
+  <p>
+    Join <b>Kypsy</b> to find a person just like you.
+    Keep it positive. Be friendly. Have fun.
+    We hope you find what you&rsquo;re looking for.
+  </p>
+
+  <p>
+    It&rsquo;s <b>FREE</b> and easy to join using your Facebook or Twitter account.
+  </p>
+
+  <div class="sign-in buttons">
+    <h3>Sign in to get started</h3>
+
+    <%= button_to_sign_in_with(:twitter) %>
+    <%= button_to_sign_in_with(:facebook) %>
+
+    <%= render partial: "/shared/social_posting_info" %>
+  </div>
+</div>

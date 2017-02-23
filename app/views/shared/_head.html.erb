@@ -1,0 +1,33 @@
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title><%= page_title.html_safe %></title>
+
+  <meta name="description"      content="The Straightedge Dating Site.">
+  <meta name="author"           content="Shane Becker &amp; Bookis Smuin">
+  <meta name="viewport"         content="width=device-width, initial-scale=1.0">
+  <meta name="HandheldFriendly" content="true" />
+
+  <%= favicon_link_tag %><%# 16x16 %>
+  <%= favicon_link_tag "/apple-touch-icon-57x57-precomposed.png",   rel: "apple-touch-icon-precomposed", type: "image/png" %><%# 57x57 %>
+  <%= favicon_link_tag "/apple-touch-icon-72x72-precomposed.png",   rel: "apple-touch-icon-precomposed", type: "image/png", sizes: "72x72"   %>
+  <%= favicon_link_tag "/apple-touch-icon-114x114-precomposed.png", rel: "apple-touch-icon-precomposed", type: "image/png", sizes: "114x114" %>
+  <%= favicon_link_tag "/apple-touch-icon-144x144-precomposed.png", rel: "apple-touch-icon-precomposed", type: "image/png", sizes: "144x144" %>
+
+  <%= stylesheet_link_tag    :application, media: "all" %>
+
+  <%# Latest compiled and minified Bootstrap and Font Awesome CSS %>
+  <%= stylesheet_link_tag "//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css"   %>
+  <%= stylesheet_link_tag "//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" %>
+
+  <%= csrf_meta_tag %>
+
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+  <![endif]-->
+
+  <%= render :partial => "/shared/open_graph_tags" %>
+  <%= render :partial => "/shared/twitter_cards" %>
+</head>

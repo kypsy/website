@@ -1,0 +1,15 @@
+<div class="page-header">
+  <h1>Conversations</h1>
+</div>
+
+<% if @conversations.blank? %>
+  <div class="col-12">
+    <p class="alert alert-info">You don&rsquo;t have any conversations started. <b>Go message someone!</b></p>
+  </div>
+<% else %>
+  <div class="row">
+    <ol class="conversations">
+      <%= render @conversations %>
+    </ol>
+  </div>
+<% end %>

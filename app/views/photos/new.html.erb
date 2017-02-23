@@ -1,0 +1,52 @@
+<div class="page-header">
+  <h1>Add a photo to your profile</h1>
+</div>
+
+<!-- Temporary, shouldn't show for anything except FB test users -->
+<% if @facebook && @facebook.valid? %>
+  <% @facebook.photos.each do |photo| %>
+    <%= image_tag photo["images"].last["source"] %>
+  <% end %>
+<% end %>
+
+<%= form_for @photo, html: { multipart: true, class: "form" } do |f| %>
+  <% if getting_started? %>
+    <div id="getting-started">
+
+      <% if current_user.photos.any? %>
+        <p class="info">
+          We got this photo from
+          <b><%= current_user.providers.first.name.capitalize %></b>.<br />
+          You can add more photos below.
+        </p>
+
+        <div class="actions">
+          <%= link_to "Add Another", "#url", class: "btn btn-success" %>
+          <%= link_to "No Thanks", root_path, class: "btn btn-default" %>
+        </div>
+
+        <%= image_tag current_user.photos.first.image_url(:square).to_s %>
+      <% end %>
+    </div>
+
+    <%= f.hidden_field :avatar, value: true %>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label     :remote_image_url, "Paste a URL", id: "url" %>
+    <%= f.url_field :remote_image_url, autocapitalize: "off", autocorrect: "off", class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label      :image, "or Select an Image" %>
+    <%= f.file_field :image, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label     :caption, "Caption" %>
+    <%= f.text_area :caption, autocapitalize: "sentences", class: "form-control", rows: 3 %>
+  </div>
+
+  <%= f.submit "Upload", data: { disable_with: 'Uploading...' }, class: "btn btn-success btn-block btn-lg" %>
+
+<% end %>

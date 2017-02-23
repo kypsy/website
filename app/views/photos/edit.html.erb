@@ -1,0 +1,78 @@
+<div class="page-header">
+  <h1>What&rsquo;s the story of this photo?</h1>
+</div>
+
+<div id="preview"><%= image_tag @photo.image_url(:medium).to_s %></div>
+
+<div id="controls">
+  <%= link_to "#rotate-left",  class: "image-manipulator btn btn-default" do %>
+    <i class='fa fa-rotate-left'></i>
+    <span class="control-label hidden-xs">Rotate -90&deg;</span>
+  <% end %>
+  <%= link_to "#rotate-right", class: "image-manipulator btn btn-default" do %>
+    <i class='fa fa-rotate-right'></i>
+    <span class="control-label hidden-xs">Rotate  90&deg;</span>
+  <% end %>
+  <%= link_to "#flip-vertical", class: "image-manipulator btn btn-default" do %>
+    <i class='fa fa-arrows-v'></i>
+    <span class="control-label hidden-xs">Flip Vertical</span>
+  <% end %>
+  <%= link_to "#flip-horizontal", class: "image-manipulator btn btn-default" do %>
+    <i class='fa fa-arrows-h'></i>
+    <span class="control-label hidden-xs">Flip Horizontal</span>
+  <% end %>
+</div>
+
+<%= form_for @photo, html: { class: "form" } do |f| %>
+  <div id='photo_manipulate' data-rotate=0></div>
+  <div class="form-group">
+    <%= f.label     :caption, "Caption" %>
+    <%= f.text_area :caption, autocapitalize: "sentences", class: "form-control" %>
+  </div>
+
+  <% unless @photo.avatar? %>
+    <div class="checkbox">
+      <label>
+        <%= f.check_box :avatar %>
+        Want to use this as your avatar?
+      </label>
+    </div>
+  <% end %>
+
+  <div class="col-12 actions">
+    <%= f.submit "Save Photo", data: {disable_with: "Saving&hellip;".html_safe}, class: "btn btn-success btn-block btn-lg" %>
+  </div>
+<% end %>
+
+
+
+<section id="danger-zone">
+  <h2>DANGER ZONE</h2>
+
+  <div>
+    <p>
+      Maybe you think that you&rsquo;re making a stupid face in this picture.
+      Or that your face is stupid.
+      Or &ldquo;<i>who has hair like that anymore? That&rsquo;s so last year.</i>&rdquo;
+    </p>
+
+    <p>
+      First, you&rsquo;re probably wrong.
+      Your face isn&rsquo;t stupid.
+      You should probably leave the photo up.
+      It adds character and helps tell your story.
+      <em>But</em>, if you <i>must</i> delete it, no hard feelings.
+      Maybe add another in its place.
+    </p>
+
+    <p>
+      <b>There is no undo. No regrets.</b>
+    </p>
+
+    <%= button_to "I Want to Delete My Photo",
+                  @photo,
+                  method:  :delete,
+                  data:    { confirm: "Are you SURE? Like for sure, for sure? There is NO UNDO." },
+                  class:   "btn btn-danger btn-block btn-lg" %>
+  </div>
+</section>
