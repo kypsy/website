@@ -1,5 +1,5 @@
 class Notification < ActionMailer::Base
-  default from: t(:hq_email)
+  default from: "us@kypsy.com"
 
   def new_message(message_id)
     @message   = Message.find(message_id)
