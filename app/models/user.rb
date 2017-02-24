@@ -87,7 +87,6 @@ class User < ActiveRecord::Base
   validates :agreed_to_terms_at, presence: { on: :update, message: "must be agreed upon"}
 
   before_save :groom_string_fields
-  after_save :create_lat_lng
 
   before_validation :create_canonical_username
   before_validation :generate_auth_token, on: :create
@@ -366,10 +365,6 @@ class User < ActiveRecord::Base
       output = send(method_name)
       %w(true false 0 1).include?(output) ? %w(true 1).include?(output) : output
     end
-  end
-
-  def create_lat_lng
-    Resque.enqueue(GeocodeLookup, self.id)
   end
 
   private
