@@ -1,6 +1,4 @@
 <div id="people">
-  <h1><%= link_to "Thousands of People are on #{t(:brand)}".html_safe, people_path %></h1>
-
   <div class="sign-in buttons">
     <h3>Sign in to get started</h3>
 
@@ -11,13 +9,12 @@
 
 <div id="about">
   <p>
-    <b><%= t(:brand) %></b> is a simple, fun dating site for people who are straightedge.
-    And for the people that love them. &hellip;or who <i>want to love them</i>.
-  </p>
-
-  <p>
-    Are you tired of other dating sites that are out of step with your
-    needs and desires? So are we.
+    <b><%= t(:brand) %></b> is a Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+    veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+    eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
+    qui officia deserunt mollit anim id est laborum.
   </p>
 
   <p>
@@ -29,13 +26,4 @@
   <p>
     It&rsquo;s <b>FREE</b> and easy to join using your Facebook or Twitter account.
   </p>
-
-  <div class="sign-in buttons">
-    <h3>Sign in to get started</h3>
-
-    <%= button_to_sign_in_with(:twitter) %>
-    <%= button_to_sign_in_with(:facebook) %>
-
-    <%= render partial: "/shared/social_posting_info" %>
-  </div>
 </div>

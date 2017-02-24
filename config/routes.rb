@@ -20,8 +20,6 @@ Rails.application.routes.draw do
 
   # Admin
   namespace :admin do
-    # mount Resque::Server, :at => "/resque", constraints: AdminAuthenticator
-
     get    "/" => "dashboard#index",                as: :dashboard
     get    "/@:username/edit", to: "users#edit",    as: :edit_user,   username: /[^\/]+/
     patch  "/@:username",      to: "users#update",  as: :update_user, username: /[^\/]+/

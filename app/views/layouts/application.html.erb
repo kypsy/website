@@ -12,8 +12,6 @@
   <% end %>
 
   <section role="main" class="container">
-    <%= render partial: "/shared/browse_happy" %>
-
     <% unless logged_in? || controller_name == "welcome" %>
       <%= render partial: "/shared/social_posting_info" %>
     <% end %>
@@ -30,20 +28,16 @@
   </section>
 
   <footer role="contentinfo" class="container">
-    <ul class="nav nav-pills pull-left row">
-      <li class="col-xs-12"><%= link_to "About #{t(:brand)}", about_path %></li>
-      <li class="col-xs-12"><%= link_to "Terms",              terms_path %></li>
-      <li class="col-xs-12"><%= link_to "Privacy Policy",     privacy_path %></li>
-    </ul>
-
-    <ul class="nav nav-pills pull-right">
+    <ul class="nav nav-pills">
+      <li class="nav-item"><%= link_to "About #{t(:brand)}", about_path, class: "nav-link" %></li>
+      <li class="nav-item"><%= link_to "Terms",              terms_path, class: "nav-link" %></li>
+      <li class="nav-item"><%= link_to "Privacy Policy",     privacy_path, class: "nav-link" %></li>
       <% if logged_in? %>
-        <li class="col-xs-12"><%= link_to_unless_current "Sign Out", signout_path %></li>
+        <li class="nav-item"><%= link_to_unless_current "Sign Out", signout_path, class: "nav-link" %></li>
       <% end %>
     </ul>
   </footer>
 
   <%= render partial: "/shared/foot" %>
-
 </body>
 </html>
