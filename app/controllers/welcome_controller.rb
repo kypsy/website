@@ -3,7 +3,7 @@ class WelcomeController < ApplicationController
 
   def index
     if logged_in?
-      @title = "People Using Kypsy"
+      @title = "People Using #{t(:brand)}"
       @users = current_user.viewable_users.order('created_at desc').paginate(page: params[:page] ||= 1)
       @crushers         = current_user.crushers
       @crushes          = current_user.crushes

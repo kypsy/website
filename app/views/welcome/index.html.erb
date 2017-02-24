@@ -1,5 +1,5 @@
 <div id="people">
-  <h1><%= link_to "Thousands of People are on Kypsy".html_safe, people_path %></h1>
+  <h1><%= link_to "Thousands of People are on #{t(:brand)}".html_safe, people_path %></h1>
 
   <div class="sign-in buttons">
     <h3>Sign in to get started</h3>
@@ -11,7 +11,7 @@
 
 <div id="about">
   <p>
-    <b>Kypsy</b> is a simple, fun dating site for people who are straightedge.
+    <b><%= t(:brand) %></b> is a simple, fun dating site for people who are straightedge.
     And for the people that love them. &hellip;or who <i>want to love them</i>.
   </p>
 
@@ -21,7 +21,7 @@
   </p>
 
   <p>
-    Join <b>Kypsy</b> to find a person just like you.
+    Join <b><%= t(:brand) %></b> to find a person just like you.
     Keep it positive. Be friendly. Have fun.
     We hope you find what you&rsquo;re looking for.
   </p>

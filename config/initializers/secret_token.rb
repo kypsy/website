@@ -9,5 +9,5 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Kypsy::Application.config.secret_key_base = ENV["SECRET_KEY_BASE"]
-Kypsy::Application.config.secret_token    = ENV["SECRET_TOKEN"]
+<%= t(:brand) %>::Application.config.secret_key_base = ENV["SECRET_KEY_BASE"]
+<%= t(:brand) %>::Application.config.secret_token    = ENV["SECRET_TOKEN"]

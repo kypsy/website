@@ -71,7 +71,7 @@ class ApplicationController < ActionController::Base
 
   def enforce_proper_url
     # if Rails.env.production? && request.url =~ /heroku/
-    #   return redirect_to("https://kypsy.com")
+    #   return redirect_to(t(:url))
     # end
   end
 

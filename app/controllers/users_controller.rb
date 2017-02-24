@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_action      :search_term,               only: :index
 
   def index
-    @title       = "People Using Kypsy"
+    @title       = "People Using #{t(:brand)}"
     @slug        = "people"
     @avatar_size = :square
 
@@ -24,7 +24,7 @@ class UsersController < ApplicationController
     find_user_by_username
 
     if @user
-      @title = "@#{@user.username}&rsquo;s Profile on Kypsy"
+      @title = "@#{@user.username}&rsquo;s Profile on #{t(:brand)}"
       @crush = Crush.new
 
       redirect_if_age_inappropriate(@user)
@@ -35,7 +35,7 @@ class UsersController < ApplicationController
 
   def new
     @slug  = "settings"
-    @title = "Getting Started on Kypsy"
+    @title = "Getting Started on #{t(:brand)}"
     @user  = current_user
 
     if @user.nil? or @user.visible?
@@ -61,7 +61,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @title = "Your Settings on Kypsy"
+    @title = "Your Settings on #{t(:brand)}"
     @slug  = "settings"
     @user  = current_user
     @label_assignements = @user.your_labels.label_assignments

@@ -3,12 +3,12 @@ class AboutController < ApplicationController
 
   def terms
     @slug  = "about"
-    @title = "Terms &amp; Conditions on Kypsy"
+    @title = "Terms &amp; Conditions on #{t(:brand)}"
   end
 
   def privacy
     @slug = "privacy"
-    @title = "Privacy Policy on Kypsy"
+    @title = "Privacy Policy on #{t(:brand)}"
   end
 
   def us

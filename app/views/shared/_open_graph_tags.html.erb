@@ -1,13 +1,13 @@
 <% if @user %>
   <meta property="og:image"     content="<%= @user.avatar %>" />
-  <meta property="og:title"     content="@<%= @user.username %>'s profile on Kypsy : The Straightedge Dating Site" />
-  <meta property="og:url"       content="https://kypsy.com/@<%= @user.username %>" />
-  <meta property="og:site_name" content="Kypsy" />
+  <meta property="og:title"     content="@<%= @user.username %>'s profile on <%= t(:brand) %> : <%= t(:tagline) %>" />
+  <meta property="og:url"       content="<%= t(:url) %>/@<%= @user.username %>" />
+  <meta property="og:site_name" content="<%= t(:brand) %>" />
   <meta property="og:type"      content="website" />
 <% else %>
-  <meta property="og:image"     content="https://kypsy.com/apple-touch-icon-144x144-precomposed.png" />
-  <meta property="og:title"     content="Kypsy : The Straightedge Dating Site" />
-  <meta property="og:url"       content="https://kypsy.com" />
-  <meta property="og:site_name" content="Kypsy" />
+  <meta property="og:image"     content="<%= t(:url) %>/apple-touch-icon-144x144-precomposed.png" />
+  <meta property="og:title"     content="<%= t(:brand) %> : <%= t(:tagline) %>" />
+  <meta property="og:url"       content="<%= t(:url) %>" />
+  <meta property="og:site_name" content="<%= t(:brand) %>" />
   <meta property="og:type"      content="website" />
 <% end %>

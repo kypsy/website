@@ -28,7 +28,7 @@ module ApplicationHelper
 
   def user_inputed_text(text)
     options = [:hard_wrap, :filter_html, :autolink, :no_intraemphasis, :fenced_code, :gh_blockcode]
-    renderer = KypsyHTML.new(filter_html: true, no_styles: true)
+    renderer = #{t(:brand)}HTML.new(filter_html: true, no_styles: true)
     markdown = Redcarpet::Markdown.new(renderer,
       no_intra_emphasis: true,
       no_links: true,
@@ -74,7 +74,7 @@ module ApplicationHelper
   end
 
   def page_title
-    @title || "Kypsy : The Straightedge Dating Site"
+    @title || "#{t(:brand)} : #{t(:tagline)}"
   end
 
   def button_to_sign_in_with(provider)

@@ -5,7 +5,7 @@ class MessagesController < ApplicationController
 
   def new
     @slug  = "messages"
-    @title = "Messenger on Kypsy"
+    @title = "Messenger on #{t(:brand)}"
 
     if !@conversation.new_record?
       redirect_to conversation_path(@user.username)

@@ -3,7 +3,7 @@ class ConversationsController < ApplicationController
   before_action :find_conversation, only: [:show, :destroy]
 
   def index
-    @title = "Inbox on Kypsy"
+    @title = "Inbox on #{t(:brand)}"
     @slug  = "inbox"
     @conversations = current_user.conversations.not_deleted(current_user).distinct
   end
@@ -14,7 +14,7 @@ class ConversationsController < ApplicationController
     end
 
     @slug     = "messages"
-    @title    = "Conversation with #{@conversation.counterpart(current_user).username} on Kypsy"
+    @title    = "Conversation with #{@conversation.counterpart(current_user).username} on #{t(:brand)}"
     @messages = @conversation.messages.order('created_at asc')
     @message  = current_user.outbound_messages.build(recipient_id: @user.id, conversation_id: @conversation.id)
   end
