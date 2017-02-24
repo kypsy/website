@@ -1,4 +1,4 @@
-class #{t(:brand)}HTML < Redcarpet::Render::HTML
+class KypsyHTML < Redcarpet::Render::HTML
   def postprocess(html)
     html = autolink_at_usernames(html)
     autolink_searches(html)

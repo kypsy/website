@@ -28,7 +28,7 @@ module ApplicationHelper
 
   def user_inputed_text(text)
     options = [:hard_wrap, :filter_html, :autolink, :no_intraemphasis, :fenced_code, :gh_blockcode]
-    renderer = #{t(:brand)}HTML.new(filter_html: true, no_styles: true)
+    renderer = KypsyHTML.new(filter_html: true, no_styles: true)
     markdown = Redcarpet::Markdown.new(renderer,
       no_intra_emphasis: true,
       no_links: true,
