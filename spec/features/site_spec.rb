@@ -6,9 +6,9 @@ describe "tests user experience", type: :feature, js: true do
 
   it "does views users, crushes, bookmarks, and stuff" do
     visit "/"
-    expect(page).to have_content "<%= t(:brand) %>"
+    expect(page).to have_content t(:brand)
 
-    first(:link, "Thousands of People are on <%= t(:brand) %>").click
+    first(:link, "Thousands of People are on #{t(:brand)}").click
     expect(page).to have_content "Everyone"
   end
 

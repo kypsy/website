@@ -3,7 +3,7 @@
 SECRET_KEY_BASE: # App base for config/initializers/secret_token.rb. Use `rake secret` to generate good strings.
 SECRET_TOKEN:    # App secrets for config/initializers/secret_token.rb. Use `rake secret` to generate good strings.
 
-API_URL:         # Something like: https://kypsy-api.herokuapp.com/v1 (from https://github.com/<%= t(:brand) %>/api)
+API_URL:         # Something like: https://kypsy-api.herokuapp.com/v1 (from https://github.com/kypsy/api)
 
 # Login services
 KYPSY_FACEBOOK_CONSUMER_KEY:    # Facebook Consumer key.

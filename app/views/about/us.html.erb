@@ -172,14 +172,14 @@
 
       <tr>
         <th>
-          <a href="mailto:us@kypsy.com" class="btn btn-lg btn-default">
+          <a href="mailto:<%= t(:hq_email) %>" class="btn btn-lg btn-default">
             <i class="fa fa-lg fa-inbox"></i>
           </a>
         </th>
         <td>
           <h3 class="h4">
             Email
-            <small><a href="mailto:us@kypsy.com" title="us@kypsy.com">us@kypsy.com</a></small>
+            <small><a href="mailto:<%= t(:hq_email) %>" title=<%= t(:hq_email) %>><%= t(:hq_email) %></a></small>
           </h3>
           <p>Want to go old school? That&rsquo;s fine. We still use and love the emails. Fire away.</p>
         </td>
@@ -238,12 +238,11 @@
       <li>Have fun.</li>
     </ol>
 
-    <p>Contact one of us. We'll do everything we can.</p>
+    <p>Contact us. We'll do everything we can.</p>
 
-    <ul>
-      <li>Shane Becker (<a href="mailto:veganstraightedge@gmail.com">veganstraightedge@gmail.com</a>)</li>
-      <li><%= t(:brand) %> HQ : (<a href="mailto:us@kypsy.com">us@kypsy.com</a>)</li>
-    </ul>
+    <p>
+      <%= t(:brand) %> HQ : (<a href="mailto:<%= t(:hq_email) %>"><%= t(:hq_email) %></a>).
+    </p>
 
     <h3>The Quick Version</h3>
     <p>

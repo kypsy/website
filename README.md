@@ -1,4 +1,4 @@
-# <%= t(:brand) %>
+# Kypsy
 ## Website
 
 http://kypsy.com
@@ -8,7 +8,7 @@ http://kypsy.com
 
 ## Description
 
-**[<%= t(:brand) %>](<%= t(:url) %>)**
+**[Kypsy](https://kypsy.com)**
 is a Rails powered site for women finding friends in a new city.
 
 - Profiles
@@ -112,7 +112,7 @@ If you find bugs, have feature requests or questions, please
 Your heart is as free as the air you breathe. <br>
 The ground you stand on is liberated territory.
 
-In legal text, *<%= t(:brand) %> Ruby on Rails powered website* is dedicated to the public domain
+In legal text, *Kypsy Ruby on Rails powered website* is dedicated to the public domain
 using Creative Commons -- CC0 1.0 Universal.
 
 [http://creativecommons.org/publicdomain/zero/1.0](http://creativecommons.org/publicdomain/zero/1.0 "Creative Commons &mdash; CC0 1.0 Universal")
