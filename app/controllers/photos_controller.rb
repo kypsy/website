@@ -39,8 +39,11 @@ class PhotosController < ApplicationController
 
   def email
     data = JSON.parse(params[:mandrill_events]) if params[:mandrill_events]
+
     return head(:ok) if params[:mandrill_events].nil? || data.empty?
+
     intake = MandrillIntake.new(data[0])
+
     if intake.photo.save
       head :created
     else

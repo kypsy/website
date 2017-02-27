@@ -2,6 +2,7 @@ class BookmarksController < ApplicationController
   before_action :require_login
   before_action :find_user_by_username
   respond_to :html, :json
+
   def create
     bookmark = current_user.bookmarks.find_or_initialize_by(bookmarkee_id: @user.id)
     if bookmark.save
