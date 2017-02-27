@@ -1,25 +1,25 @@
-  <div class="page-header">
-    <h1>Settings</h1>
-  </div>
+<div class="page-header">
+  <h1>Settings</h1>
+</div>
 
 <% unless @user.twitter? && @user.facebook? %>
-    <div class="col-12">
-      <div class="buttons">
-        <% if @user.twitter? %>
-          <%= button_to_sign_in_with(:facebook) %>
-        <% elsif @user.facebook? %>
-          <%= button_to_sign_in_with(:twitter) %>
-        <% end %>
-      </div>
-
-      <p class="note">
-        Connecting both your Twitter and Facebook accounts makes it easier to fill out your <%= t(:brand) %> profile, which helps you find people.
-      </p>
-
-      <p class="note">
-        And if Twitter or Facebook ever has downtime, you can use the other to sign in to <%= t(:brand) %>.
-      </p>
+  <div class="col-12">
+    <div class="buttons">
+      <% if @user.twitter? %>
+        <%= button_to_sign_in_with(:facebook) %>
+      <% elsif @user.facebook? %>
+        <%= button_to_sign_in_with(:twitter) %>
+      <% end %>
     </div>
+
+    <p class="note">
+      Connecting both your Twitter and Facebook accounts makes it easier to fill out your <%= t(:brand) %> profile, which helps you find people.
+    </p>
+
+    <p class="note">
+      And if Twitter or Facebook ever has downtime, you can use the other to sign in to <%= t(:brand) %>.
+    </p>
+  </div>
 <% end %>
 
 <%= render "errors" %>
@@ -64,19 +64,6 @@
       </div>
 
       <div class="form-group">
-        <%= f.label :birthday %>
-        <%= birthday_select_tag(f) %>
-
-        <div class="checkbox">
-          <label>
-            <%= f.check_box :birthday_public %>
-            Show publicly?
-          </label>
-        </div>
-        <hr>
-      </div>
-
-      <div class="form-group">
         <%= f.label      :city %>
         <%= f.text_field :city, autocapitalize: "words", class: "form-control" %>
       </div>
@@ -103,6 +90,24 @@
     </div>
 
     <div class="col-md-6">
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= f.label  :age_range, "My Age Range" %>
+            <%= f.select :age_range_id, AgeRange.options_for_select, { include_blank: true }, { class: "form-control" } %>
+          </div>
+        </div>
+
+        <!--
+        <div class="col-md-6">
+          <div class="form-group">
+            <%#= f.label :your_labels_attributes, "Desired Diet" %>
+            <%#= render "/labels/form", f: f, collection: Diet.all %>
+          </div>
+        </div>
+        -->
+      </div>
 
       <div class="row">
         <div class="col-md-6">

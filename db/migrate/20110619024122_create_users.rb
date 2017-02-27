@@ -9,6 +9,8 @@ class CreateUsers < ActiveRecord::Migration
       t.string :city
       t.string :zipcode
 
+      t.integer :age_range_id
+
       t.boolean :visible, default: false
 
       t.text   :bio

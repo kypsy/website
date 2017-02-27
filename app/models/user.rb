@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   include UserRule
   include PgSearch
+
   pg_search_scope :text_search,
     against: {username: "A", city: "B"},
     using: {tsearch: {dictionary: "english", prefix: true}},
@@ -29,10 +30,12 @@ class User < ActiveRecord::Base
   scope :with_setting, lambda { |key, value| where("settings -> ? = ?", key, value.to_s) }
   scope :featured, -> { with_setting(:featured, true) }
   scope :listing_order, -> { order('photos_count <> 0 desc, created_at desc') }
+
   belongs_to :country
   belongs_to :diet
   belongs_to :state
   belongs_to :label
+  belongs_to :age_range
 
   has_many :crushings, foreign_key: "crusher_id", class_name: "Crush", dependent: :destroy
   has_many :secret_crushes, -> { where crushes: {secret: true}}, through: :crushings, source: :crushee
