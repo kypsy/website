@@ -338,12 +338,6 @@ class User < ActiveRecord::Base
     age >= 18 ? :adult : :kid
   end
 
-  def drug_friendly?
-    unless label.nil?
-      label.name.downcase == "drug-friendly"
-    end
-  end
-
   def self.generate_username
     # previously we were using the line below
     # "username-#{Time.now.strftime('%Y%m%d%H%M%S')}"

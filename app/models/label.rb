@@ -7,8 +7,4 @@ class Label < ActiveRecord::Base
     end
   end
 
-  def drug_friendly?
-    self.name == "drug-friendly"
-  end
-
 end

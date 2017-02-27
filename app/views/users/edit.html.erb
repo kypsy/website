@@ -152,68 +152,6 @@
         </div>
       </div>
 
-      <%# TODO show this when a person clicks on  "drug-friendly" on my straightedginess %>
-      <%# TODO hide this when a person clicks off "drug-friendly" on my straightedginess %>
-      <div class="col-12 <%= 'hidden' unless @user.label.try(:drug_friendly?) %>" id="drug-use">
-        <h5>My Drug-Friendliness</h5>
-        <div class="alert alert-warning">
-          <strong>Note:</strong>
-          We are not cops. We won't give you up to cops.
-          But anything you put into this table is publicly visible.
-          Act accordingly.
-        </div>
-
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              <th>&nbsp;</th>
-              <th scope="col">Never</th>
-              <th scope="col">Light</th>
-              <th scope="col">Socially</th>
-              <th scope="col">Some</th>
-              <th scope="col">Lots</th>
-            </tr>
-          </thead>
-
-          <tbody>
-
-            <tr>
-              <th scope="row">Alcohol</th>
-              <td><%= f.radio_button :alcohol, "never" %></td>
-              <td><%= f.radio_button :alcohol, "light" %></td>
-              <td><%= f.radio_button :alcohol, "socially" %></td>
-              <td><%= f.radio_button :alcohol, "some" %></td>
-              <td><%= f.radio_button :alcohol, "lots" %></td>
-            </tr>
-            <tr>
-              <th scope="row">Cigarettes</th>
-              <td><%= f.radio_button :cigarettes, "never" %></td>
-              <td><%= f.radio_button :cigarettes, "light" %></td>
-              <td><%= f.radio_button :cigarettes, "socially" %></td>
-              <td><%= f.radio_button :cigarettes, "some" %></td>
-              <td><%= f.radio_button :cigarettes, "lots" %></td>
-            </tr>
-            <tr>
-              <th scope="row">Marijuana</th>
-              <td><%= f.radio_button :marijuana, "never" %></td>
-              <td><%= f.radio_button :marijuana, "light" %></td>
-              <td><%= f.radio_button :marijuana, "socially" %></td>
-              <td><%= f.radio_button :marijuana, "some" %></td>
-              <td><%= f.radio_button :marijuana, "lots" %></td>
-            </tr>
-            <tr>
-              <th scope="row">&ldquo;Drugs&rdquo;</th>
-              <td><%= f.radio_button :drugs, "never" %></td>
-              <td><%= f.radio_button :drugs, "light" %></td>
-              <td><%= f.radio_button :drugs, "socially" %></td>
-              <td><%= f.radio_button :drugs, "some" %></td>
-              <td><%= f.radio_button :drugs, "lots" %></td>
-            </tr>
-
-          </tbody>
-        </table>
-      </div>
-
       <div class="row" id="social-media">
         <div class="col-sm-12">
           <div class="page-header">

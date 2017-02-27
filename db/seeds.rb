@@ -1,6 +1,6 @@
 puts
 puts "Adding labels"
-["straightedge","drug-free","straightedge-curious","sober","drug-friendly"].each do |label|
+["straightedge","drug-free","straightedge-curious","sober"].each do |label|
   Label.create!(name: label)
   puts "label:  #{label}"
 end
