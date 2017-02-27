@@ -24,6 +24,7 @@ gem "uglifier"
 gem "will_paginate"
 gem "will_paginate-bootstrap"
 gem "bootstrap", "~> 4.0.0.alpha6"
+gem "font-awesome-rails"
 
 # caching
 gem "memcachier"
