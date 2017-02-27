@@ -13,15 +13,13 @@
     <% end %>
 
     <nav role="navigation">
-      <%= link_to "People", people_path %>
-    </nav>
-
-    <nav role="navigation">
       <% if admin? %>
         <span class="label label-danger"><%= link_to "ADMIN", admin_dashboard_path %></span>
       <% end %>
 
       <% if logged_in? %>
+        <%= link_to "People", people_path %>
+
         <%= link_to conversations_path do %>
           <%= fa_icon :envelope, class: "fa-lg" %>
           <% if unread_count %><span class="label label-danger"><%= unread_count %></span><% end %>
