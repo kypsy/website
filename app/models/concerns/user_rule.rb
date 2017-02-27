@@ -1,10 +1,8 @@
 module UserRule
 
-  ALLOWED_SEARCH_COLUMNS = %w(me_gender diets labels)
+  ALLOWED_SEARCH_COLUMNS = %w(diets labels)
   DISALLOWED_COLUMNS = [
     :id,
-    :me_gender_map,
-    :you_gender_map,
     :visible,
     :bio,
     :canonical_username,
@@ -19,8 +17,6 @@ module UserRule
   ]
 
   COLUMN_MAPPING = {
-    gender: :me_gender,
-    genders: :me_gender,
     straightedgeness: :label,
     diets: :diet
   }
@@ -34,25 +30,21 @@ module UserRule
 
   SQL_GROUP = {
     diets:  "diets.name",
-    straightedgeness: "labels.name",
-    genders: "me_gender"
+    straightedgeness: "labels.name"
   }
 
   ASSOCIATION_NAME = {
     diets: :diet,
-    genders: nil,
     straightedgeness: :label
   }
 
   SELECT = {
     diet: "users.id, diet_id",
-    gender: "users.id, me_gender",
     straightedgeness: "users.id, label_id"
   }
 
   COLUMN = {
     diet: :diet,
-    gender: :me_gender,
     straightedgeness: :label
   }
 

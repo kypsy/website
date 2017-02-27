@@ -26,14 +26,10 @@ Profiles also have two lists of three properties.
 **What I Am**:
 
 - My diet
-- My drug use
-- My gender
 
 **What I'm Looking For**:
 
 - Their diet
-- Their drug use
-- Their gender
 
 ## Requirements
 

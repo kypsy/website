@@ -46,8 +46,6 @@ module ApplicationHelper
 
   def profile_incomplete?
     current_user &&
-    current_user.me_gender  == "person" &&
-    current_user.you_gender == "person" &&
     current_user.label_id.blank? &&
     current_user.diet_id.blank?
   end

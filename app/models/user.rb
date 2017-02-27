@@ -2,8 +2,7 @@ class User < ActiveRecord::Base
   include UserRule
   include PgSearch
   pg_search_scope :text_search,
-    against: {username: "A", city: "B", me_gender: "C"},
-    # TODO: removed suffix: true from using: hash...
+    against: {username: "A", city: "B"},
     using: {tsearch: {dictionary: "english", prefix: true}},
     ignoring: :accents,
     associated_against: {
@@ -85,8 +84,6 @@ class User < ActiveRecord::Base
   validates :email,    presence: { on: :update }, email: { on: :update }
   validates :birthday, birthday: { on: :update }
   validates :agreed_to_terms_at, presence: { on: :update, message: "must be agreed upon"}
-
-  before_save :groom_string_fields
 
   before_validation :create_canonical_username
   before_validation :generate_auth_token, on: :create
@@ -189,7 +186,6 @@ class User < ActiveRecord::Base
         user.email      = auth["info"]["email"]
         user.bio        = auth["info"]["description"]
         user.country    = Country.where(abbreviation: "US").first
-        user.me_gender  = auth["extra"]["raw_info"]["gender"]
         # user.url       = auth["user_info"]["urls"]["Website"]
         # user.url       = auth["user_info"]["urls"]["Facebook"]
       end
@@ -211,10 +207,6 @@ class User < ActiveRecord::Base
       else
         User.adults
       end
-    end
-
-    def uniq_gender_groups(n=2)
-      where.not(me_gender: [nil, ""]).group(:me_gender).select("me_gender, count(*)").having("count(*) > ?", n).order("count(*) desc").pluck(:me_gender)
     end
 
   end
@@ -257,14 +249,6 @@ class User < ActiveRecord::Base
 
   def location
     "#{city} #{state} #{zipcode} #{country.try(:name)}".strip
-  end
-
-  def you_gender
-    self.you_gender? ? super : "person"
-  end
-
-  def me_gender
-    self.me_gender? ? super : "person"
   end
 
   def merge!(merging_user)
@@ -369,15 +353,6 @@ class User < ActiveRecord::Base
 
   def check_provider(name)
     providers.any? {|p| p.name == name }
-  end
-
-  def groom_string_fields
-    %w(you_gender me_gender).each do |field|
-      if field
-        send(field).downcase!
-        send(field).strip!
-      end
-    end
   end
 
   def create_canonical_username

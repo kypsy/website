@@ -1,10 +1,6 @@
 <%= render @user %>
 
 <p class="well lead">
-  I am
-
-  <%= @user.diet ? @user.diet.name.indefinite_article : "a" %>
-
   <% if @user.diet %>
     <b><%= link_to @user.diet.name.downcase, search_path(search: [:diets, @user.diet.name]) %></b>
   <% end %>
@@ -12,8 +8,6 @@
   <% if @user.label %>
     <b><%= link_to @user.label.name.downcase, search_path(search: [:straightedgeness, @user.label.name]) %></b>
   <% end %>
-
-  <b><%= link_to @user.me_gender, search_path(search: [:genders, @user.me_gender]) %></b>.
 
   <br class="xs-hidden" />
 
@@ -27,8 +21,6 @@
   <% end %>
 
   <%= labels_list(@user, :straightedgeness) %>
-
-  <b><%= link_to @user.you_gender, search_path(search: [:genders, @user.you_gender]) %></b>.
 </p>
 
 <div class="row">

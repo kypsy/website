@@ -77,7 +77,6 @@ Rails.application.routes.draw do
 
   # filters
   get "/diets",                     to: "searches#index",  as: :diets            , column: "diets"
-  get "/genders",                   to: "searches#index",  as: :genders          , column: "genders"
   get "/straightedgeness",          to: "searches#index",  as: :straightedgeness , column: "straightedgeness"
   get "/straightedgeness",          to: "searches#index",  as: :label            , column: "straightedgeness"
   get "/searches",                  to: "searches#index"

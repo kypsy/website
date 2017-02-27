@@ -141,10 +141,6 @@ ActiveRecord::Schema.define(version: 20141229031708) do
     t.string   "email"
     t.string   "city"
     t.string   "zipcode"
-    t.string   "me_gender"
-    t.string   "me_gender_map"
-    t.string   "you_gender"
-    t.string   "you_gender_map"
     t.boolean  "visible",              default: false
     t.text     "bio"
     t.integer  "label_id"

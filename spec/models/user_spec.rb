@@ -10,11 +10,6 @@ describe User, :type => :model do
     expect(user.age).to eq(22)
   end
 
-  it "trims whitespace on save" do
-    user.update(me_gender: " with whitespace  ")
-    expect(user.reload.me_gender).to eq "with whitespace"
-  end
-
   it "has an auth token" do
     expect(user.auth_token).to be_present
   end
@@ -306,23 +301,6 @@ describe User, :type => :model do
     it "finds by a field" do
       expect(User.search(username: "Bookis")).to include bookis
       expect(User.search("seattle")).to    include bookis
-    end
-
-    # it "does a field search" do
-    #   expect(User.field_search(city: "seattle")).to    include bookis
-    #   expect(User.field_search(username: "Bookis")).to include bookis
-    # end
-
-    it "searches by gender" do
-      bookis.update(me_gender: "boy")
-      expect(User.search("boy")).to include bookis
-      expect(User.search("boy")).to_not include shane
-    end
-
-    it "searches by gender by field" do
-      bookis.update(me_gender: "boy")
-      expect(User.search(gender: "boy")).to include bookis
-      expect(User.search(gender: "boy")).to_not include shane
     end
 
     it "searches by diet" do

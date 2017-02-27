@@ -133,8 +133,6 @@ class UsersController < ApplicationController
       :tumblr_username,
       :twitter_username,
       :vine_username,
-      :me_gender,
-      :you_gender,
       :label_id,
       :alcohol,
       :cigarettes,

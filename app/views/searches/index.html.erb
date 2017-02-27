@@ -19,20 +19,4 @@
         <% end %>
       </ul>
     </div>
-
-    <div class="col-sm-6">
-      <% if groups_of_one? %>
-        <div class="well groups-of-one">
-          <h1>Groups of One</h1>
-
-          <ul class="list-unstyled">
-            <% @groups.sort_by{ |group| group.first }.each do |name, count| %>
-              <% if count == 1 %>
-                <li class="group-of-one"><%= link_to name.capitalize, search_path(search: [:genders, name]) %></li>
-              <% end %>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
-    </div>
   </div>
