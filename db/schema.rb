@@ -147,6 +147,7 @@ ActiveRecord::Schema.define(version: 20170227044815) do
     t.string   "email"
     t.string   "city"
     t.string   "zipcode"
+    t.integer  "age_range_id"
     t.boolean  "visible",              default: false
     t.text     "bio"
     t.integer  "label_id"
