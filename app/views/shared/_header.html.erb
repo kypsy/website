@@ -18,7 +18,7 @@
       <% end %>
 
       <% if logged_in? %>
-        <%= link_to "People", people_path %>
+        <%= link_to fa_icon(:users, class: "fa-lg"), people_path %>
 
         <%= link_to conversations_path do %>
           <%= fa_icon :envelope, class: "fa-lg" %>
