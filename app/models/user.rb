@@ -61,8 +61,9 @@ class User < ActiveRecord::Base
   has_many :providers, dependent: :destroy
   has_many :photos, -> { order "created_at desc" }, dependent: :destroy
   has_many :your_labels
-  has_many :desired_labels, -> { distinct }, through: :your_labels, source: :label, as: :label, source_type: "Label"
-  has_many :desired_diets,  -> { distinct }, through: :your_labels, source: :label, as: :label, source_type: "Diet"
+  has_many :desired_labels,     -> { distinct }, through: :your_labels, source: :label, as: :label, source_type: "Label"
+  has_many :desired_diets,      -> { distinct }, through: :your_labels, source: :label, as: :label, source_type: "Diet"
+  has_many :desired_age_ranges, -> { distinct }, through: :your_labels, source: :label, as: :label, source_type: "AgeRange"
 
   has_many :red_flags, as: :flaggable, dependent: :destroy
   has_many :red_flag_reports, class_name: "RedFlag", foreign_key: :reporter_id, dependent: :destroy

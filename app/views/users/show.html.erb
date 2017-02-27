@@ -21,6 +21,19 @@
   <% end %>
 
   <%= labels_list(@user, :labels) %>
+
+  <br class="xs-hidden" />
+
+  I’m looking for
+
+  <% if @user.desired_age_ranges.blank? %>
+    a
+  <% else %>
+    <%= @user.desired_age_ranges.map(&:name).join.indefinite_article %>
+    <%= labels_list(@user, :age_ranges) %>
+  <% end %>
+
+  <%= labels_list(@user, :age_ranges) %>
 </p>
 
 <div class="row">
