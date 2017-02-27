@@ -151,11 +151,8 @@ class User < ActiveRecord::Base
         user.username         = available_username(auth["info"]["nickname"])
         user.bio              = auth["info"]["description"]
         user.country          = Country.where(abbreviation: "US").first
-
-        # v2
-        # user.url       = auth["info"]["urls"]["Website"]
-        # user.url       = auth["info"]["urls"]["Twitter"]
       end
+
       unless auth["info"]["image"].blank?
         begin
           u.photos.create(remote_image_url: auth["info"]["image"].sub(/_normal\./, "."), avatar: true)
