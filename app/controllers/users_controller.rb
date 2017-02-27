@@ -137,7 +137,6 @@ class UsersController < ApplicationController
       :alcohol,
       :cigarettes,
       :marijuana,
-      :drugs,
       your_labels_attributes: [:label_id, :id, :_destroy, :label_type]
     )
   end

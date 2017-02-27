@@ -17,7 +17,7 @@ module UserRule
   ]
 
   COLUMN_MAPPING = {
-    straightedgeness: :label,
+    lable: :label,
     diets: :diet
   }
 
@@ -30,22 +30,22 @@ module UserRule
 
   SQL_GROUP = {
     diets:  "diets.name",
-    straightedgeness: "labels.name"
+    labels: "labels.name"
   }
 
   ASSOCIATION_NAME = {
     diets: :diet,
-    straightedgeness: :label
+    labels: :label
   }
 
   SELECT = {
     diet: "users.id, diet_id",
-    straightedgeness: "users.id, label_id"
+    label: "users.id, label_id"
   }
 
   COLUMN = {
     diet: :diet,
-    straightedgeness: :label
+    label: :label
   }
 
   def self.column_for(column)

@@ -6,7 +6,7 @@
   <% end %>
 
   <% if @user.label %>
-    <b><%= link_to @user.label.name.downcase, search_path(search: [:straightedgeness, @user.label.name]) %></b>
+    <b><%= link_to @user.label.name.downcase, search_path(search: [:labels, @user.label.name]) %></b>
   <% end %>
 
   <br class="xs-hidden" />
@@ -20,7 +20,7 @@
     <%= labels_list(@user, :diets) %>
   <% end %>
 
-  <%= labels_list(@user, :straightedgeness) %>
+  <%= labels_list(@user, :labels) %>
 </p>
 
 <div class="row">

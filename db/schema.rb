@@ -165,7 +165,6 @@ ActiveRecord::Schema.define(version: 20141229031708) do
     t.string   "vine_username"
     t.text     "website"
     t.integer  "photos_count",         default: 0
-    t.hstore   "drug_use",             default: {"drugs"=>"never", "alcohol"=>"never", "marijuana"=>"never", "cigarettes"=>"never"}
     t.index ["created_at"], name: "index_users_on_created_at", using: :btree
     t.index ["photos_count"], name: "index_users_on_photos_count", using: :btree
     t.index ["state_id"], name: "index_users_on_state_id", using: :btree

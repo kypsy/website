@@ -25,7 +25,6 @@ class User < ActiveRecord::Base
 
   self.per_page = 28
   store_accessor :settings, :admin, :featured, :birthday_public, :real_name_public, :email_public, :email_crushes, :email_messages
-  store_accessor :drug_use, :alcohol, :cigarettes, :marijuana, :drugs
 
   scope :with_setting, lambda { |key, value| where("settings -> ? = ?", key, value.to_s) }
   scope :featured, -> { with_setting(:featured, true) }
@@ -59,7 +58,7 @@ class User < ActiveRecord::Base
   has_many :providers, dependent: :destroy
   has_many :photos, -> { order "created_at desc" }, dependent: :destroy
   has_many :your_labels
-  has_many :desired_straightedgeness, -> { distinct }, through: :your_labels, source: :label, as: :label, source_type: "Label"
+  has_many :desired_labels, -> { distinct }, through: :your_labels, source: :label, as: :label, source_type: "Label"
   has_many :desired_diets,  -> { distinct }, through: :your_labels, source: :label, as: :label, source_type: "Diet"
 
   has_many :red_flags, as: :flaggable, dependent: :destroy

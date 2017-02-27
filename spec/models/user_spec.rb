@@ -51,12 +51,12 @@ describe User, :type => :model do
     expect(user.label.name).to eq("straightedge")
   end
 
-  it "should be able to have desired straightedgeness" do
+  it "should be able to have desired labels" do
     %w(straightedge drug-free).each do |label|
-      user.desired_straightedgeness.create!(name: label)
+      user.desired_labels.create!(name: label)
     end
 
-    expect(user.desired_straightedgeness.map(&:id).sort).to eq Label.all.map(&:id).sort
+    expect(user.desired_labels.map(&:id).sort).to eq Label.all.map(&:id).sort
   end
 
   describe "age group" do
@@ -76,7 +76,7 @@ describe User, :type => :model do
       @crunk = Label.create(name: 'crunk')
 
       user.providers << Provider.create(name: "twitter", uid: '123')
-      user.desired_straightedgeness << sxe
+      user.desired_labels << sxe
 
       @merging_user = User.create(username: "Becker",
                                   bio:      "This should merge into the old user",
@@ -84,13 +84,13 @@ describe User, :type => :model do
                                   email:    "test@example.com",
                                   birthday: 15.years.ago)
       @merging_user.providers << Provider.create(name: "fb", uid: '456')
-      @merging_user.desired_straightedgeness << [sxe, @crunk]
+      @merging_user.desired_labels << [sxe, @crunk]
 
       user.merge! @merging_user
     end
 
     it "Should add crunk to the og user" do
-      expect(user.desired_straightedgeness).to include @crunk
+      expect(user.desired_labels).to include @crunk
     end
   end
 
