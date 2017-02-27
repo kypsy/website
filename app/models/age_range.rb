@@ -3,7 +3,6 @@ class AgeRange < ApplicationRecord
 
   validates :name, presence: true, uniqueness: true
 
-
   class << self
     def options_for_select
       all.map{ |d| [d.name.capitalize, d.id] }
