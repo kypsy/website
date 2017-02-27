@@ -111,4 +111,4 @@ The ground you stand on is liberated territory.
 In legal text, *Kypsy Ruby on Rails powered website* is dedicated to the public domain
 using Creative Commons -- CC0 1.0 Universal.
 
-[http://creativecommons.org/publicdomain/zero/1.0](http://creativecommons.org/publicdomain/zero/1.0 "Creative Commons &mdash; CC0 1.0 Universal")
+[http://creativecommons.org/publicdomain/zero/1.0](http://creativecommons.org/publicdomain/zero/1.0 "Creative Commons — CC0 1.0 Universal")

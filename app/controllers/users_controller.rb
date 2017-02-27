@@ -24,7 +24,7 @@ class UsersController < ApplicationController
     find_user_by_username
 
     if @user
-      @title = "@#{@user.username}&rsquo;s Profile on #{t(:brand)}"
+      @title = "@#{@user.username}’s Profile on #{t(:brand)}"
       @crush = Crush.new
 
       redirect_if_age_inappropriate(@user)
