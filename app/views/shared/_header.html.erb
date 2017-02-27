@@ -5,7 +5,7 @@
       <h1>
         <%= link_to root_path, rel: "home" do %>
           <span class="sr-only">Home</span>
-          <i class='fa fa-lg fa-home'></i>
+          <%= fa_icon :home, class: "fa-lg" %>
         <% end %>
       </h1>
     <% else %>
@@ -23,15 +23,15 @@
 
       <% if logged_in? %>
         <%= link_to conversations_path do %>
-          <i class='fa fa-lg fa-envelope'></i>
+          <%= fa_icon :envelope, class: "fa-lg" %>
           <% if unread_count %><span class="label label-danger"><%= unread_count %></span><% end %>
         <% end %>
 
-        <%= link_to "<i class='fa fa-lg fa-gear'></i>".html_safe, settings_path %>
-        <%= link_to "<i class='fa fa-lg fa-user'></i>".html_safe, person_path(current_user.username) if current_user.username.present? %>
+        <%= link_to fa_icon(:gear, class: "fa-lg"), settings_path %>
+        <%= link_to fa_icon(:user, class: "fa-lg"), person_path(current_user.username) if current_user.username.present? %>
       <% else %>
-        <%= link_to "<i class='fa fa-lg fa-twitter'></i>".html_safe,  "/auth/twitter",  class: "btn btn-sm btn-info"    %>
-        <%= link_to "<i class='fa fa-lg fa-facebook'></i>".html_safe, "/auth/facebook", class: "btn btn-sm btn-primary" %>
+        <%= link_to fa_icon(:twitter, class: "fa-lg"),  "/auth/twitter",  class: "btn btn-sm btn-info"    %>
+        <%= link_to fa_icon(:facebook, class: "fa-lg"), "/auth/facebook", class: "btn btn-sm btn-primary" %>
       <% end %>
     </nav>
 

@@ -1,10 +1,10 @@
 <% if mine? %>
   <%= link_to new_photo_path, class: "btn btn-success" do %>
-    <i class='fa fa-picture-o'></i>&nbsp;&nbsp;Add Photo
+    <%= fa_icon "picture-o" %>&nbsp;&nbsp;Add Photo
   <% end %>
 
   <%= link_to settings_path,  class: "btn btn-default" do %>
-    <i class='fa fa-pencil'></i><span class="hidden-xs">&nbsp;&nbsp;Edit Profile</span>
+    <%= fa_icon :pencil %><span class="hidden-xs">&nbsp;&nbsp;Edit Profile</span>
   <% end %>
 
 <% elsif not_mine? %>
@@ -12,14 +12,14 @@
 
     <span class="btn-group">
       <%# MESSAGE BUTTON %>
-      <%= link_to "<i class='fa fa-comment'></i>".html_safe, new_message_path(username: user.username), class: "btn btn-info message" %>
+      <%= link_to fa_icon(:pencil), new_message_path(username: user.username), class: "btn btn-info message" %>
 
       <%# BOOKMARK BUTTON %>
       <% hide_show = im.bookmarking?(user) ? ["block", "none"] : ["none", "block"] %>
 
       <%# bookmarked %>
       <div class="btn-group">
-        <%= link_to "<i class='fa fa-star text-primary'></i>".html_safe,
+        <%= link_to fa_icon(:star, class: "text-primary"),
                     action_unbookmark_path(user.username),
                     method:            :delete,
                     id:                "unbookmark",
@@ -28,7 +28,7 @@
                     style:             "display: #{hide_show.first}" %>
       </div>
 
-      <%= link_to "<i class='fa fa-star'></i>".html_safe,
+      <%= link_to fa_icon(:star),
                   action_bookmark_path(user.username),
                   method:            :post,
                   id:                "new_secret_crush",
@@ -46,7 +46,7 @@
                   method:            :delete,
                   style:             "display: #{hide_show.first}" do %>
         <b class="text-danger">
-          <i class='fa fa-heart'></i>
+          <%= fa_icon :heart %>
           Uncrush
         </b>
       <% end %>
@@ -56,7 +56,7 @@
                   "data-username" => user.username,
                   method:            :post,
                   style:             "display: #{hide_show.last}" do %>
-        <i class='fa fa-heart'></i>&nbsp;&nbsp;Crush
+        <%= fa_icon :heart %>&nbsp;&nbsp;Crush
       <% end %>
 
     </span>

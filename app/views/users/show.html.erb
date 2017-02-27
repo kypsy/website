@@ -69,11 +69,11 @@
 
             <div class="actions">
               <% if mine? %>
-                <%= link_to "<i class='fa fa-edit'></i>&nbsp;&nbsp;Edit Photo".html_safe, edit_photo_path(photo), class: "btn btn-default" %>
+                <%= link_to "#{fa_icon :edit}&nbsp;&nbsp;Edit Photo".html_safe, edit_photo_path(photo), class: "btn btn-default" %>
 
                 <%= form_for photo, html: { class: "form-inline", role: "form" } do |f| %>
                   <%= f.hidden_field :avatar, value: true %>
-                  <%= f.button "<i class='fa fa-circle-o'></i>&nbsp;&nbsp;Use as Avatar".html_safe, class: "btn btn-default" %>
+                  <%= f.button "#{fa_icon "circle-o"}&nbsp;&nbsp;Use as Avatar".html_safe, class: "btn btn-default" %>
                 <% end %>
               <% elsif logged_in? %><%# not mine and logged in %>
 
@@ -83,8 +83,8 @@
                   <%= form_for RedFlag.new, url: flag_path(photo) do |f| %>
                     <%= f.hidden_field :flaggable_type, value: "Photo" %>
                     <button class="btn btn-default" type="submit">
-                      <b class='text-warning'>
-                        <i class='fa fa-flag-o'></i>
+                      <b class="text-warning">
+                        <%= fa_icon "flag-o" %>
                         &nbsp;&nbsp;Flag this photo as inappropriate
                       </b>
                     </button>
@@ -118,8 +118,8 @@
             <%= f.hidden_field :flaggable_type, value: "User" %>
 
             <button class="btn btn-default btn-block" type="submit">
-              <b class='text-warning'>
-                <i class='fa fa-flag-o'></i>
+              <b class="text-warning">
+                <%= fa_icon "flag-o" %>
                 Flag @<%= @user.username %> as inappropriate
               </b>
             </button>
@@ -132,14 +132,14 @@
         <% if blocked? %>
 
           <%= link_to action_unblock_path(@user.username), method: :delete, class: "btn btn-danger btn-block col-sm-6" do %>
-            <i class='fa fa-ban'></i> Unblock @<%= @user.username %>
+            <%= fa_icon :ban %> Unblock @<%= @user.username %>
           <% end %>
 
         <% else %>
 
           <%= link_to action_block_path(@user.username), method: :post, class: "btn btn-default btn-block col-sm-6" do %>
-            <b class='text-danger'>
-              <i class='fa fa-ban'></i>
+            <b class="text-danger">
+              <%= fa_icon :ban %>
               Block @<%= @user.username %>
             </b>
           <% end %>

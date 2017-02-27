@@ -6,25 +6,25 @@
 
 <div id="controls">
   <%= link_to "#rotate-left",  class: "image-manipulator btn btn-default" do %>
-    <i class='fa fa-rotate-left'></i>
+    <%= fa_icon "rotate-left" %>
     <span class="control-label hidden-xs">Rotate -90&deg;</span>
   <% end %>
   <%= link_to "#rotate-right", class: "image-manipulator btn btn-default" do %>
-    <i class='fa fa-rotate-right'></i>
+    <%= fa_icon "rotate-right" %>
     <span class="control-label hidden-xs">Rotate  90&deg;</span>
   <% end %>
   <%= link_to "#flip-vertical", class: "image-manipulator btn btn-default" do %>
-    <i class='fa fa-arrows-v'></i>
+    <%= fa_icon "arrows-v" %>
     <span class="control-label hidden-xs">Flip Vertical</span>
   <% end %>
   <%= link_to "#flip-horizontal", class: "image-manipulator btn btn-default" do %>
-    <i class='fa fa-arrows-h'></i>
+    <%= fa_icon "arrows-h" %>
     <span class="control-label hidden-xs">Flip Horizontal</span>
   <% end %>
 </div>
 
 <%= form_for @photo, html: { class: "form" } do |f| %>
-  <div id='photo_manipulate' data-rotate=0></div>
+  <div id="photo_manipulate" data-rotate=0></div>
   <div class="form-group">
     <%= f.label     :caption, "Caption" %>
     <%= f.text_area :caption, autocapitalize: "sentences", class: "form-control" %>

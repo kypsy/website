@@ -1,6 +1,6 @@
 <% user = conversation.counterpart(current_user) %>
 
-<li class="row person conversation h-entry <%= 'unread' if conversation.unread?(current_user) %>">
+<li class="row person conversation h-entry <%= "unread" if conversation.unread?(current_user) %>">
 
   <div class="media col-xs-12">
     <%= link_to conversation_path(user.username), class: "pull-left" do %>
@@ -14,7 +14,7 @@
                       method:  :delete,
                       data: { confirm: "Uhhh&hellip; Are you sure you want to delete this conversation? There is NO undo.".html_safe },
                       class:   "btn btn-default btn-lg media-object" do %>
-          <i class="fa fa-lg fa-times"></i>
+          <%= fa_icon :times, class: "fa-lg" %>
         <% end %>
       </div>
 
