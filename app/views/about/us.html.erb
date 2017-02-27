@@ -4,27 +4,15 @@
 
 <div class="row" id="about-us">
   <div class="col-sm-6">
-    <a href="/@veganstraightedge" title="Shane&rsquo;s <%= t(:brand) %> profile">
-      <%= image_tag "shane-becker.jpg", alt: "Shane Becker&rsquo;s photobooth from a Pete and Pete reunion show in LA" %>
+    <a href="/@maxine" title="Maxine’s <%= t(:brand) %> profile">
+      <%= image_tag "//placehold.it/300", alt: "Photo of #{t(:brand)}’s founder, Maxine Jung" %>
     </a>
 
     <h3 class="h4">
-      Shane Becker
-      <small><a href="/@veganstraightedge" title="Shane&rsquo;s <%= t(:brand) %> profile">@veganstraightedge</a></small>
+      Maxine Jung
+      <small><a href="/@maxine" title="Maxine’s <%= t(:brand) %> profile">@maxine</a></small>
     </h3>
     <p>Shane came up with the idea for <b><%= t(:brand) %></b> in <time datetime="2008-05-10">May of 2008</time> (originally called <i>Straightedge Date</i> until <a href="https://twitter.com/jbarnette">John Barnette</a> pointed the now obvious word play). He put up an &ldquo;enter your email to be notified we launch&rdquo; one-page website and then promptly put it on the back burner. Until&hellip;</p>
-  </div>
-
-  <div class="col-sm-6">
-    <a href="/@bookis" title="Bookis' <%= t(:brand) %> profile">
-      <%= image_tag "bookis-smuin.jpg", alt: "Bookis Smuin&rsquo;s yearbook photo from freshman year of high school" %>
-    </a>
-
-    <h3 class="h4">
-      Bookis Smuin
-      <small><a href="/@bookis" title="Bookis' <%= t(:brand) %> profile">@bookis</a></small>
-    </h3>
-    <p>&hellip;years later Bookis was chatting with Shane wondering whatever happened to that idea. He learned that it had sat dormant mostly for lack of a partner in crime. He dove in to help see it through. Bookis programmed all of the bits. Shane designed all of the pixels.</p>
   </div>
 </div> <!-- .row -->
 
@@ -39,23 +27,24 @@
 <div class="row">
   <div class="col-sm-12">
     <p>
-      We&rsquo;ve intentionally kept <b><%= t(:brand) %></b> very simple.
+      We’ve intentionally kept <b><%= t(:brand) %></b> very simple.
       You can only do a few things with other people on this site.
-      We believe that a dating site should stay out of the way.
+      We believe that a website should stay out of the way.
     </p>
     <p>
       Find people, look at their high-level labels, then message them.
-      Talk to other humans, find out if you&rsquo;re a good match, then go on a date.
+      Talk to other humans, find out if you’re a good match, then go on a date.
     </p>
   </div>
 </div>
 
 <div class="row">
+
   <div class="col-sm-6">
     <h2 class="h3">Actions</h2>
     <table class="table">
       <tr>
-        <th><span class="btn btn-lg btn-info"><i class="fa fa-lg fa-comment"></i></span></th>
+        <th><span class="btn btn-lg btn-info"><%= fa_icon :comment, class: "fa-lg" %></span></th>
         <td>
           <h3 class="h4">Message</h3>
           <p>If you want to start talking with someone, this button will start a conversation. Keep it positive. Be friendly. Have fun.</p>
@@ -63,7 +52,7 @@
       </tr>
 
       <tr>
-        <th><span class="btn btn-lg btn-default"><i class="fa fa-lg fa-star text-primary"></i></span></th>
+        <th><span class="btn btn-lg btn-default"><%= fa_icon :star, class: "fa-lg text-primary" %></span></th>
         <td>
           <h3 class="h4">Bookmark</h3>
           <p>A bookmark is like a secret crush. They'll be saved to your list for future visits, but they won't know that you're crushing on them. (Don't be a creep, though.) Only you can see this.</p>
@@ -71,7 +60,7 @@
       </tr>
 
       <tr>
-        <th><span class="btn btn-lg btn-primary"><i class="fa fa-lg fa-star"></i></span></th>
+        <th><span class="btn btn-lg btn-primary"><%= fa_icon :star, class: "fa-lg" %></span></th>
         <td>
           <h3 class="h4">Un-Bookmark</h3>
           <p>Just like the un-crush button, this will remove your bookmark. No harm, no foul.</p>
@@ -79,7 +68,7 @@
       </tr>
 
       <tr>
-        <th><span class="btn btn-lg btn-default"><i class="fa fa-lg fa-heart text-danger"></i></span></th>
+        <th><span class="btn btn-lg btn-default"><%= fa_icon :heart, class: "fa-lg text-danger" %></i></span></th>
         <td>
           <h3 class="h4">Crush</h3>
           <p>If you think you like someone, crush on them. This button will let them know that you have a crush on them. It'll also put them in your list of crushes for future visits. Only you and them can see this.</p>
@@ -87,15 +76,15 @@
       </tr>
 
       <tr>
-        <th><span class="btn btn-lg btn-danger"><i class="fa fa-lg fa-heart"></i></span></th>
+        <th><span class="btn btn-lg btn-danger"><%= fa_icon :heart, class: "fa-lg" %></span></th>
         <td>
           <h3 class="h4">Un-Crush</h3>
-          <p>If you change your mind later, that&rsquo;s okay. This button will remove your crush.</p>
+          <p>If you change your mind later, that’s okay. This button will remove your crush.</p>
         </td>
       </tr>
 
       <tr>
-        <th><span class="btn btn-lg btn-default"><i class="fa fa-lg fa-flag-o text-warning"></i></span></th>
+        <th><span class="btn btn-lg btn-default"><%= fa_icon "flag-o", class: "fa-lg text-warning" %></span></th>
         <td>
           <h3 class="h4">Flag As Inappropriate</h3>
           <p>If a photo or person feels out of line to you, let us know and we'll look into it.</p>
@@ -103,7 +92,7 @@
       </tr>
 
       <tr>
-        <th><span class="btn btn-lg btn-warning"><i class="fa fa-lg fa-flag"></i></span></th>
+        <th><span class="btn btn-lg btn-warning"><%= fa_icon :flag, class: "fa-lg" %></span></th>
         <td>
           <h3 class="h4">Un-Flag As Inappropriate</h3>
           <p>Just like the un-crush button, this will remove your flagging of inappropriateness. No harm, no foul.</p>
@@ -111,7 +100,7 @@
       </tr>
 
       <tr>
-        <th><span class="btn btn-lg btn-default"><i class="fa fa-lg fa-ban text-danger"></i></span></th>
+        <th><span class="btn btn-lg btn-default"><%= fa_icon :ban, class: "fa-lg text-danger" %></span></th>
         <td>
           <h3 class="h4">Block</h3>
           <p>If you really don't want to ever see a person, you can block them.</p>
@@ -119,7 +108,7 @@
       </tr>
 
       <tr>
-        <th><span class="btn btn-lg btn-danger"><i class="fa fa-lg fa-ban"></i></span></th>
+        <th><span class="btn btn-lg btn-danger"><%= fa_icon :ban, class: "fa-lg" %></span></th>
         <td>
           <h3 class="h4">Un-Block</h3>
           <p>To unblock someone, you have to go directly to their profile and click the unblock button.</p>
@@ -132,18 +121,18 @@
     <h2 class="h3">Profiles</h2>
     <table class="table">
       <tr>
-        <th><span class="btn btn-lg btn-success"><i class="fa fa-lg fa-picture-o"></i></span></th>
+        <th><span class="btn btn-lg btn-success"><%= fa_icon "picture-o", class: "fa-lg" %></span></th>
         <td>
           <h3 class="h4">Photos</h3>
-          <p>Let&rsquo;s be honest. We use the web to look at photos of each other. We all hope to find someone who is attractive to us, and that finds us attractive. So, add lots of good photos of you to your profile.</p>
+          <p>Let’s be honest. We use the web to look at photos of each other. We all hope to find someone who is attractive to us, and that finds us attractive. So, add lots of good photos of you to your profile.</p>
         </td>
       </tr>
 
       <tr>
-        <th><span class="btn btn-lg btn-default"><i class="fa fa-lg fa-user"></i></span></th>
+        <th><span class="btn btn-lg btn-default"><%= fa_icon :user, class: "fa-lg" %></span></th>
         <td>
           <h3 class="h4">Personal Details</h3>
-          <p>We ask very few questions about you for your profile. The best bios profiles are the most complete ones. You can use the free-form text bio to tell people more than the very high-level statistics. <em>What&rsquo;s your story?</em></p>
+          <p>We ask very few questions about you for your profile. The best bios profiles are the most complete ones. You can use the free-form text bio to tell people more than the very high-level statistics. <em>What’s your story?</em></p>
         </td>
       </tr>
     </table>
@@ -157,23 +146,23 @@
     <table class="table">
       <tr>
         <th>
-          <a href="https://twitter.com/kypsy" class="btn btn-lg btn-default">
-            <i class="fa fa-lg fa-twitter"></i>
+          <a href="https://twitter.com/<%= t(:social_media_username) %>" class="btn btn-lg btn-default">
+            <%= fa_icon :twitter, class: "fa-lg" %>
           </a>
         </th>
         <td>
           <h3 class="h4">
             Twitter
-            <small><a href="https://twitter.com/kypsy" title="<%= t(:brand) %> on Twitter">@kypsy</a></small>
+            <small><a href="https://twitter.com/<%= t(:social_media_username) %>" title="<%= t(:brand) %> on Twitter">@<%= t(:social_media_username) %></a></small>
           </h3>
-          <p><a href="https://twitter.com/intent/tweet?text=@kypsy%20">Tweet at us</a>. We're pretty friendly.</p>
+          <p><a href="https://twitter.com/intent/tweet?text=@<%= t(:social_media_username) %>%20">Tweet at us</a>. We're pretty friendly.</p>
         </td>
       </tr>
 
       <tr>
         <th>
           <a href="mailto:<%= t(:hq_email) %>" class="btn btn-lg btn-default">
-            <i class="fa fa-lg fa-inbox"></i>
+            <%= fa_icon :inbox, class: "fa-lg" %>
           </a>
         </th>
         <td>
@@ -181,20 +170,20 @@
             Email
             <small><a href="mailto:<%= t(:hq_email) %>" title=<%= t(:hq_email) %>><%= t(:hq_email) %></a></small>
           </h3>
-          <p>Want to go old school? That&rsquo;s fine. We still use and love the emails. Fire away.</p>
+          <p>Want to go old school? That’s fine. We still use and love the emails. Fire away.</p>
         </td>
       </tr>
 
       <tr>
         <th>
-          <a href="http://instagram.com/kypsy" class="btn btn-lg btn-default">
-            <i class="fa fa-lg fa-instagram"></i>
+          <a href="http://instagram.com/<%= t(:social_media_username) %>" class="btn btn-lg btn-default">
+            <%= fa_icon :instagram, class: "fa-lg" %>
           </a>
         </th>
         <td>
           <h3 class="h4">
             Instagram
-            <small><a href="http://instagram.com/kypsy" title="<%= t(:brand) %> on Instagram">@kypsy</a></small>
+            <small><a href="http://instagram.com/<%= t(:social_media_username) %>" title="<%= t(:brand) %> on Instagram">@<%= t(:social_media_username) %></a></small>
           </h3>
           <p>If you &lsquo;gram up anything about the site or your dating adventures, mention us so we see it.</p>
         </td>
@@ -202,20 +191,20 @@
 
       <tr>
         <th>
-          <a href="http://web.stagram.com/tag/kypsy" class="btn btn-lg btn-default">
+          <a href="http://web.stagram.com/tag/<%= t(:social_media_username) %>" class="btn btn-lg btn-default">
             <i><b>#</b></i>
           </a>
         </th>
         <td>
           <h3 class="h4">
             #Hashtags
-            <small><a href="https://twitter.com/search?q=%23kypsy" title="#<%= t(:brand) %> on Twitter">#kypsy</a></small>
+            <small><a href="https://twitter.com/search?q=%23<%= t(:social_media_username) %>" title="#<%= t(:brand) %> on Twitter">#<%= t(:social_media_username) %></a></small>
           </h3>
           <p>
             #Hashtag all the things.
-            <a href="https://twitter.com/search?q=%23kypsy">#kypsy on Twitter</a>.
-            <a href="http://web.stagram.com/tag/kypsy" title="#kypsy Instagram photos | Webstagram">#kypsy on Instagram</a>.
-            <a href="https://www.facebook.com/hashtag/kypsy">#kypsy on Facebook</a>.
+            <a href="https://twitter.com/search?q=%23<%= t(:social_media_username) %>">  #<%= t(:social_media_username) %> on Twitter</a>.
+            <a href="http://instagram.com/explore/tags/<%= t(:social_media_username) %>">#<%= t(:social_media_username) %> on Instagram</a>.
+            <a href="https://www.facebook.com/hashtag/<%= t(:social_media_username) %>"> #<%= t(:social_media_username) %> on Facebook</a>.
             PS. Thanks, <a href="http://factoryjoe.com/blog/2007/08/25/groups-for-twitter-or-a-proposal-for-twitter-tag-channels">Chris Messina</a>!
           </p>
         </td>
@@ -279,12 +268,11 @@
 
 
     <p>
-      Out of step, <br />
-      <i class="fa fa-heart"></i>
-      Shane + Bookis
+      ♥️ Maxine Jung
     </p>
 
     <div class="well">
+      <hr />
       <ul>
         <li>Original source and credit: <a href="http://2012.jsconf.us/#/about">JS Conf 2012</a> &amp; <a href="http://geekfeminism.wikia.com/wiki/Conference_anti-harassment/Policy">The Ada Initiative</a></li>
         <li>Please help by translating or <a href="https://github.com/leftlogic/confcodeofconduct.com">improving it on GitHub</a>.</li>
