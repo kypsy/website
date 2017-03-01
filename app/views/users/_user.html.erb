@@ -17,13 +17,7 @@
         <p class="p-adr h-adr">
           <%= link_to google_map_url(user) do %>
             <% unless user.city.blank? %>
-              <span class="p-locality locality"><%= user.city %></span>,
-            <% end %>
-            <% unless user.state.blank? %>
-              <span class="p-region region"><%= user.state %></span>,
-            <% end %>
-            <% unless user.country.blank? %>
-              <span class="p-country country"><%= user.country.name %></span>
+              <span class="p-locality locality"><%= user.city %></span>
             <% end %>
           <% end %>
         </p>

@@ -256,8 +256,8 @@ describe User, :type => :model do
   end
 
   describe "#search" do
-    let!(:bookis) { create(:bookis, city: "seattle", state: create(:state), country: create(:country)) }
-    let!(:shane)  { create(:shane, city: "Los Angeles", state: create(:california), country: create(:russia)) }
+    let!(:bookis) { create(:bookis, city: "seattle") }
+    let!(:shane)  { create(:shane, city: "Los Angeles") }
 
 
     it "returns an empty array" do
@@ -275,16 +275,6 @@ describe User, :type => :model do
       expect(User.search("Smuin")).to_not include bookis
       expect(User.search("smuin")).to_not include bookis
       expect(User.search("bookis smuin")).to_not include bookis
-    end
-
-    it "searches by state" do
-      expect(User.search("washington")).to include bookis
-      expect(User.search("washington")).to_not include shane
-    end
-
-    it "searches by country" do
-      expect(User.search("RUSSIA")).to_not include bookis
-      expect(User.search("RUSSIA")).to include shane
     end
 
     it "finds even with accents" do
@@ -317,19 +307,6 @@ describe User, :type => :model do
       bookis.update(label: create(:label, name: "Label"))
       expect(User.search(label: "label")).to eq [bookis]
       expect(User.search("label")).to eq [bookis]
-    end
-
-    it "searches by state by field" do
-      bookis.update(state: create(:state, name: "Washington", abbreviation: "WA"))
-      expect(User.search(state: "WA")).to eq [bookis]
-      expect(User.search(state: "Washington")).to eq [bookis]
-      expect(User.search("Washington")).to eq [bookis]
-    end
-
-    it "searches by country by field" do
-      expect(User.search(country: "RU")).to eq [shane]
-      expect(User.search(country: "Russia")).to eq [shane]
-      expect(User.search("Russia")).to eq [shane]
     end
 
     it "can't search on email" do

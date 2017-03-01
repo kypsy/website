@@ -16,8 +16,6 @@ class CreateUsers < ActiveRecord::Migration
       t.text   :bio
 
       t.belongs_to :label
-      t.belongs_to :state
-      t.belongs_to :country
       t.belongs_to :diet
 
       t.timestamps

@@ -7,10 +7,8 @@ class User < ActiveRecord::Base
     using: {tsearch: {dictionary: "english", prefix: true}},
     ignoring: :accents,
     associated_against: {
-      state:   [:name, :abbreviation],
       label:   [:name],
-      diet:    [:name],
-      country: [:name, :abbreviation]
+      diet:    [:name]
     }
 
   pg_search_scope :field_search, lambda { |query|
@@ -31,9 +29,7 @@ class User < ActiveRecord::Base
   scope :featured, -> { with_setting(:featured, true) }
   scope :listing_order, -> { order('photos_count <> 0 desc, created_at desc') }
 
-  belongs_to :country
   belongs_to :diet
-  belongs_to :state
   belongs_to :label
   belongs_to :age_range
 
@@ -145,12 +141,10 @@ class User < ActiveRecord::Base
         user.email_messages    = true
         unless location.blank?
           user.city             = location.split(",").first.strip
-          user.state            = State.where(abbreviation: location.split(",").last.strip).first
         end
 
         user.username         = available_username(auth["info"]["nickname"])
         user.bio              = auth["info"]["description"]
-        user.country          = Country.where(abbreviation: "US").first
       end
 
       unless auth["info"]["image"].blank?
@@ -179,16 +173,13 @@ class User < ActiveRecord::Base
 
         unless location.blank?
           user.city       = location.split(",").first.strip
-          user.state      = State.where(name: location.split(",").last.strip).first
         end
 
         user.username   = available_username(auth["info"]["nickname"])
         user.email      = auth["info"]["email"]
         user.bio        = auth["info"]["description"]
-        user.country    = Country.where(abbreviation: "US").first
-        # user.url       = auth["user_info"]["urls"]["Website"]
-        # user.url       = auth["user_info"]["urls"]["Facebook"]
       end
+
       if auth["info"].try(:[], "image")
         u.photos.create(remote_image_url: auth["info"]["image"].sub(/type=square/, "type=large"), avatar: true)
       end
@@ -248,11 +239,11 @@ class User < ActiveRecord::Base
   end
 
   def location
-    "#{city} #{state} #{zipcode} #{country.try(:name)}".strip
+    "#{city} #{zipcode}".strip
   end
 
   def merge!(merging_user)
-    %w(name email birthday city state zipcode country bio).each do |property|
+    %w(name email birthday city zipcode bio).each do |property|
       self.send("#{property}=", merging_user.send(property)) if self.send(property).blank?
     end
 

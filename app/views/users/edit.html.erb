@@ -69,18 +69,8 @@
       </div>
 
       <div class="form-group">
-        <%= f.label  :state %>
-        <%= f.select :state_id, State.options_for_select, { include_blank: true }, { class: "form-control" } %>
-      </div>
-
-      <div class="form-group">
         <%= f.label      :zipcode %>
         <%= f.text_field :zipcode, autocapitalize: "characters", class: "form-control" %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label  :country %>
-        <%= f.select :country_id, Country.options_for_select, { include_blank: true }, { class: "form-control" } %>
       </div>
 
       <div class="form-group">

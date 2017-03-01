@@ -96,8 +96,6 @@ module ApplicationHelper
 
     pieces = []
     pieces << user.city         if user.city
-    pieces << user.state        if user.state
-    pieces << user.country.name if user.country
 
     url << u(pieces.join(", "))
     url

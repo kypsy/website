@@ -45,13 +45,6 @@ ActiveRecord::Schema.define(version: 20170227044815) do
     t.integer  "hidden_from_user_id"
   end
 
-  create_table "countries", force: :cascade do |t|
-    t.string   "name"
-    t.string   "abbreviation"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "credentials", force: :cascade do |t|
     t.boolean  "expires",       default: false
     t.datetime "expires_at"
@@ -133,13 +126,6 @@ ActiveRecord::Schema.define(version: 20170227044815) do
     t.index ["slug"], name: "index_red_flags_on_slug", using: :btree
   end
 
-  create_table "states", force: :cascade do |t|
-    t.string   "name"
-    t.string   "abbreviation"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "users", force: :cascade do |t|
     t.date     "birthday"
     t.string   "name"
@@ -151,8 +137,6 @@ ActiveRecord::Schema.define(version: 20170227044815) do
     t.boolean  "visible",              default: false
     t.text     "bio"
     t.integer  "label_id"
-    t.integer  "state_id"
-    t.integer  "country_id"
     t.integer  "diet_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -174,7 +158,6 @@ ActiveRecord::Schema.define(version: 20170227044815) do
     t.integer  "photos_count",         default: 0
     t.index ["created_at"], name: "index_users_on_created_at", using: :btree
     t.index ["photos_count"], name: "index_users_on_photos_count", using: :btree
-    t.index ["state_id"], name: "index_users_on_state_id", using: :btree
   end
 
   create_table "your_labels", force: :cascade do |t|

@@ -45,23 +45,6 @@ FactoryGirl.define do
     association :blocked_user, factory: :bookis
   end
 
-  factory :state do
-    name "Washington"
-    abbreviation "WA"
-    factory :california do
-      name "California"
-      abbreviation "CA"
-    end
-  end
-
-  factory :country do
-    name "United States"
-    abbreviation "US"
-    factory :russia do
-      name "Russia"
-      abbreviation "RU"
-    end
-  end
   factory :label do
     name "sXe"
   end

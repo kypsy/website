@@ -23,9 +23,7 @@ module UserRule
 
   ASSOCIATED_MAPPING = {
     diet:    :name,
-    label:   :name,
-    state:   [:name, :abbreviation],
-    country: [:name, :abbreviation]
+    label:   :name
   }
 
   SQL_GROUP = {
