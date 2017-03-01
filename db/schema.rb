@@ -63,12 +63,6 @@ ActiveRecord::Schema.define(version: 20170227044815) do
     t.datetime "updated_at"
   end
 
-  create_table "diets", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "labels", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at"

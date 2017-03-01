@@ -95,22 +95,6 @@
       <div class="row">
         <div class="col-md-6">
           <div class="form-group">
-            <%= f.label  :diet, "My Diet" %>
-            <%= f.select :diet_id, Diet.options_for_select, { include_blank: true }, { class: "form-control" } %>
-          </div>
-        </div>
-
-        <div class="col-md-6">
-          <div class="form-group">
-            <%= f.label :your_labels_attributes, "Desired Diet" %>
-            <%= render "/labels/form", f: f, collection: Diet.all %>
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-6">
-          <div class="form-group">
             <%= f.label  :label_id, "My Labels" %>
             <%= f.select :label_id, Label.options_for_select, { include_blank: true }, { class: "form-control" } %>
           </div>

@@ -1,7 +1,7 @@
 <div class="page-header">
   <% if @query %>
     <h1>
-      <% if %w(diets labels).include? @column %>
+      <% if %w(labels).include? @column %>
         <%= link_to @column.capitalize, send("#{@column}_path") %> :
       <% else %>
         Search :

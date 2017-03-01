@@ -293,14 +293,9 @@ describe User, :type => :model do
       expect(User.search("seattle")).to    include bookis
     end
 
-    it "searches by diet" do
-      bookis.update(diet: create(:diet, name: "Diet"))
-      expect(User.search("diet")).to eq [bookis]
-    end
-
-    it "searches by diet by field" do
-      bookis.update(diet: create(:diet, name: "Diet"))
-      expect(User.search(diet: "diet")).to eq [bookis]
+    it "searches by label" do
+      bookis.update(label: create(:label, name: "Label"))
+      expect(User.search("label")).to eq [bookis]
     end
 
     it "searches by label by field" do

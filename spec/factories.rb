@@ -49,10 +49,6 @@ FactoryGirl.define do
     name "sXe"
   end
 
-  factory :diet do
-    name "Vegan"
-  end
-
   factory :credential do
     user
     token "1234"

@@ -25,11 +25,13 @@ Profiles also have two lists of three properties.
 
 **What I Am**:
 
-- My diet
+- My interests (nouns)
+- My activities (verbs)
 
 **What I'm Looking For**:
 
-- Their diet
+- Their interests (nouns)
+- Their activities (verbs)
 
 ## Requirements
 

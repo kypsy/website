@@ -7,8 +7,7 @@ class User < ActiveRecord::Base
     using: {tsearch: {dictionary: "english", prefix: true}},
     ignoring: :accents,
     associated_against: {
-      label:   [:name],
-      diet:    [:name]
+      label:   [:name]
     }
 
   pg_search_scope :field_search, lambda { |query|
@@ -29,7 +28,6 @@ class User < ActiveRecord::Base
   scope :featured, -> { with_setting(:featured, true) }
   scope :listing_order, -> { order('photos_count <> 0 desc, created_at desc') }
 
-  belongs_to :diet
   belongs_to :label
   belongs_to :age_range
 
@@ -58,7 +56,6 @@ class User < ActiveRecord::Base
   has_many :photos, -> { order "created_at desc" }, dependent: :destroy
   has_many :your_labels
   has_many :desired_labels,     -> { distinct }, through: :your_labels, source: :label, as: :label, source_type: "Label"
-  has_many :desired_diets,      -> { distinct }, through: :your_labels, source: :label, as: :label, source_type: "Diet"
   has_many :desired_age_ranges, -> { distinct }, through: :your_labels, source: :label, as: :label, source_type: "AgeRange"
 
   has_many :red_flags, as: :flaggable, dependent: :destroy

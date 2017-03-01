@@ -118,7 +118,6 @@ class UsersController < ApplicationController
       "birthday(3i)",
       :location,
       :bio,
-      :diet_id,
 
       :facebook_username,
       :instagram_username,

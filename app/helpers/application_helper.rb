@@ -41,13 +41,12 @@ module ApplicationHelper
   def show_update_profile?
     profile_incomplete? &&
     !getting_started?   &&
-    !(controller_name == "users" && action_name == "edit")
+    (@slug != "settings")
   end
 
   def profile_incomplete?
     current_user &&
-    current_user.label_id.blank? &&
-    current_user.diet_id.blank?
+    current_user.label_id.blank? 
   end
 
   def birthday_select_tag(f)

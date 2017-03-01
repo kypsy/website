@@ -1,10 +1,6 @@
 <%= render @user %>
 
 <p class="well lead">
-  <% if @user.diet %>
-    <b><%= link_to @user.diet.name.downcase, search_path(search: [:diets, @user.diet.name]) %></b>
-  <% end %>
-
   <% if @user.label %>
     <b><%= link_to @user.label.name.downcase, search_path(search: [:labels, @user.label.name]) %></b>
   <% end %>
@@ -12,13 +8,6 @@
   <br class="xs-hidden" />
 
   I’m looking for
-
-  <% if @user.desired_diets.blank? %>
-    a
-  <% else %>
-    <%= @user.desired_diets.map(&:name).join.indefinite_article %>
-    <%= labels_list(@user, :diets) %>
-  <% end %>
 
   <%= labels_list(@user, :labels) %>
 

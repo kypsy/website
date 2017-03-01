@@ -76,7 +76,6 @@ Rails.application.routes.draw do
   delete "/red-flags/:id",                   to: "red_flags#destroy"
 
   # filters
-  get "/diets",                     to: "searches#index",  as: :diets,  column: "diets"
   get "/labels",                    to: "searches#index",  as: :labels, column: "labels"
   get "/labels",                    to: "searches#index",  as: :label,  column: "labels"
   get "/searches",                  to: "searches#index"

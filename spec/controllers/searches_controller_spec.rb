@@ -8,7 +8,7 @@ describe SearchesController, :type => :controller do
 
   describe "GET 'index'" do
     it "returns http success" do
-      get :index, params: {column: :diets}
+      get :index, params: {column: :labels}
       expect(response).to be_success
     end
 

@@ -1,6 +1,6 @@
 module UserRule
 
-  ALLOWED_SEARCH_COLUMNS = %w(diets labels)
+  ALLOWED_SEARCH_COLUMNS = %w(labels)
   DISALLOWED_COLUMNS = [
     :id,
     :visible,
@@ -17,32 +17,26 @@ module UserRule
   ]
 
   COLUMN_MAPPING = {
-    lable: :label,
-    diets: :diet
+    lable: :label
   }
 
   ASSOCIATED_MAPPING = {
-    diet:    :name,
-    label:   :name
+    label: :name
   }
 
   SQL_GROUP = {
-    diets:  "diets.name",
     labels: "labels.name"
   }
 
   ASSOCIATION_NAME = {
-    diets: :diet,
     labels: :label
   }
 
   SELECT = {
-    diet: "users.id, diet_id",
     label: "users.id, label_id"
   }
 
   COLUMN = {
-    diet: :diet,
     label: :label
   }
 
