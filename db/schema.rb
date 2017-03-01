@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170227044815) do
+ActiveRecord::Schema.define(version: 20170301043205) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,14 @@ ActiveRecord::Schema.define(version: 20170227044815) do
     t.boolean  "secret",     default: false
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "interests", force: :cascade do |t|
+    t.string   "name"
+    t.string   "slug"
+    t.boolean  "approved"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "labels", force: :cascade do |t|
@@ -118,6 +126,13 @@ ActiveRecord::Schema.define(version: 20170227044815) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["slug"], name: "index_red_flags_on_slug", using: :btree
+  end
+
+  create_table "user_interests", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "interest_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "users", force: :cascade do |t|

@@ -31,6 +31,9 @@ class User < ActiveRecord::Base
   belongs_to :label
   belongs_to :age_range
 
+  has_many :user_interests
+  has_many :interests, through: :user_interests
+
   has_many :crushings, foreign_key: "crusher_id", class_name: "Crush", dependent: :destroy
   has_many :secret_crushes, -> { where crushes: {secret: true}}, through: :crushings, source: :crushee
 

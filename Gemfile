@@ -26,6 +26,9 @@ gem "will_paginate-bootstrap"
 gem "bootstrap", "~> 4.0.0.alpha6"
 gem "font-awesome-rails"
 
+gem "rubypants" # for smart quotes
+gem "sterile"   # for slugs
+
 # caching
 gem "memcachier"
 gem "dalli"
