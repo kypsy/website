@@ -138,12 +138,10 @@ class User < ActiveRecord::Base
 
         user.email_crushes     = true
         user.email_messages    = true
-        unless location.blank?
-          user.location        = auth["info"]["location"]
-        end
+        user.location          = auth["info"]["location"]
 
-        user.username         = available_username(auth["info"]["nickname"])
-        user.bio              = auth["info"]["description"]
+        user.username          = available_username(auth["info"]["nickname"])
+        user.bio               = auth["info"]["description"]
       end
 
       unless auth["info"]["image"].blank?
@@ -168,13 +166,11 @@ class User < ActiveRecord::Base
         user.email_crushes     = true
         user.email_messages    = true
 
-        unless location.blank?
-          user.location        = auth["info"]["location"]
-        end
+        user.location          = auth["info"]["location"]
 
-        user.username   = available_username(auth["info"]["nickname"])
-        user.email      = auth["info"]["email"]
-        user.bio        = auth["info"]["description"]
+        user.username          = available_username(auth["info"]["nickname"])
+        user.email             = auth["info"]["email"]
+        user.bio               = auth["info"]["description"]
       end
 
       if auth["info"].try(:[], "image")
