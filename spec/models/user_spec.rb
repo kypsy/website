@@ -256,8 +256,8 @@ describe User, :type => :model do
   end
 
   describe "#search" do
-    let!(:bookis) { create(:bookis, city: "seattle") }
-    let!(:shane)  { create(:shane, city: "Los Angeles") }
+    let!(:bookis) { create(:bookis, location: "seattle") }
+    let!(:shane)  { create(:shane, location: "Los Angeles") }
 
 
     it "returns an empty array" do

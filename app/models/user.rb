@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   include PgSearch
 
   pg_search_scope :text_search,
-    against: {username: "A", city: "B"},
+    against: {username: "A", location: "B"},
     using: {tsearch: {dictionary: "english", prefix: true}},
     ignoring: :accents,
     associated_against: {
@@ -128,7 +128,6 @@ class User < ActiveRecord::Base
     end
 
     def create_for_twitter(auth)
-      location = auth["info"]["location"]
       provider = Provider.new(name: auth["provider"], uid: auth['uid'])
 
       u = create! do |user|
@@ -140,7 +139,7 @@ class User < ActiveRecord::Base
         user.email_crushes     = true
         user.email_messages    = true
         unless location.blank?
-          user.city             = location.split(",").first.strip
+          user.location        = auth["info"]["location"]
         end
 
         user.username         = available_username(auth["info"]["nickname"])
@@ -158,8 +157,6 @@ class User < ActiveRecord::Base
     end
 
     def create_for_facebook(auth)
-      location = auth["info"]["location"]
-
       provider = Provider.new(name: auth["provider"], uid: auth['uid'])
 
       u = create! do |user|
@@ -172,7 +169,7 @@ class User < ActiveRecord::Base
         user.email_messages    = true
 
         unless location.blank?
-          user.city       = location.split(",").first.strip
+          user.location        = auth["info"]["location"]
         end
 
         user.username   = available_username(auth["info"]["nickname"])
@@ -238,12 +235,8 @@ class User < ActiveRecord::Base
     photo ? photo.image_url(size) : placeholder_avatar_url
   end
 
-  def location
-    city
-  end
-
   def merge!(merging_user)
-    %w(name email birthday city bio).each do |property|
+    %w(name email birthday location bio).each do |property|
       self.send("#{property}=", merging_user.send(property)) if self.send(property).blank?
     end
 

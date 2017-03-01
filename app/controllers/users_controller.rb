@@ -116,7 +116,7 @@ class UsersController < ApplicationController
       "birthday(1i)",
       "birthday(2i)",
       "birthday(3i)",
-      :city,
+      :location,
       :bio,
       :diet_id,
 

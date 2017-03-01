@@ -9,7 +9,7 @@ http://kypsy.com
 ## Description
 
 **[Kypsy](https://kypsy.com)**
-is a Rails powered site for women finding friends in a new city.
+is a Rails powered site for women finding friends in a new location.
 
 - Profiles
 - Photos

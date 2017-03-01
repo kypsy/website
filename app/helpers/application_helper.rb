@@ -95,7 +95,7 @@ module ApplicationHelper
     url  = "http://maps.google.com/maps?q="
 
     pieces = []
-    pieces << user.city         if user.city
+    pieces << user.location if user.location
 
     url << u(pieces.join(", "))
     url
