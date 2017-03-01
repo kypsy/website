@@ -239,11 +239,11 @@ class User < ActiveRecord::Base
   end
 
   def location
-    "#{city} #{zipcode}".strip
+    city
   end
 
   def merge!(merging_user)
-    %w(name email birthday city zipcode bio).each do |property|
+    %w(name email birthday city bio).each do |property|
       self.send("#{property}=", merging_user.send(property)) if self.send(property).blank?
     end
 

@@ -7,7 +7,6 @@ class CreateUsers < ActiveRecord::Migration
       t.string :username
       t.string :email
       t.string :city
-      t.string :zipcode
 
       t.integer :age_range_id
 
