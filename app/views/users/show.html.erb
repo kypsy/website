@@ -3,24 +3,42 @@
 <p class="well lead">
   <% if @user.label %>
     <b><%= link_to @user.label.name.downcase, search_path(search: [:labels, @user.label.name]) %></b>
+
+    <br>
+    <br>
   <% end %>
 
-  <br class="xs-hidden" />
+  <% if labels_list(@user, :interests).present? %>
+    Usually into<br>
+    <%= labels_list(@user, :interests) %>.
+
+    <br>
+    <br>
+  <% end %>
+
+  <% if labels_list(@user, :activities).present? %>
+    I want new friends for<br>
+    <%= labels_list(@user, :activities) %>.
+
+    <br>
+    <br>
+  <% end %>
 
   <% if @user.age_range.present? && @user.age_range.name != "rather not say" %>
     I’m <%= @user.age_range.name %> years old.
+
+    <br>
+    <br>
   <% end %>
-
-  <!-- <%= labels_list(@user, :labels) %> -->
-
-  <br class="xs-hidden" />
 
   <% if @user.desired_age_ranges.present? %>
     I’m looking for someone
     <%= labels_list(@user, :age_ranges) %>
     years old.
-  <% end %>
 
+    <br>
+    <br>
+  <% end %>
 </p>
 
 <div class="row">
