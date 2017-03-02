@@ -6,7 +6,7 @@
     <div class="media-body">
       <% cache user do %>
         <h4 class="media-heading">
-          <% if user.real_name_public? %>
+          <% if user.name.present? %>
             <span class="p-name fn n"><%= link_to user.name, person_path(user.username) %></span>
             (<span class="p-nickname nickname"><%= link_to user.username, person_path(user.username) %></span>)<%= render partial: "/users/age", locals: { user: user } %>
           <% else %>

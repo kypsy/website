@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
   }
 
   self.per_page = 28
-  store_accessor :settings, :admin, :featured, :real_name_public, :email_public, :email_crushes, :email_messages
+  store_accessor :settings, :admin, :featured, :email_crushes, :email_messages
 
   scope :with_setting, lambda { |key, value| where("settings -> ? = ?", key, value.to_s) }
   scope :featured, -> { with_setting(:featured, true) }
@@ -279,7 +279,7 @@ class User < ActiveRecord::Base
     end
   end
 
-  %w(admin featured real_name_public email_public email_messages email_crushes).each do |method_name|
+  %w(admin featured email_messages email_crushes).each do |method_name|
     define_method("#{method_name}?") do
       output = send(method_name)
       %w(true false 0 1).include?(output) ? %w(true 1).include?(output) : output

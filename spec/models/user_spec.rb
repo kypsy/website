@@ -172,11 +172,6 @@ describe User, :type => :model do
     it "has featured" do
       expect(user.featured?).to be_nil
     end
-
-    it "has public settings" do
-      expect(user.email_public?).to     be_nil
-      expect(user.real_name_public?).to be_nil
-    end
   end
 
   describe "visible users" do

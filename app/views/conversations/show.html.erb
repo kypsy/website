@@ -2,7 +2,7 @@
   <div class="page-header">
     <h1>
       Coversation with
-      <% if @user.real_name_public? %>
+      <% if @user.name.present? %>
         <%= link_to @user.name, person_path(@user.username) %>
         (<%= link_to @user.username, person_path(@user.username) %>)
       <% else %>

@@ -3,23 +3,21 @@
 </div>
 
 <% unless @user.twitter? && @user.facebook? %>
-  <div class="col-12">
-    <div class="buttons">
-      <% if @user.twitter? %>
-        <%= button_to_sign_in_with(:facebook) %>
-      <% elsif @user.facebook? %>
-        <%= button_to_sign_in_with(:twitter) %>
-      <% end %>
-    </div>
-
-    <p class="note">
-      Connecting both your Twitter and Facebook accounts makes it easier to fill out your <%= t(:brand) %> profile, which helps you find people.
-    </p>
-
-    <p class="note">
-      And if Twitter or Facebook ever has downtime, you can use the other to sign in to <%= t(:brand) %>.
-    </p>
+  <div class="buttons">
+    <% if @user.twitter? %>
+      <%= button_to_sign_in_with(:facebook) %>
+    <% elsif @user.facebook? %>
+      <%= button_to_sign_in_with(:twitter) %>
+    <% end %>
   </div>
+
+  <p class="note">
+    Connecting both your Twitter and Facebook accounts makes it easier to fill out your <%= t(:brand) %> profile, which helps you find people.
+  </p>
+
+  <p class="note">
+    And if Twitter or Facebook ever has downtime, you can use the other to sign in to <%= t(:brand) %>.
+  </p>
 <% end %>
 
 <%= render "errors" %>
@@ -30,14 +28,6 @@
       <div class="form-group">
         <%= f.label      :name %>
         <%= f.text_field :name, autocapitalize: "words", class: "form-control" %>
-
-        <div class="checkbox">
-          <label>
-            <%= f.check_box :real_name_public %>
-            Show publicly?
-          </label>
-        </div>
-        <hr>
       </div>
 
       <% if @user.username.blank? %>
@@ -50,17 +40,11 @@
       <div class="form-group">
         <%= f.label       :email %>
         <%= f.email_field :email, autocapitalize: "off", autocorrect: "off", class: "form-control", required: true %>
+      </div>
 
-        <div class="checkbox">
-          <label>
-            <%= f.check_box :email_public %>
-            Show publicly?
-          </label>
-        </div>
-
+      <div class="form-group">
         <%= f.label     :website %>
         <%= f.url_field :website, autocapitalize: "off", autocorrect: "off", class: "form-control" %>
-        <hr>
       </div>
 
       <div class="form-group">
@@ -75,7 +59,6 @@
     </div>
 
     <div class="col-md-6">
-
       <div class="row">
         <div class="col-md-6">
           <%= f.label :age_range, "My Age Range" %>
@@ -130,8 +113,8 @@
               </div>
           </div>
         <% end %>
-
       </div>
+
       <div class="row" id="social-media">
         <div class="col-sm-12">
           <div class="page-header">

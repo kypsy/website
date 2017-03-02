@@ -3,8 +3,6 @@ module UsersHelper
   def show_section?(type)
     if type == :social
       ! social_sites.map{ |site, url| @user.send("#{site.downcase.gsub(/ /, "")}_username") }.join.blank?
-    elsif type == :contact
-      (@user.email? && @user.email_public?) # || @user.website?
     end
   end
 
@@ -20,12 +18,10 @@ module UsersHelper
     {
       "Twitter"        => "https://twitter.com/@@@",
       "Facebook"       => "https://facebook.com/@@@",
-      "Instagram"      => "http://instagram.com/@@@",
-      "This Is My Jam" => "http://thisismyjam.com/@@@",
+      "Instagram"      => "https://instagram.com/@@@",
       "Tumblr"         => "http://@@@.tumblr.com",
       "Last FM"        => "http://last.fm/user/@@@",
       "Spotify"        => "https://open.spotify.com/user/@@@",
-      "Vine"           => "https://vine.co/@@@",
       "Kik"            => "@@@",
       "Snapchat"       => "@@@"
     }
