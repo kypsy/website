@@ -7,22 +7,20 @@
 
   <br class="xs-hidden" />
 
-  I’m looking for
+  <% if @user.age_range.present? %>
+    I’m <%= @user.age_range.name %> years old.
+  <% end %>
 
-  <%= labels_list(@user, :labels) %>
+  <!-- <%= labels_list(@user, :labels) %> -->
 
   <br class="xs-hidden" />
 
-  I’m looking for
-
-  <% if @user.desired_age_ranges.blank? %>
-    a
-  <% else %>
-    <%= @user.desired_age_ranges.map(&:name).join.indefinite_article %>
+  <% if @user.desired_age_ranges.present? %>
+    I’m looking someone
     <%= labels_list(@user, :age_ranges) %>
+    years old.
   <% end %>
 
-  <%= labels_list(@user, :age_ranges) %>
 </p>
 
 <div class="row">
@@ -64,7 +62,7 @@
                         &nbsp;&nbsp;Flag this photo as inappropriate
                       </b>
                     </button>
-                    <% end %>
+                  <% end %>
                 <% end %>
 
               <% end %>
