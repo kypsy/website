@@ -61,13 +61,14 @@
     <div class="col-md-6">
       <div class="row">
         <div class="col-md-6">
-          <%= render "/users/age_range_form", f: f, checkbox: false %>
+          <%= f.label :age_range, "My Age Range" %><br>
+          <%= render "/labels/form", f: f, collection: AgeRange.all, choose: :one %>
         </div>
 
         <div class="col-md-6">
           <div class="form-group">
             <%= f.label :your_age_ranges_attributes, "Desired Age Range" %>
-            <%= render "/labels/form", f: f, collection: AgeRange.all %>
+            <%= render "/labels/form", f: f, collection: AgeRange.all, choose: :many %>
           </div>
         </div>
       </div>
