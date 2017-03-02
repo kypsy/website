@@ -2,7 +2,7 @@
 
 
   <% collection.each do |item| %>
-    <div class="form-check form-check-inline">
+    <div class="form-check">
       <label class="form-check-label">
         <%= f.radio_button "#{item.class.to_s.underscore}_id", item.id, { class: "form-check-input" } %>
         <%= item.name %>

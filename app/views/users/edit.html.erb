@@ -56,6 +56,27 @@
         <%= f.label     :bio %>
         <%= f.text_area :bio, autocapitalize: "sentences", class: "form-control", rows: 8 %>
       </div>
+
+        <div class="form-group" id="notifications">
+          <h2>Notifications</h2>
+
+          <div class="checkbox">
+            <label>
+              <%= f.check_box :email_crushes %>
+              <%= f.label     :email_crushes, "Notify me when someone crushes me" %>
+            </label>
+          </div>
+
+          <div class="checkbox">
+            <label>
+              <%= f.check_box :email_messages %>
+              <%= f.label     :email_messages, "Notify me when someone messages me" %>
+            </label>
+          </div>
+        </div>
+
+
+
     </div>
 
     <div class="col-md-6">
@@ -73,6 +94,8 @@
         </div>
       </div>
 
+
+      <!--
       <div class="row">
         <div class="col-md-6">
           <div class="form-group">
@@ -84,59 +107,41 @@
         <div class="col-md-6">
           <div class="form-group">
             <%= f.label :your_labels_attributes, "Desired Labels" %>
-            <%= render "/labels/form", f: f, collection: Label.all %>
+            <%= render "/labels/form", f: f, collection: Label.all, choose: :many %>
           </div>
         </div>
       </div>
+      -->
 
       <div class="row" id="social-media">
         <div class="col-sm-12">
           <div class="page-header">
-            <h1>Social</h1>
+            <h2>Social</h2>
           </div>
         </div>
 
         <% social_sites.map{|k,v| k}.each do |site| %>
           <div class="col-sm-6">
-              <div class="form-group">
-                <%# TODO wire this up to user settings instead of one column/method per site %>
-                <%= f.label      "#{site.downcase.gsub(/ /, "")}_username".to_sym, "#{site} Username" %>
-                <%= f.text_field "#{site.downcase.gsub(/ /, "")}_username".to_sym, class: "form-control", placeholder: "#{site} Username" %>
-              </div>
+            <div class="form-group">
+              <%# TODO wire this up to user settings instead of one column/method per site %>
+              <%= f.label      "#{site.downcase.gsub(/ /, "")}_username".to_sym, "#{site} Username" %>
+              <%= f.text_field "#{site.downcase.gsub(/ /, "")}_username".to_sym, class: "form-control", placeholder: "#{site} Username" %>
+            </div>
           </div>
         <% end %>
       </div>
 
-      <div class="row" id="social-media">
-        <div class="col-sm-12">
-          <div class="page-header">
-            <h1>Notifications</h1>
-          </div>
-          <div class="checkbox">
-            <label>
-              <%= f.check_box :email_crushes %>
-              <%= f.label     :email_crushes, "Notify me when someone crushes me" %>
-            </label>
-          </div>
-          <div class="checkbox">
-            <label>
-              <%= f.check_box :email_messages %>
-              <%= f.label     :email_messages, "Notify me when someone messages me" %>
-            </label>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 
-  <div class="col-12 actions">
-    <%= f.submit "Save Changes", data: {disable_with: "Saving…".html_safe}, class: "btn btn-success btn-block btn-lg" %>
+  <div class="actions">
+    <%= f.submit "Save Changes", data: { disable_with: "Saving…" }, class: "btn btn-success btn-block btn-lg" %>
   </div>
 <% end %>
 
 
 
-<div class="col-12" id="danger-zone">
+<div id="danger-zone">
   <h2>DANGER ZONE</h2>
 
   <div>
