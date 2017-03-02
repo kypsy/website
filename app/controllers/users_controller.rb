@@ -35,7 +35,6 @@ class UsersController < ApplicationController
     @slug  = "settings"
     @title = "Getting Started on #{t(:brand)}"
     @user  = current_user
-    @label_assignements = @user.your_labels.label_assignments
 
     if @user.nil? or @user.visible?
       return redirect_to(root_path)
