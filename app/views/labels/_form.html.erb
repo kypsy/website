@@ -2,17 +2,22 @@
   <%= f.fields_for :your_labels, YourLabel.new do |ff| %>
 
     <div class="form-check">
-      <%= ff.label :label_id, class: "form-check-label" do %>
+      <% if @label_assignements[label.class.to_s].try(:has_key?, label.id) %>
 
-        <% if @label_assignements[label.class.to_s].try(:has_key?, label.id) %>
+        <%= ff.label :_destroy, class: "form-check-label" do %>
           <%= ff.hidden_field :id, value: @label_assignements[label.class.to_s][label.id], style: "display:none" %>
           <%= ff.check_box :_destroy, { checked: true, class: "form-check-input" }, 0, 1 %>
-        <% else %>
-          <%= ff.hidden_field :label_type, value: label.class, style: "display:none" %>
-          <%= ff.check_box :label_id, { class: "form-check-input" }, label.id %>
+          <%= label.name.gsub("-", "@@@").titleize.gsub("@@@", "-") %>
         <% end %>
 
-        <%= label.name.gsub("-", "@@@").titleize.gsub("@@@", "-") %>
+      <% else %>
+
+        <%= ff.label :label_id, class: "form-check-label" do %>
+          <%= ff.hidden_field :label_type, value: label.class, style: "display:none" %>
+          <%= ff.check_box :label_id, { class: "form-check-input" }, label.id %>
+          <%= label.name.gsub("-", "@@@").titleize.gsub("@@@", "-") %>
+        <% end %>
+
       <% end %>
     </div>
 
