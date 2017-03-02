@@ -51,7 +51,8 @@ class UsersController < ApplicationController
 
     if @user.update(params.require(:user).permit(:username, :email, :agreed_to_terms_at))
       @user.visiblize!
-      redirect_to new_photo_path(getting: "started")
+      # redirect_to new_photo_path(getting: "started")
+      redirect_to settings_path
     else
       render :new
     end
