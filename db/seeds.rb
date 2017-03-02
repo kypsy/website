@@ -10,9 +10,16 @@ end
 
 puts
 puts "Adding interests"
-["Reading","Clubbing","Running","Camping","Painting"].each do |interest|
+["Art Museums","Baseball Games","Space Exploration","Science","Computers"].each do |interest|
   Interest.create!(name: interest)
   puts "interest:  #{interest}"
+end
+
+puts
+puts "Adding activities"
+["Swimming","Clubbing","Hiking","Reading","Dancing"].each do |activity|
+  Activity.create!(name: activity)
+  puts "activity:  #{activity}"
 end
 
 puts

@@ -1,8 +1,8 @@
 class Interest < ApplicationRecord
-  has_many :user_interests
-  has_many :users, through: :user_interests
+  include Slug
 
   validates :name, presence: true, uniqueness: true
 
-  include Slug
+  # has_many :user_interests
+  # has_many :users, through: :user_interests
 end
