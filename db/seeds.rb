@@ -1,8 +1,18 @@
+# TODO delete from app, then in here
 puts
 puts "Adding labels"
 ["straightedge","drug-free","straightedge-curious","sober"].each do |label|
   Label.create!(name: label)
   puts "label:  #{label}"
+end
+
+
+
+puts
+puts "Adding interests"
+["Reading","Clubbing","Running","Camping","Painting"].each do |interest|
+  Interest.create!(name: interest)
+  puts "interest:  #{interest}"
 end
 
 puts

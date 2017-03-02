@@ -13,9 +13,6 @@
 
   <p class="note">
     Connecting both your Twitter and Facebook accounts makes it easier to fill out your <%= t(:brand) %> profile, which helps you find people.
-  </p>
-
-  <p class="note">
     And if Twitter or Facebook ever has downtime, you can use the other to sign in to <%= t(:brand) %>.
   </p>
 <% end %>
@@ -57,33 +54,37 @@
         <%= f.text_area :bio, autocapitalize: "sentences", class: "form-control", rows: 8 %>
       </div>
 
-        <div class="form-group" id="notifications">
-          <h2>Notifications</h2>
+      <div class="form-group" id="notifications">
+        <h2>Notifications</h2>
 
-          <div class="checkbox">
-            <label>
-              <%= f.check_box :email_crushes %>
-              <%= f.label     :email_crushes, "Notify me when someone crushes me" %>
-            </label>
-          </div>
-
-          <div class="checkbox">
-            <label>
-              <%= f.check_box :email_messages %>
-              <%= f.label     :email_messages, "Notify me when someone messages me" %>
-            </label>
-          </div>
+        <div class="checkbox">
+          <label>
+            <%= f.check_box :email_crushes %>
+            <%= f.label     :email_crushes, "Notify me when someone crushes me" %>
+          </label>
         </div>
 
-
-
+        <div class="checkbox">
+          <label>
+            <%= f.check_box :email_messages %>
+            <%= f.label     :email_messages, "Notify me when someone messages me" %>
+          </label>
+        </div>
+      </div>
     </div>
 
     <div class="col-md-6">
+      <div class="form-group">
+        <%#= f.label :my_interests_attributes, "My Interests" %><br>
+        <%#= render "/labels/form", f: f, collection: Interest.all, choose: :many %>
+      </div>
+
       <div class="row">
         <div class="col-md-6">
-          <%= f.label :age_range, "My Age Range" %><br>
-          <%= render "/labels/form", f: f, collection: AgeRange.all, choose: :one %>
+          <div class="form-group">
+            <%= f.label :age_range, "My Age Range" %><br>
+            <%= render "/labels/form", f: f, collection: AgeRange.all, choose: :one %>
+          </div>
         </div>
 
         <div class="col-md-6">
