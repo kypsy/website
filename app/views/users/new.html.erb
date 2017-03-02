@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h1>Before we start we just need 3 things from you.</h1>
+  <h1>Before we start we just need to know a few things about you.</h1>
 </div>
 
 <%= render "errors" %>
@@ -15,19 +15,25 @@
     <%= f.email_field :email,    autocapitalize: "off", autocorrect: "off", class: "form-control" %>
   </div>
 
-  <b>Pretty simple rules:</b>
-  <ol>
-    <li>Don't be a creep.</li>
-    <li>Keep it positive.</li>
-    <li>Have fun.</li>
-  </ol>
+  <fieldset>
+    <legend>Optional</legend>
+
+    <%= render "/users/age_range_form", f: f, checkbox: true %>
+
+    <div class="form-group">
+      <%= f.label :your_age_ranges_attributes, "Desired Age Range" %>
+      <%= render "/labels/form", f: f, collection: AgeRange.all %>
+    </div>
+  </fieldset>
 
   <div class="checkbox">
-    <label for="user_agreed_to_terms_at">
-       <%= f.check_box :agreed_to_terms_at, { checked: @user.agreed_to_terms_at }, Time.now %>
-       <b>I agree to the <%= link_to "terms", terms_path, target: :blank %></b>
-     </label>
-   </div>
+    <p>
+      <label for="user_agreed_to_terms_at">
+        <%= f.check_box :agreed_to_terms_at, { checked: @user.agreed_to_terms_at }, Time.now %>
+        <b>I agree to the <%= link_to "terms", terms_path, target: :blank %>.</b>
+      </label>
+    </p>
+  </div>
 
-  <%= f.submit "Submit", data: { disable_with: "Submitting..." }, class: "btn btn-success btn-block btn-lg" %>
+  <%= f.submit "Submit", data: { disable_with: "Submitting…" }, class: "btn btn-success btn-block btn-lg" %>
 <% end %>

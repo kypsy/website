@@ -1,0 +1,17 @@
+<%= f.label :age_range, "My Age Range" %><br />
+
+<% AgeRange.all.each do |age_range| %>
+  <div class="form-check form-check-inline">
+    <label class="form-check-label">
+      <% if checkbox %>
+        <%= f.radio_button :age_range_id, age_range.id, { class: "form-check-input" } %>
+      <% else %>
+        <%= f.check_box    :age_range_id, { class: "form-check-input" }, age_range.id %>
+      <% end %>
+
+      <%= age_range.name %>
+    </label>
+  </div>
+<% end %>
+
+

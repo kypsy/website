@@ -141,7 +141,7 @@ ActiveRecord::Schema.define(version: 20170301043205) do
     t.string   "email"
     t.string   "location"
     t.integer  "age_range_id"
-    t.boolean  "visible",              default: false
+    t.boolean  "visible",            default: false
     t.text     "bio"
     t.integer  "label_id"
     t.integer  "diet_id"
@@ -157,12 +157,10 @@ ActiveRecord::Schema.define(version: 20170301043205) do
     t.string   "lastfm_username"
     t.string   "snapchat_username"
     t.string   "spotify_username"
-    t.string   "thisismyjam_username"
     t.string   "tumblr_username"
     t.string   "twitter_username"
-    t.string   "vine_username"
     t.text     "website"
-    t.integer  "photos_count",         default: 0
+    t.integer  "photos_count",       default: 0
     t.index ["created_at"], name: "index_users_on_created_at", using: :btree
     t.index ["photos_count"], name: "index_users_on_photos_count", using: :btree
   end

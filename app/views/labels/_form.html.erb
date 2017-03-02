@@ -1,21 +1,20 @@
 <% collection.each_with_index do |label, index| %>
   <%= f.fields_for :your_labels, YourLabel.new do |ff| %>
-    <% if @label_assignements[label.class.to_s].try(:has_key?, label.id) %>
-      <%= ff.hidden_field :id, value: @label_assignements[label.class.to_s][label.id], style: "display:none" %>
-      <div class="checkbox">
-        <label>
+
+    <div class="form-check">
+      <%= ff.label :label_id, class: "form-check-label" do %>
+
+        <% if @label_assignements[label.class.to_s].try(:has_key?, label.id) %>
+          <%= ff.hidden_field :id, value: @label_assignements[label.class.to_s][label.id], style: "display:none" %>
           <%= ff.check_box :_destroy, { checked: true }, 0, 1 %>
-          <%= label.name.titleize %>
-        </label>
-      </div>
-    <% else %>
-      <%= ff.hidden_field :label_type, value: label.class %>
-      <div class="checkbox">
-        <label>
-          <%= ff.check_box :label_id, {}, label.id %>
-          <%= ff.label     :label_id, label.name.titleize %>
-        </label>
-      </div>
-    <% end %>
+        <% else %>
+          <%= ff.hidden_field :label_type, value: label.class %>
+          <%= ff.check_box :label_id, { class: "form-check-input" }, label.id %>
+        <% end %>
+
+        <%= label.name.gsub("-", "@@@").titleize.gsub("@@@", "-") %>
+      <% end %>
+    </div>
+
   <% end %>
 <% end %>
