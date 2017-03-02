@@ -46,7 +46,7 @@ module ApplicationHelper
 
   def profile_incomplete?
     current_user &&
-    current_user.label_id.blank? 
+    (current_user.desired_interests.blank? || current_user.desired_activities.blank?)
   end
 
   def link_to_avatar(user, avatar_size=nil)
