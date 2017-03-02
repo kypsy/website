@@ -5,11 +5,9 @@ class CrushesController < ApplicationController
 
   def create
     crush = current_user.crushings.build(crushee: @user)
-    unless redirect_if_age_inappropriate(crush.crushee)
-      crush.save!
-      crush.notify if crush.needs_notify?
-      respond_with(@user, location: person_path(@user.username))
-    end
+    crush.save!
+    crush.notify if crush.needs_notify?
+    respond_with(@user, location: person_path(@user.username))
   end
 
   def destroy

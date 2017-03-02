@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
   }
 
   self.per_page = 28
-  store_accessor :settings, :admin, :featured, :birthday_public, :real_name_public, :email_public, :email_crushes, :email_messages
+  store_accessor :settings, :admin, :featured, :real_name_public, :email_public, :email_crushes, :email_messages
 
   scope :with_setting, lambda { |key, value| where("settings -> ? = ?", key, value.to_s) }
   scope :featured, -> { with_setting(:featured, true) }
@@ -72,8 +72,6 @@ class User < ActiveRecord::Base
   scope :invisible,     -> { where(visible: false) }
   scope :with_provider, lambda { |name, uid| joins(:providers).where(providers: {name: name, uid: uid}) }
   scope :with_username, lambda { |username| where(canonical_username: (username || "").downcase) }
-  scope :adults,        -> { where(['birthday <= ?', 18.years.ago]) }
-  scope :kids,          -> { where(['birthday >  ?', 18.years.ago]) }
   scope :secret,        -> { joins(:crushes).where('crushes.secret = "true"') }
   scope :today,         -> { where("created_at >= ?", Time.zone.now.beginning_of_day) }
 
@@ -81,7 +79,6 @@ class User < ActiveRecord::Base
   validates :username, uniqueness: {case_sensitive: false, on: :update}
   validates :name, :auth_token,     presence: true
   validates :email,    presence: { on: :update }, email: { on: :update }
-  validates :birthday, birthday: { on: :update }
   validates :agreed_to_terms_at, presence: { on: :update, message: "must be agreed upon"}
 
   before_validation :create_canonical_username
@@ -102,7 +99,6 @@ class User < ActiveRecord::Base
       else
         all
       end
-      query = query.age(age) if age.present?
       query
     end
 
@@ -115,11 +111,6 @@ class User < ActiveRecord::Base
       includes(association).
       references(association).
       count(:id).sort_by(&:last).reverse
-    end
-
-    def age(args)
-      beginning, end_year = args.respond_to?(:each) ? [args.last.to_i, args.first.to_i] : [args.to_i, args.to_i]
-      where(birthday: ((beginning.years.ago - 1.year)..end_year.years.ago))
     end
 
     def create_with_omniauth(auth)
@@ -183,23 +174,12 @@ class User < ActiveRecord::Base
       username.blank? || User.with_username(username).any? ? false : username
     end
 
-    def in_my_age_group(user)
-      if user.nil? || user.birthday.nil?
-        User.all
-      elsif user.birthday? && user.birthday > 18.years.ago.to_date
-        User.kids
-      else
-        User.adults
-      end
-    end
-
   end
 
   def viewable_users
     User.
       visible.
       where.not(id: id).
-      in_my_age_group(self).
       where.not(id: blocks.pluck(:blocked_id)).
       where.not(id: blockings.pluck(:blocker_id))
   end
@@ -232,7 +212,7 @@ class User < ActiveRecord::Base
   end
 
   def merge!(merging_user)
-    %w(name email birthday location bio).each do |property|
+    %w(name email location bio).each do |property|
       self.send("#{property}=", merging_user.send(property)) if self.send(property).blank?
     end
 
@@ -251,13 +231,6 @@ class User < ActiveRecord::Base
     update_attributes(visible: (email? && username?))
   end
 
-  def age
-    unless birthday.nil?
-      now = Time.now.utc.to_date
-      now.year - birthday.year - ((now.month > birthday.month || (now.month == birthday.month && now.day >= birthday.day)) ? 0 : 1)
-    end
-  end
-
   def twitter?
     check_provider "twitter"
   end
@@ -268,14 +241,6 @@ class User < ActiveRecord::Base
 
   def age_inappropiate?(user)
     !age_appropiate?(user)
-  end
-
-  def age_appropiate?(user)
-    if user && user.birthday?
-      user.age_group == self.age_group
-    else
-      true
-    end
   end
 
   def secret_crushing_on?(user)
@@ -298,10 +263,6 @@ class User < ActiveRecord::Base
     bookmarks.find_by(bookmarkee_id: user.id)
   end
 
-  def age_group
-    age >= 18 ? :adult : :kid
-  end
-
   def self.generate_username
     # previously we were using the line below
     # "username-#{Time.now.strftime('%Y%m%d%H%M%S')}"
@@ -318,7 +279,7 @@ class User < ActiveRecord::Base
     end
   end
 
-  %w(admin featured birthday_public real_name_public email_public email_messages email_crushes).each do |method_name|
+  %w(admin featured real_name_public email_public email_messages email_crushes).each do |method_name|
     define_method("#{method_name}?") do
       output = send(method_name)
       %w(true false 0 1).include?(output) ? %w(true 1).include?(output) : output

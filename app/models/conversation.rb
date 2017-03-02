@@ -5,7 +5,6 @@ class Conversation < ActiveRecord::Base
 
   belongs_to :sender,    foreign_key: :user_id,      class_name: "User"
   belongs_to :recipient, foreign_key: :recipient_id, class_name: "User"
-  validates_with AgeAppropriateValidator
 
   scope :with_user,   lambda { |user| where(['conversations.user_id = :id OR conversations.recipient_id = :id', id: user.id]).order("updated_at desc") }
   scope :not_deleted, lambda { |user| where("conversations.hidden_from_user_id IS NULL OR conversations.hidden_from_user_id != :id", id: user.id)}

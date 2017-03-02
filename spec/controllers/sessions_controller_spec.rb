@@ -12,7 +12,7 @@ describe SessionsController, :type => :controller do
     it "signs in the user" do
       expect(controller.request.env).to receive(:[]).with("omniauth.auth").once.and_return(auth)
       expect(controller.request.env).to receive(:[]).at_least(:once).and_call_original
-      user = User.create(username: "Shane", name: "SB", email: "test@example.com", birthday: 15.years.ago, agreed_to_terms_at: Time.now)
+      user = User.create(username: "Shane", name: "SB", email: "test@example.com", agreed_to_terms_at: Time.now)
       user.providers << Provider.create(name: auth["provider"], uid: auth["uid"])
       expect { get :create, params: {provider: "facebook"} }.to change(User, :count).by(0)
       expect(cookies[:auth_token]).to_not be_blank

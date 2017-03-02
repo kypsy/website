@@ -5,7 +5,7 @@ describe Social::Facebook do
   let(:fb) { Social::Facebook.new(user) }
   let(:photo_hash) { [{"id"=>"1384952645138797", "created_time"=>"2014-12-29T05:52:14+0000", "from"=>{"id"=>"1384950561805672", "name"=>"Donna Amhgbbbddhja Shepardson"}, "height"=>500, "icon"=>"https://fb-icon.gif", "images"=>[{"height"=>500, "source"=>"https://fb-image-500", "width"=>500}, {"height"=>480, "source"=>"https://fb-image-480", "width"=>480}, {"height"=>320, "source"=>"https://fb-image-320", "width"=>320}, {"height"=>130, "source"=>"https://fb-image-130", "width"=>130}, {"height"=>225, "source"=>"https://fb-image-225", "width"=>225}], "link"=>"https://fb-photo-link", "picture"=>"https://fb-picture", "source"=>"https://fbcdn-sphotos-g-a.akamaihd.net/hphotos-ak-xpa1/v/t1.0-9/10846231_1384952645138797_4443666842932669602_n.jpg?oh=46e59db620cfe305b9c246f85c31546a&oe=55351F9A&__gda__=1429881840_a6b63735621abf45cfd935a3a30f19fa", "updated_time"=>"2014-12-29T05:53:26+0000", "width"=>500, "tags"=>{"data"=>[{"id"=>"1384950561805672", "name"=>"Donna Amhgbbbddhja Shepardson", "created_time"=>"2014-12-29T05:53:26+0000", "x"=>47, "y"=>47.8}], "paging"=>{"cursors"=>{"before"=>"MTM4NDk1MDU2MTgwNTY3Mg==", "after"=>"MTM4NDk1MDU2MTgwNTY3Mg=="}}}}] }
   let(:info_hash) { {
-    "id"=>"1384950561805672", "birthday"=>"08/22/1980", "email"=>"jofcgtc_shepardson_1419832166@tfbnw.net", "first_name"=>"Donna", "gender"=>"female", "last_name"=>"Shepardson", "link"=>"https://www.facebook.com/profile.php?id=100008722244801", "locale"=>"en_US", "middle_name"=>"Amhgbbbddhja", "name"=>"Donna Amhgbbbddhja Shepardson",
+    "id"=>"1384950561805672", "email"=>"jofcgtc_shepardson_1419832166@tfbnw.net", "first_name"=>"Donna", "gender"=>"female", "last_name"=>"Shepardson", "link"=>"https://www.facebook.com/profile.php?id=100008722244801", "locale"=>"en_US", "middle_name"=>"Amhgbbbddhja", "name"=>"Donna Amhgbbbddhja Shepardson",
     "timezone" => 0, "updated_time"=>"2014-12-29T05:52:15+0000", "verified"=>false}
   }
 
@@ -33,12 +33,6 @@ describe Social::Facebook do
 
     it 'returns info hash' do
       expect(fb.info).to eq info_hash
-    end
-
-    it 'has a birthday' do
-      expect(fb.birthday.month).to eq 8
-      expect(fb.birthday.day).to eq 22
-      expect(fb.birthday.year).to eq 1980
     end
   end
 

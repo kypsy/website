@@ -2,7 +2,6 @@ class Message < ActiveRecord::Base
   belongs_to :conversation, touch: true
   belongs_to :sender,    class_name: "User"
   belongs_to :recipient, class_name: "User"
-  validates_with AgeAppropriateValidator
   validates_with BlockValidator
   validates :recipient_id, :sender_id, presence: true
   before_save :create_conversation, unless: :conversation_id?

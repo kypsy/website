@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 describe ConversationsController, :type => :controller do
-  let(:shane) { User.create(username: "Shane",  name: "SB", email: "test@example.com", birthday: 25.years.ago, visible: true, agreed_to_terms_at: Time.now) }
-  let(:user)  { User.create(username: "Bookis", name: "BS", email: "bs@example.com",   birthday: 25.years.ago, visible: true, agreed_to_terms_at: Time.now) }
+  let(:shane) { User.create(username: "Shane",  name: "SB", email: "test@example.com", visible: true, agreed_to_terms_at: Time.now) }
+  let(:user)  { User.create(username: "Bookis", name: "BS", email: "bs@example.com",   visible: true, agreed_to_terms_at: Time.now) }
 
   let!(:conversation) { user.conversations.create(user_id: user.id, recipient_id: shane.id) }
   before { sign_in(user) }

@@ -10,12 +10,6 @@ describe CrushesController, :type => :controller do
       expect { post :create, params: {username: shane.username} }.to change(Crush, :count).by(1)
     end
 
-    it "redirects if the user is age inappropriate" do
-      bookis.update(birthday: 17.years.ago)
-      make_request
-      expect(response).to redirect_to people_path
-    end
-
     it 'queues a job' do
       shane.email_crushes = true
       shane.save

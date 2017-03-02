@@ -89,22 +89,22 @@ describe UsersController, :type => :controller do
   end
 
   describe "POST 'create'" do
-    let(:bookis) { create(:bookis, visible: false, agreed_to_terms_at: nil, email: nil, birthday: nil) }
+    let(:bookis) { create(:bookis, visible: false, agreed_to_terms_at: nil, email: nil) }
     before { sign_in(bookis) }
 
     it "redirects to people path" do
-      post :create, params: {user: {username: User.generate_username, email: "b@c.com", "birthday(1i)" => 2013,"birthday(2i)" => 1,"birthday(3i)" => 1, agreed_to_terms_at: Time.now}}
+      post :create, params: {user: {username: User.generate_username, email: "b@c.com", agreed_to_terms_at: Time.now}}
       expect(response).to redirect_to new_photo_path(getting: "started")
     end
 
     it "changes user visibility" do
-      post :create, params: {user: {username: User.generate_username, email: "b@c.com", "birthday(1i)" => 2013,"birthday(2i)" => 1,"birthday(3i)" => 1, agreed_to_terms_at: Time.now}}
+      post :create, params: {user: {username: User.generate_username, email: "b@c.com", agreed_to_terms_at: Time.now}}
       bookis.reload
       expect(bookis.visible).to be_truthy
     end
 
     it "renders the edit form if there are errors" do
-      post :create, params: {user: {username: User.generate_username, email: "b@c.com", "birthday(1i)" => 2013,"birthday(2i)" => 1,"birthday(3i)" => 1}}
+      post :create, params: {user: {username: User.generate_username, email: "b@c.com"}}
       expect(response).to render_template :new
     end
   end
@@ -129,8 +129,7 @@ describe UsersController, :type => :controller do
     end
 
     it "updates settings" do
-      patch :update, params: {user: {email_crushes: true, birthday_public: true, admin: true }}
-      expect(assigns(:user).birthday_public?).to be_truthy
+      patch :update, params: {user: {email_crushes: true, admin: true }}
       expect(assigns(:user).admin?).to be_nil
       expect(assigns(:user).email_crushes).to eq true.to_s
     end

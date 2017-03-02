@@ -1,7 +1,0 @@
-<% if user.age %>
-  <% if user.birthday_public? %>
-<!-- -->&nbsp;<time datetime="<%= user.birthday %>" title="<%= user.birthday %>"><small class="p-x-age"><%= user.age %></small></time>
-  <% else %>
-<!-- -->&nbsp;<time datetime="<%= user.birthday.year %>"><small class="p-x-age"><%= user.age %></small></time>
-  <% end %>
-<% end %>

@@ -58,10 +58,10 @@ RSpec.configure do |config|
   end
 end
 
-OmniAuth.config.mock_auth[:twitter] = OmniAuth::AuthHash.new(twitter_auth_response)
+OmniAuth.config.mock_auth[:twitter]  = OmniAuth::AuthHash.new(twitter_auth_response)
 OmniAuth.config.mock_auth[:facebook] = OmniAuth::AuthHash.new(facebook_auth_response)
 
 def sign_in(user=nil)
-  user ||= User.create(username: "Shane", name: "SB", email: "test@example.com", birthday: 15.years.ago, agreed_to_terms_at: Time.now, visible: true)
+  user ||= User.create(username: "Shane", name: "SB", email: "test@example.com", agreed_to_terms_at: Time.now, visible: true)
   cookies.signed[:auth_token] = user.auth_token
 end

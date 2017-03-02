@@ -11,7 +11,6 @@ module UserRule
     :created_at,
     :updated_at,
     :agreed_to_terms_at,
-    :birthday,
     :settings,
     :auth_token
   ]

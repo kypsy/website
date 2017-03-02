@@ -11,7 +11,7 @@ class UsersController < ApplicationController
     @users = if logged_in?
       current_user.viewable_users.search(@search)
     else
-      User.visible.adults
+      User.visible
     end
 
     @total = @users.length
@@ -26,8 +26,6 @@ class UsersController < ApplicationController
     if @user
       @title = "@#{@user.username}’s Profile on #{t(:brand)}"
       @crush = Crush.new
-
-      redirect_if_age_inappropriate(@user)
     else
       redirect_to root_path, notice: "That user doesn't exist."
     end
@@ -43,7 +41,6 @@ class UsersController < ApplicationController
     else
       begin
         @facebook = Social::Facebook.new(@user)
-        @user.birthday ||= @facebook.birthday
       rescue Social::SocialError
       end
     end
@@ -52,7 +49,7 @@ class UsersController < ApplicationController
   def create
     @user = current_user
 
-    if @user.update(params.require(:user).permit(:username, :email, "birthday(1i)", "birthday(2i)", "birthday(3i)", :agreed_to_terms_at))
+    if @user.update(params.require(:user).permit(:username, :email, :agreed_to_terms_at))
       @user.visiblize!
       redirect_to new_photo_path(getting: "started")
     else
@@ -108,16 +105,13 @@ class UsersController < ApplicationController
       :name,
       :email,
       :website,
-      :birthday_public,
       :real_name_public,
       :email_public,
       :email_crushes,
       :email_messages,
-      "birthday(1i)",
-      "birthday(2i)",
-      "birthday(3i)",
       :location,
       :bio,
+      :age_range_id,
 
       :facebook_username,
       :instagram_username,

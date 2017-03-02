@@ -6,21 +6,12 @@ describe User, :type => :model do
   let(:bookis) { create(:bookis) }
   let(:shane)  { create(:shane)  }
 
-  it "should calculate the age correctly" do
-    expect(user.age).to eq(22)
-  end
-
   it "has an auth token" do
     expect(user.auth_token).to be_present
   end
 
   it "sets the canonical username" do
     expect(bookis.canonical_username).to eq "bookis"
-  end
-
-  it "should know if your birthday happened yet" do
-    user.birthday = 728.days.ago
-    expect(user.age).to eq(1)
   end
 
   it "doesn't allow duplicate names" do
@@ -59,17 +50,6 @@ describe User, :type => :model do
     expect(user.desired_labels.map(&:id).sort).to eq Label.all.map(&:id).sort
   end
 
-  describe "age group" do
-    it "is adult if 18 or older" do
-      user.birthday = 18.years.ago.to_date
-      expect(user.age_group).to eq :adult
-    end
-    it "is kid if 17 or younger" do
-      user.birthday = (18.years.ago.utc.end_of_day + 1.second).to_date
-      expect(user.age_group).to eq :kid
-    end
-  end
-
   describe "merge!" do
     before(:each) do
       sxe    = Label.create(name: "sXe")
@@ -81,8 +61,7 @@ describe User, :type => :model do
       @merging_user = User.create(username: "Becker",
                                   bio:      "This should merge into the old user",
                                   name:     "SB",
-                                  email:    "test@example.com",
-                                  birthday: 15.years.ago)
+                                  email:    "test@example.com")
       @merging_user.providers << Provider.create(name: "fb", uid: '456')
       @merging_user.desired_labels << [sxe, @crunk]
 
@@ -165,7 +144,7 @@ describe User, :type => :model do
 
   describe "merging" do
     it "can merge" do
-      user2 = User.create(username: "bookis", name: "BS", email: "testbks@example.com", birthday: 15.years.ago)
+      user2 = User.create(username: "bookis", name: "BS", email: "testbks@example.com")
       user.merge! user2
       user.reload
       expect(user.agreed_to_terms_at).to_not be_blank
@@ -181,7 +160,7 @@ describe User, :type => :model do
   end
 
   describe "settings" do
-    before { user.update(settings: {admin: true, birthday_public: true}) }
+    before { user.update(settings: {admin: true}) }
     it "has settings" do
       expect(user.settings).to_not be_blank
     end
@@ -195,7 +174,6 @@ describe User, :type => :model do
     end
 
     it "has public settings" do
-      expect(user.birthday_public?).to  be_truthy
       expect(user.email_public?).to     be_nil
       expect(user.real_name_public?).to be_nil
     end
@@ -211,11 +189,6 @@ describe User, :type => :model do
     it "doesn't show invisible users" do
       not_visible = create(:user, visible: false)
       expect(bookis.viewable_users).to_not include not_visible
-    end
-
-    it "doesn't show young users" do
-      young_user = create(:user, birthday: 17.years.ago)
-      expect(bookis.viewable_users).to_not include young_user
     end
 
     it "doesn't show blocked users" do

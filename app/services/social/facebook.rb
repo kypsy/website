@@ -18,10 +18,6 @@ class Social::Facebook
     @info ||= client.get_object("me")
   end
 
-  def birthday
-    Date.strptime(info["birthday"], "%m/%d/%Y") if info["birthday"]
-  end
-
   def valid?
     begin
       credential

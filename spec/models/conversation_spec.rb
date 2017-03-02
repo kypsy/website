@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 describe Conversation, :type => :model do
-  let(:sender)  { User.create(username: "Shane",  name: "SB", email: "test@example.com", birthday: 25.years.ago, visible: true, agreed_to_terms_at: Time.now) }
-  let(:recipient) { User.create(username: "Bookis", name: "BS", email: "bs@example.com",   birthday: 25.years.ago, visible: true, agreed_to_terms_at: Time.now) }
+  let(:sender)  { User.create(username: "Shane",  name: "SB", email: "test@example.com", visible: true, agreed_to_terms_at: Time.now) }
+  let(:recipient) { User.create(username: "Bookis", name: "BS", email: "bs@example.com", visible: true, agreed_to_terms_at: Time.now) }
 
   let(:conversation) { Conversation.create(sender: sender, recipient: recipient) }
 
@@ -14,13 +14,6 @@ describe Conversation, :type => :model do
     expect(sender.conversations).to include conversation
   end
 
-  describe "age validation" do
-    it "has an error message if age inappropriate" do
-      sender.update(birthday: 17.years.ago)
-      expect(conversation.errors[:restricted]).to include "You can't send a message to that user"
-    end
-  end
-  
   describe "deletes from a user" do
     it "removes it from the deleting users" do
       message = conversation.messages.create(recipient_id: recipient.id, sender_id: sender.id, body: "blah", unread: true)

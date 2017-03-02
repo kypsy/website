@@ -7,7 +7,6 @@ class ApplicationController < ActionController::Base
   before_action :restrict_non_visible_user
   helper_method :current_user
   helper_method :unread_count
-  helper_method :redirect_age_inappropriate
   helper_method :logged_in?
   helper_method :im
   helper_method :getting_started?
@@ -35,10 +34,6 @@ class ApplicationController < ActionController::Base
 
   def logged_in_as_admin?
     logged_in? && current_user.admin?
-  end
-
-  def redirect_if_age_inappropriate(user)
-    redirect_to people_path if user.nil? || user.age_inappropiate?(current_user)
   end
 
   def restrict_non_visible_user

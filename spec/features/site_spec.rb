@@ -18,9 +18,6 @@ describe "tests user experience", type: :feature, js: true do
       first(:link, "Twitter").click
       fill_in('Username', :with => 'dalecooper')
       fill_in('Email', :with => 'dale@example.com')
-      select("January", from: "user_birthday_2i")
-      select("1", from: "user_birthday_3i")
-      select("1986", from: "user_birthday_1i")
       check('I agree to the terms')
       click_button("Submit")
       click_link("No Thanks")
