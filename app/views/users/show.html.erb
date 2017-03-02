@@ -7,7 +7,7 @@
 
   <br class="xs-hidden" />
 
-  <% if @user.age_range.present? %>
+  <% if @user.age_range.present? && @user.age_range.name != "rather not say" %>
     I’m <%= @user.age_range.name %> years old.
   <% end %>
 
@@ -16,7 +16,7 @@
   <br class="xs-hidden" />
 
   <% if @user.desired_age_ranges.present? %>
-    I’m looking someone
+    I’m looking for someone
     <%= labels_list(@user, :age_ranges) %>
     years old.
   <% end %>
