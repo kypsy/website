@@ -54,6 +54,18 @@
 
           <%= button_tag "Search", class: "btn btn-outline-success my-2 my-sm-0" %>
         <% end %>
+      <% else %>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item ml-1">
+            <span class="nav-link">Sign in to get started</span>
+          </li>
+          <li class="nav-item ml-1">
+            <%= button_to_sign_in_with(:twitter) %>
+          </li>
+          <li class="nav-item ml-1">
+            <%= button_to_sign_in_with(:facebook) %>
+          </li>
+        </ul>
       <% end %>
     </div>
 
