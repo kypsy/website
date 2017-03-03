@@ -1,17 +1,17 @@
 <% if flash[:error] %>
-  <div class="alert alert-danger">
+  <div class="alert alert-danger" role="alert">
     <%= flash[:error].html_safe %>
   </div>
 <% end %>
 
 <% if flash[:notice] %>
-  <div class="alert alert-info">
+  <div class="alert alert-info" role="alert">
     <%= flash[:notice].html_safe %>
   </div>
 <% end %>
 
 <% if flash[:success] %>
-  <div class="alert alert-success">
+  <div class="alert alert-success" role="alert">
     <%= flash[:success].html_safe %>
   </div>
 <% end %>

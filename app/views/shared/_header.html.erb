@@ -1,46 +1,50 @@
-<header role="banner">
+<nav class="navbar navbar-toggleable-md navbar-light bg-faded mb-5">
   <div class="container">
 
-    <% if logged_in? %>
-      <h1>
-        <%= link_to root_path, rel: "home" do %>
-          <span class="sr-only">Home</span>
-          <%= fa_icon :home, class: "fa-lg" %>
-        <% end %>
-      </h1>
-    <% else %>
-      <h1><%= link_to t(:brand), root_path, rel: "home" %></h1>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar-collapse-content" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <%= link_to root_path, rel: "home", class: "navbar-brand" do %>
+      <span class="sr-only">Home</span>
+      <%= fa_icon :home, class: "fa-lg" %>
     <% end %>
 
-    <nav role="navigation">
+    <div class="collapse navbar-collapse" id="navbar-collapse-content">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <%= link_to fa_icon(:users, class: "fa-lg"), people_path, class: "nav-link" %>
+        </li>
+
+        <li class="nav-item">
+          <%= link_to conversations_path, class: "nav-link" do %>
+            <%= fa_icon :envelope, class: "fa-lg" %>
+            <% if unread_count %><span class="label label-danger"><%= unread_count %></span><% end %>
+          <% end %>
+        </li>
+
+        <li class="nav-item">
+          <%= link_to fa_icon(:gear, class: "fa-lg"), settings_path, class: "nav-link" %>
+        </li>
+
+        <li class="nav-item">
+          <%= link_to fa_icon(:user, class: "fa-lg"), person_path(current_user.username), class: "nav-link" if current_user.username.present? %>
+        </li>
+      </ul>
+
       <% if admin? %>
-        <span class="label label-danger"><%= link_to "ADMIN", admin_dashboard_path %></span>
-      <% end %>
-
-      <% if logged_in? %>
-        <%= link_to fa_icon(:users, class: "fa-lg"), people_path %>
-
-        <%= link_to conversations_path do %>
-          <%= fa_icon :envelope, class: "fa-lg" %>
-          <% if unread_count %><span class="label label-danger"><%= unread_count %></span><% end %>
+        <%= link_to admin_dashboard_path, class: "nav-link" do %>
+          <span class="badge badge-pill badge-danger">ADMIN Dashboard</span>
         <% end %>
-
-        <%= link_to fa_icon(:gear, class: "fa-lg"), settings_path %>
-        <%= link_to fa_icon(:user, class: "fa-lg"), person_path(current_user.username) if current_user.username.present? %>
-      <% else %>
-        <%= link_to fa_icon(:twitter, class: "fa-lg"),  "/auth/twitter",  class: "btn btn-sm btn-info"    %>
-        <%= link_to fa_icon(:facebook, class: "fa-lg"), "/auth/facebook", class: "btn btn-sm btn-primary" %>
       <% end %>
-    </nav>
 
-    <% if logged_in? %>
-      <%= form_tag "/people", method: :get, class: "form-inline col-xs-12 col-sm-3", role: "search" do %>
-        <div class="form-group">
-          <%= label_tag :search, "Search", class: "sr-only" %>
-          <%= search_field_tag :search, params[:search], class: "form-control input-sm input-inverse", placeholder: "People Search" %>
-        </div>
+      <%= form_tag "/people", method: :get, class: "form-inline my-2 my-lg-0", role: "search" do %>
+        <%= label_tag :search, "Search", class: "sr-only" %>
+        <%= search_field_tag :search, params[:search], class: "form-control mr-sm-2", placeholder: "People Search" %>
+
+        <%= button_tag "Search", class: "btn btn-outline-success my-2 my-sm-0" %>
       <% end %>
-    <% end %>
+    </div>
 
   </div>
-</header>
+</nav>
