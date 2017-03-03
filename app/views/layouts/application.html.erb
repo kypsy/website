@@ -29,8 +29,8 @@
 
   <footer role="contentinfo" class="container">
     <ul class="nav nav-pills">
-      <li class="nav-item"><%= link_to "About #{t(:brand)}", about_path, class: "nav-link" %></li>
-      <li class="nav-item"><%= link_to "Terms",              terms_path, class: "nav-link" %></li>
+      <li class="nav-item"><%= link_to "About #{t(:brand)}", about_path,   class: "nav-link" %></li>
+      <li class="nav-item"><%= link_to "Terms",              terms_path,   class: "nav-link" %></li>
       <li class="nav-item"><%= link_to "Privacy Policy",     privacy_path, class: "nav-link" %></li>
       <% if logged_in? %>
         <li class="nav-item"><%= link_to_unless_current "Sign Out", signout_path, class: "nav-link" %></li>
