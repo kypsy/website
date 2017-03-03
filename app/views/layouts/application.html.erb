@@ -1,15 +1,11 @@
 <!DOCTYPE html>
 
-<html dir="ltr" lang="en" id="<%= @slug %>" class="no-js">
+<html dir="ltr" lang="en" id="<%= @slug %>">
+
 <%= render partial: "/shared/head" %>
 
 <%= opening_body_tag %>
-
-  <% if welcome? %>
-    <%= render partial: "/shared/welcome_header" %>
-  <% else %>
-    <%= render partial: "/shared/header" %>
-  <% end %>
+  <%= render partial: "/shared/header" %>
 
   <section role="main" class="container">
     <% unless logged_in? || controller_name == "welcome" %>
@@ -29,19 +25,12 @@
 
   <footer role="contentinfo" class="container mt-5">
     <ul class="nav justify-content-center">
-      <li class="nav-item">
-        <%= link_to "About #{t(:brand)}", about_path,   class: "nav-link" %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "Terms",              terms_path,   class: "nav-link" %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "Privacy Policy",     privacy_path, class: "nav-link" %>
-      </li>
+      <li class="nav-item"><%= link_to "About #{t(:brand)}", about_path,   class: "nav-link" %></li>
+      <li class="nav-item"><%= link_to "Terms",              terms_path,   class: "nav-link" %></li>
+      <li class="nav-item"><%= link_to "Privacy Policy",     privacy_path, class: "nav-link" %></li>
+
       <% if logged_in? %>
-        <li class="nav-item">
-          <%= link_to_unless_current "Sign Out", signout_path, class: "nav-link" %>
-        </li>
+        <li class="nav-item"><%= link_to_unless_current "Sign Out", signout_path, class: "nav-link" %></li>
       <% end %>
     </ul>
   </footer>

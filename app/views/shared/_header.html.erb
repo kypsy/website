@@ -5,32 +5,41 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <%= link_to root_path, rel: "home", class: "navbar-brand" do %>
-      <span class="sr-only">Home</span>
-      <%= fa_icon :home, class: "fa-lg" %>
+    <% if logged_in? %>
+      <%= link_to root_path, rel: "home", class: "navbar-brand" do %>
+        <span class="sr-only">Home</span>
+        <%= fa_icon :home, class: "fa-lg" %>
+      <% end %>
+    <% else %>
+      <span class="navbar-brand">
+        <%= link_to t(:brand), root_path, rel: "home" %> —
+        <%= t(:tagline) %>
+      </span>
     <% end %>
 
     <div class="collapse navbar-collapse" id="navbar-collapse-content">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <%= link_to fa_icon(:users, class: "fa-lg"), people_path, class: "nav-link" %>
-        </li>
+      <% if logged_in? %>
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <%= link_to fa_icon(:users, class: "fa-lg"), people_path, class: "nav-link" %>
+          </li>
 
-        <li class="nav-item">
-          <%= link_to conversations_path, class: "nav-link" do %>
-            <%= fa_icon :envelope, class: "fa-lg" %>
-            <% if unread_count %><span class="label label-danger"><%= unread_count %></span><% end %>
-          <% end %>
-        </li>
+          <li class="nav-item">
+            <%= link_to conversations_path, class: "nav-link" do %>
+              <%= fa_icon :envelope, class: "fa-lg" %>
+              <% if unread_count %><span class="label label-danger"><%= unread_count %></span><% end %>
+            <% end %>
+          </li>
 
-        <li class="nav-item">
-          <%= link_to fa_icon(:gear, class: "fa-lg"), settings_path, class: "nav-link" %>
-        </li>
+          <li class="nav-item">
+            <%= link_to fa_icon(:gear, class: "fa-lg"), settings_path, class: "nav-link" %>
+          </li>
 
-        <li class="nav-item">
-          <%= link_to fa_icon(:user, class: "fa-lg"), person_path(current_user.username), class: "nav-link" if current_user.username.present? %>
-        </li>
-      </ul>
+          <li class="nav-item">
+            <%= link_to fa_icon(:user, class: "fa-lg"), person_path(current_user.username), class: "nav-link" if current_user.username.present? %>
+          </li>
+        </ul>
+      <% end %>
 
       <% if admin? %>
         <%= link_to admin_dashboard_path, class: "nav-link" do %>
@@ -38,11 +47,13 @@
         <% end %>
       <% end %>
 
-      <%= form_tag "/people", method: :get, class: "form-inline my-2 my-lg-0", role: "search" do %>
-        <%= label_tag :search, "Search", class: "sr-only" %>
-        <%= search_field_tag :search, params[:search], class: "form-control mr-sm-2", placeholder: "People Search" %>
+      <% if logged_in? %>
+        <%= form_tag "/people", method: :get, class: "form-inline my-2 my-lg-0", role: "search" do %>
+          <%= label_tag :search, "Search", class: "sr-only" %>
+          <%= search_field_tag :search, params[:search], class: "form-control mr-sm-2", placeholder: "People Search" %>
 
-        <%= button_tag "Search", class: "btn btn-outline-success my-2 my-sm-0" %>
+          <%= button_tag "Search", class: "btn btn-outline-success my-2 my-sm-0" %>
+        <% end %>
       <% end %>
     </div>
 
