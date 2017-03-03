@@ -1,6 +1,6 @@
 <%= render @user %>
 
-<p class="well lead">
+<p class="mt-3">
   <% if @user.label %>
     <b><%= link_to @user.label.name.downcase, search_path(search: [:labels, @user.label.name]) %></b>
 
@@ -51,45 +51,44 @@
     <% end %>
 
     <div id="photos">
-      <ul class="h-feed">
-        <% @user.photos.each do |photo| %>
-          <li class="h-entry">
-            <%= image_tag photo.image_url(:large).to_s %>
-            <div class="caption lead">
-              <%= simple_format photo.caption %>
-            </div>
+      <% @user.photos.each do |photo| %>
+        <%= image_tag photo.image_url(:large).to_s %>
 
-            <div class="actions">
-              <% if mine? %>
-                <%= link_to "#{fa_icon :edit}&nbsp;&nbsp;Edit Photo".html_safe, edit_photo_path(photo), class: "btn btn-default" %>
+        <div class="caption lead">
+          <%= simple_format photo.caption %>
+        </div>
 
-                <%= form_for photo, html: { class: "form-inline", role: "form" } do |f| %>
-                  <%= f.hidden_field :avatar, value: true %>
-                  <%= f.button "#{fa_icon "circle-o"}&nbsp;&nbsp;Use as Avatar".html_safe, class: "btn btn-default" %>
-                <% end %>
-              <% elsif logged_in? %><%# not mine and logged in %>
+        <div class="actions">
+          <% if mine? %>
+            <%= link_to "#{fa_icon :edit}&nbsp;&nbsp;Edit Photo".html_safe, edit_photo_path(photo), class: "btn btn-default" %>
 
-                <% if flagged?(photo) %>
-                  <%= unflag_button photo, class: "delete-flag btn btn-warning" %>
-                <% else %>
-                  <%= form_for RedFlag.new, url: flag_path(photo) do |f| %>
-                    <%= f.hidden_field :flaggable_type, value: "Photo" %>
-                    <button class="btn btn-default" type="submit">
-                      <b class="text-warning">
-                        <%= fa_icon "flag-o" %>
-                        &nbsp;&nbsp;Flag this photo as inappropriate
-                      </b>
-                    </button>
-                  <% end %>
-                <% end %>
+            <%= form_for photo, html: { class: "form-inline", role: "form" } do |f| %>
+              <%= f.hidden_field :avatar, value: true %>
+              <%= f.button "#{fa_icon "circle-o"}&nbsp;&nbsp;Use as Avatar".html_safe, class: "btn btn-default" %>
+            <% end %>
 
+          <% elsif logged_in? %><%# not mine and logged in %>
+
+            <% if flagged?(photo) %>
+              <%= unflag_button photo, class: "delete-flag btn btn-warning" %>
+            <% else %>
+              <%= form_for RedFlag.new, url: flag_path(photo) do |f| %>
+                <%= f.hidden_field :flaggable_type, value: "Photo" %>
+                <button class="btn btn-default" type="submit">
+                  <b class="text-warning">
+                    <%= fa_icon "flag-o" %>
+                    &nbsp;&nbsp;Flag this photo as inappropriate
+                  </b>
+                </button>
               <% end %>
-            </div> <!-- .actions -->
+            <% end %>
 
-          </li>
-        <% end %>
-      </ul>
+          <% end %>
+        </div> <!-- .actions -->
+
+      <% end %>
     </div> <!-- #photos -->
+
   </main>
 
   <%= render "sidebar" %>

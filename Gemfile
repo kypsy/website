@@ -29,6 +29,11 @@ gem "font-awesome-rails"
 gem "rubypants" # for smart quotes
 gem "sterile"   # for slugs
 
+# bootstrap tooltips and popovers depend on tether for positioning
+source "https://rails-assets.org" do
+  gem "rails-assets-tether", ">= 1.1.0"
+end
+
 # caching
 gem "memcachier"
 gem "dalli"

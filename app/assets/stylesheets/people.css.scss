@@ -71,18 +71,11 @@ main {
     margin-top: 1em;
   }
 
-  #photos ul,
-  #photos li {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-  }
-
   #photos .h-entry {
     margin-bottom: 2em;
   }
 
-  #photos li img {
+  #photos img {
     max-width: 100%;
     margin-top: 1em;
   }
@@ -94,11 +87,5 @@ main {
   .note p {
     margin-bottom: .5em;
   }
-
-}
-
-form#edit_user,
-form#new_user {
-  
 }
 /* #people */

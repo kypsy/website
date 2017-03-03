@@ -50,9 +50,8 @@ module ApplicationHelper
   end
 
   def link_to_avatar(user, avatar_size=nil)
-    link_to image_tag(user.avatar(avatar_size), class: "u-photo img media-object", alt: user.username),
-            person_path(user.username),
-            class: "pull-left u-url"
+    link_to image_tag(user.avatar(avatar_size), class: "u-photo d-flex mr-3", alt: user.username),
+            person_path(user.username)
   end
 
   def link_to_username(user)

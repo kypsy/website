@@ -1,11 +1,11 @@
-<div class="row person media">
+<div class="person">
 
-  <div class="media col-xs-12">
+  <div class="media">
     <%= link_to_avatar(user, @avatar_size) %>
 
     <div class="media-body">
       <% cache user do %>
-        <h4 class="media-heading">
+        <h4 class="media-body">
           <% if user.name.present? %>
             <span class="p-name fn n"><%= link_to user.name, person_path(user.username) %></span>
             (<span class="p-nickname nickname"><%= link_to user.username, person_path(user.username) %></span>)
