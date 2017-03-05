@@ -1,7 +1,7 @@
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap
 //= require tether
+//= require bootstrap
 //= require markdown.min
 //= require layout
 //= require messages
