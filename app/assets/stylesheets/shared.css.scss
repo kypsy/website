@@ -57,14 +57,14 @@
   outline: 1px solid #c00;
 }
 
-#danger-zone h2 {
+#danger-zone .danger-zone-title {
   background: #c00;
   padding: .5em;
   color: white;
   font-weight: bold;
 }
 
-#danger-zone > div {
+#danger-zone .danger-zone-body {
   padding: 1em;
   overflow: hidden;
 }
