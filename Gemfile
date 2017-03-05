@@ -6,6 +6,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem "rails",                   "~> 5.0.2"
 gem "puma"
 gem "coffee-rails"
 gem "email_address_validator", "0.0.3",   github: "bookis/email_address_validator"
@@ -13,7 +14,6 @@ gem "indefinite_article"
 gem "jquery-rails"
 gem "json"
 gem "pg"
-gem "rails",                   "~> 5.0.1"
 
 # for respond_to, remove once json responses are moved to the API
 gem "responders"
