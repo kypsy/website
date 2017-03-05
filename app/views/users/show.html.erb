@@ -45,7 +45,7 @@
 
   <main class="col-md-7 col-sm-12">
     <% if @user.bio %>
-      <div id="bio" class="e-note note">
+      <div id="bio" class="text-muted">
         <%= user_inputed_text(@user.bio) %>
       </div>
     <% end %>
@@ -60,11 +60,11 @@
 
         <div class="actions">
           <% if mine? %>
-            <%= link_to "#{fa_icon :edit}&nbsp;&nbsp;Edit Photo".html_safe, edit_photo_path(photo), class: "btn btn-default" %>
+            <%= link_to "#{fa_icon :edit}&nbsp;&nbsp;Edit photo".html_safe, edit_photo_path(photo), class: "btn btn-default" %>
 
             <%= form_for photo, html: { class: "form-inline", role: "form" } do |f| %>
               <%= f.hidden_field :avatar, value: true %>
-              <%= f.button "#{fa_icon "circle-o"}&nbsp;&nbsp;Use as Avatar".html_safe, class: "btn btn-default" %>
+              <%= f.button "#{fa_icon "circle-o"}&nbsp;&nbsp;Use as profile photo".html_safe, class: "btn btn-default" %>
             <% end %>
 
           <% elsif logged_in? %><%# not mine and logged in %>

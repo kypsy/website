@@ -25,12 +25,12 @@ describe "tests user experience", type: :feature, js: true do
 
     it "rotates an image" do
       visit("/@dalecooper")
-      click_link("Add Photo")
+      click_link("Add photo")
       attach_file("or Select an Image", "#{Rails.root}/spec/support/small.png")
       fill_in("Caption", with: "Word")
       click_button("Upload")
       expect(page).to have_content("Word")
-      first(:link, "Edit Photo").click
+      first(:link, "Edit photo").click
       fill_in("Caption", with: "Wordz")
       expect(page.evaluate_script('$("form").serialize();')).to include "caption%5D=Wordz"
       expect(page.evaluate_script('$("form").serialize();')).to_not include "manipulate"

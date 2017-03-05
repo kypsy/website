@@ -11,3 +11,13 @@ en:
   hq_phone: (555) 867-5309
   hq_email: us@kypsy.com
 
+
+  user:
+    settings:
+      general_interests_label: What are you usually into?
+      activity_tags_label: What do you want to do with a new friend?
+
+      auth_connect_note: Connecting both your Twitter and Facebook accounts makes it easier to fill out your profile. If Twitter or Facebook ever has downtime, you can use the other to sign in to Kypsy.
+
+    profile:
+      social_label: "@%{username} elsewhere on the web"

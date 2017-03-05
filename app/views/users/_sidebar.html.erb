@@ -2,7 +2,7 @@
 <aside class="col-md-4 col-md-offset-1 col-sm-12">
 
   <% if show_section?(:social) %>
-    <h2>Elsewhere</h1>
+    <h5><%= t("user.profile.social_label", username: @user.username) %></h5>
 
     <table class="table">
       <% if @user.website? %>

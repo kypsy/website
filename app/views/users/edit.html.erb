@@ -11,9 +11,8 @@
     <% end %>
   </div>
 
-  <p class="note">
-    Connecting both your Twitter and Facebook accounts makes it easier to fill out your <%= t(:brand) %> profile, which helps you find people.
-    And if Twitter or Facebook ever has downtime, you can use the other to sign in to <%= t(:brand) %>.
+  <p class="text-muted">
+    <%= t "user.settings.auth_connect_note" %>
   </p>
 <% end %>
 
@@ -55,7 +54,7 @@
       </div>
 
       <div class="form-group" id="notifications">
-        <h2>Notifications</h2>
+        <h4>Email notifications</h4>
 
         <div class="checkbox">
           <label>
@@ -76,19 +75,21 @@
 
     <div class="col-md-6">
       <div class="form-group">
-        <%= f.label :my_interests_attributes, "My Interests" %><br>
+        <h4><%= f.label :my_interests_attributes, t("user.settings.general_interests_label") %></h4>
+        <p class="form-text text-muted">Choose as many as you want.</p>
         <%= render "/labels/form", f: f, collection: Interest.all %>
       </div>
 
       <div class="form-group">
-        <%= f.label :your_activities_attributes, "Looking for partners for" %><br>
+        <h4><%= f.label :your_activities_attributes, t("user.settings.activity_tags_label") %></h4>
+        <p class="form-text text-muted">Choose up to three.</p>
         <%= render "/labels/form", f: f, collection: Activity.all %>
       </div>
 
       <div class="row">
         <div class="col-md-6">
           <div class="form-group">
-            <%= f.label :age_range, "My Age Range" %><br>
+            <h4><%= f.label :age_range, "My age range" %></h4>
 
             <% AgeRange.all.each do |age_range| %>
               <div class="form-check">
@@ -104,7 +105,7 @@
 
         <div class="col-md-6">
           <div class="form-group">
-            <%= f.label :desired_age_ranges_attributes, "Desired Age Range" %>
+            <h4><%= f.label :desired_age_ranges_attributes, "Desired age range" %></h4>
             <%= render "/labels/form", f: f, collection: AgeRange.all %>
           </div>
         </div>
@@ -132,7 +133,7 @@
       <div class="row" id="social-media">
         <div class="col-sm-12">
           <div class="page-header">
-            <h2>Social media profiles</h2>
+            <h4>Social media profiles</h4>
           </div>
         </div>
 
@@ -175,7 +176,7 @@
       <b>There is no undo. No regrets.</b>
     </p>
 
-    <%= button_to "I Want to Delete My Profile",
+    <%= button_to "I want to delete my profile",
                   user_path(@user),
                   method:  :delete,
                   data:    { confirm: "Uhhhh… Are you sure you want to delete your profile?".html_safe },
