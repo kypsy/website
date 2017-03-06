@@ -36,7 +36,7 @@
 
       <%= form_tag "/people", method: :get, class: "form-inline my-2 my-lg-0", role: "search" do %>
         <%= label_tag :search, "Search", class: "sr-only" %>
-        <%= search_field_tag :search, params[:search], class: "form-control mr-sm-2 text-sm-right", placeholder: "People search" %>
+        <%= search_field_tag :search, params[:search], class: "form-control mr-sm-2 text-right text-md-left", placeholder: "People search" %>
 
         <%= button_tag "Search", class: "btn btn-outline-success my-2 my-sm-down-0 hidden-sm-down" %>
       <% end %>
