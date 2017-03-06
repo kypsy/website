@@ -150,6 +150,13 @@ class User < ActiveRecord::Base
     def create_for_facebook(auth)
       provider = Provider.new(name: auth["provider"], uid: auth['uid'])
 
+      puts "*"*80
+      puts auth.info.inspect
+      puts "*"*80
+      puts auth.info.nickname
+      puts auth.info.name
+      puts "*"*80
+
       u = create! do |user|
         user.providers << provider
         provider.handle        = auth.info.nickname || auth.info.name
