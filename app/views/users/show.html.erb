@@ -42,13 +42,13 @@
     <% if labels_list(@user, :interests).present? %>
       <p>
         I'm usually into<br >
-        <%= labels_list(@user, :interests, classes: "badge badge-secondary mr-1") %>
+        <%= labels_list(@user, :interests, classes: "badge badge-default mr-1") %>
       </p>
     <% end %>
 
     <% if labels_list(@user, :activities).present? %>
       <p>
-        I want new friends for<br>
+        I’m looking for friends for<br>
         <%= labels_list(@user, :activities, classes: "badge badge-info mr-1") %>
       </p>
     <% end %>

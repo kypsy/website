@@ -5,12 +5,6 @@
     <h5><%= t("user.profile.social_label", username: @user.username) %></h5>
 
     <table class="table">
-      <% if @user.website? %>
-        <tr>
-          <th>Website</th>
-          <td><%= link_to @user.website, @user.website, class: "u-url url" %></td>
-        </tr>
-      <% end %>
 
       <%# TODO pull this out into either the user model settings or a URL model %>
       <% social_sites.each do |site, url| %>
@@ -32,5 +26,4 @@
     </table>
   <% end %>
 
-  <%#= render "/users/social/this_is_my_jam" %>
 </aside>
