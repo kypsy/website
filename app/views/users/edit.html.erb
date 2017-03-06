@@ -80,7 +80,7 @@
         <%= render "/labels/form", f: f, collection: Interest.all %>
       </div>
 
-      <div class="form-group">
+      <div class="form-group activities-group">
         <h4><%= f.label :your_activities_attributes, t("user.settings.activity_tags_label") %></h4>
         <p class="form-text text-muted">Choose up to three.</p>
         <%= render "/labels/form", f: f, collection: Activity.all %>

@@ -7,3 +7,4 @@
 //= require messages
 //= require users
 //= require images
+//= require settings
