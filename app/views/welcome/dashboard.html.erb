@@ -2,7 +2,7 @@
   <div class="col-sm-12">
     <div class="page-header">
       <h1>
-        Crushers
+        YASSers
         <small>they like you</small>
       </h1>
     </div>
@@ -17,13 +17,13 @@
       </p>
 
       <p>
-        Better profiles get more crushes. True fact. Try these things:
+        Better profiles get more YASSes. True fact. Try these things:
       </p>
 
       <ul>
         <li><strong>Add more and bigger photos.</strong> Use good ones. (Not blurry, not dark. Of your face.)</li>
         <li><strong>Write a good bio.</strong> Try aiming at least 500 words. (Use punctuation and line breaks too.) </li>
-        <li><strong>Fill out your settings.</strong> Location. <em>Your</em> labels. <em>Desired</em> labels.</li>
+        <li><strong>Fill out your settings.</strong> Location. <em>Your</em> interests. Activity tags.</li>
       </ul>
     <% end %>
   </div>
@@ -34,7 +34,7 @@
   <div class="col-sm-12">
     <div class="page-header">
       <h1>
-        Crushes
+        YASSes
         <small>you like them</small>
       </h1>
     </div>
@@ -42,15 +42,17 @@
     <% if @crushes && @crushes.any? %>
       <%= render "/users/listing", users: @crushes %>
     <% else %>
-    <p>
-      You haven’t crushed on anyone yet.
-      Go find someone that makes you excited and click that heart.
-    </p>
+      <p>
+        You haven’t crushed on anyone yet.
+        Go find someone that makes you excited and click that heart.
+      </p>
 
-    <p>
-      You can search / sort / filter people by:
-      location, age (range), labels.
-    </p>
+      <!--
+      <p>
+        You can search / sort / filter people by:
+        location, age (range), labels.
+      </p>
+      -->
     <% end %>
   </div>
 </div>
@@ -68,8 +70,8 @@
       <%= render "/users/listing", users: @bookmarked_users %>
     <% else %>
       <p>
-        You haven’t crushed on anyone yet.
-        Bookmarks are like secret crushes. It allows you to add them to your list <em>without</em> notifying them.
+        You haven’t YASSed on anyone yet.
+        Bookmarks are like secret YASSes. It allows you to add them to your list <em>without</em> notifying them.
         Feel free to bookmark at will without consequence. Get wild!
       </p>
     <% end %>
