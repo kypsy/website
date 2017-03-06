@@ -6,35 +6,27 @@
         <span class="sr-only">Home</span>
         <%= fa_icon :home, class: "fa-lg" %>
       <% end %>
-    <% else %>
-      <span class="navbar-brand">
-        <%= link_to t(:brand), root_path, rel: "home" %> —
-        <%= t(:tagline) %>
-      </span>
-    <% end %>
 
-      <% if logged_in? %>
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <%= link_to fa_icon(:users, class: "fa-lg"), people_path, class: "nav-link" %>
-          </li>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <%= link_to fa_icon(:users, class: "fa-lg"), people_path, class: "nav-link" %>
+        </li>
 
-          <li class="nav-item">
-            <%= link_to conversations_path, class: "nav-link" do %>
-              <%= fa_icon :envelope, class: "fa-lg" %>
-              <% if unread_count %><span class="label label-danger"><%= unread_count %></span><% end %>
-            <% end %>
-          </li>
+        <li class="nav-item">
+          <%= link_to conversations_path, class: "nav-link" do %>
+            <%= fa_icon :envelope, class: "fa-lg" %>
+            <% if unread_count %><span class="label label-danger"><%= unread_count %></span><% end %>
+          <% end %>
+        </li>
 
-          <li class="nav-item">
-            <%= link_to fa_icon(:gear, class: "fa-lg"), settings_path, class: "nav-link" %>
-          </li>
+        <li class="nav-item">
+          <%= link_to fa_icon(:gear, class: "fa-lg"), settings_path, class: "nav-link" %>
+        </li>
 
-          <li class="nav-item">
-            <%= link_to fa_icon(:user, class: "fa-lg"), person_path(current_user.username), class: "nav-link" if current_user.username.present? %>
-          </li>
-        </ul>
-      <% end %>
+        <li class="nav-item">
+          <%= link_to fa_icon(:user, class: "fa-lg"), person_path(current_user.username), class: "nav-link" if current_user.username.present? %>
+        </li>
+      </ul>
 
       <% if admin? %>
         <%= link_to admin_dashboard_path, class: "nav-link" do %>
@@ -42,26 +34,34 @@
         <% end %>
       <% end %>
 
-      <% if logged_in? %>
-        <%= form_tag "/people", method: :get, class: "form-inline my-2 my-lg-0", role: "search" do %>
-          <%= label_tag :search, "Search", class: "sr-only" %>
-          <%= search_field_tag :search, params[:search], class: "form-control mr-sm-2 text-sm-right", placeholder: "People search" %>
+      <%= form_tag "/people", method: :get, class: "form-inline my-2 my-lg-0", role: "search" do %>
+        <%= label_tag :search, "Search", class: "sr-only" %>
+        <%= search_field_tag :search, params[:search], class: "form-control mr-sm-2 text-sm-right", placeholder: "People search" %>
 
-          <%= button_tag "Search", class: "btn btn-outline-success my-2 my-sm-down-0 hidden-sm-down" %>
-        <% end %>
-      <% else %>
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item ml-1">
-            <span class="nav-link">Sign in to get started</span>
-          </li>
-          <li class="nav-item ml-1">
-            <%= button_to_sign_in_with(:twitter) %>
-          </li>
-          <li class="nav-item ml-1">
-            <%= button_to_sign_in_with(:facebook) %>
-          </li>
-        </ul>
+        <%= button_tag "Search", class: "btn btn-outline-success my-2 my-sm-down-0 hidden-sm-down" %>
       <% end %>
+
+    <% else %>
+
+      <div class="navbar-brand">
+        <%= link_to t(:brand), root_path, rel: "home" %> —
+        <%= t(:tagline) %>
+      </div>
+
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item ml-1 hidden-sm-down">
+          <span class="nav-link">Sign in to get started</span>
+        </li>
+        <li class="nav-item ml-1">
+          <%= button_to_sign_in_with(:twitter) %>
+        </li>
+        <li class="nav-item ml-1">
+          <%= button_to_sign_in_with(:facebook) %>
+        </li>
+      </ul>
+      </div>
+
+    <% end %>
 
   </div>
 </nav>

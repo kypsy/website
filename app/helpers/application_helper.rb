@@ -55,10 +55,12 @@ module ApplicationHelper
   end
 
   def button_to_sign_in_with(provider)
-    if provider.to_s.downcase    == "twitter"
-      link_to "#{fa_icon :twitter}  Twitter".html_safe,  "/auth/twitter",  class: "twitter-sign-in-button btn btn-info"
-    elsif provider.to_s.downcase == "facebook"
-      link_to "#{fa_icon :facebook} Facebook".html_safe, "/auth/facebook", class: "facebook-sign-in-button btn btn-primary"
+    name        = provider.to_s.downcase
+    color_class = name == "twitter" ? "info" : "primary"
+
+    link_to "/auth/#{name}", class: "#{name}-sign-in-button btn btn-#{color_class}" do
+      fa_icon(name, class: "mr-2") +
+      content_tag(:span, provider.to_s, class: "hidden-sm-down")
     end
   end
 
