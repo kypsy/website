@@ -9,7 +9,7 @@
 
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <%= link_to fa_icon(:users, class: "fa-lg"), people_path, class: "nav-link" %>
+          <%= link_to fa_icon(:user, class: "fa-lg"), person_path(current_user.username), class: "nav-link" if current_user.username.present? %>
         </li>
 
         <li class="nav-item">
@@ -22,24 +22,31 @@
         <li class="nav-item">
           <%= link_to fa_icon(:gear, class: "fa-lg"), settings_path, class: "nav-link" %>
         </li>
-
-        <li class="nav-item">
-          <%= link_to fa_icon(:user, class: "fa-lg"), person_path(current_user.username), class: "nav-link" if current_user.username.present? %>
-        </li>
       </ul>
 
       <% if admin? %>
         <%= link_to admin_dashboard_path, class: "nav-link" do %>
-          <span class="badge badge-pill badge-danger">ADMIN Dashboard</span>
+          <span class="badge badge-pill badge-danger">
+            ADMIN
+            <span class="hidden-xs-down">Dashboard</span>
+          </span>
         <% end %>
       <% end %>
 
-      <%= form_tag "/people", method: :get, class: "form-inline my-2 my-lg-0", role: "search" do %>
-        <%= label_tag :search, "Search", class: "sr-only" %>
-        <%= search_field_tag :search, params[:search], class: "form-control mr-sm-2 text-right text-md-left", placeholder: "People search" %>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item ml-1">
+          <%= link_to fa_icon(:users, class: "fa-lg"), people_path, class: "nav-link mt-sm-1 mt-md-2" %>
+        </li>
 
-        <%= button_tag "Search", class: "btn btn-outline-success my-2 my-sm-down-0 hidden-sm-down" %>
-      <% end %>
+        <li class="nav-item ml-1">
+          <%= form_tag "/people", method: :get, class: "form-inline", role: "search" do %>
+            <%= label_tag :search, "Search", class: "sr-only" %>
+            <%= search_field_tag :search, params[:search], class: "form-control mr-sm-2 text-right text-md-left", placeholder: "People search" %>
+
+            <%= button_tag "Search", class: "btn btn-outline-success my-2 my-sm-down-0 hidden-sm-down" %>
+          <% end %>
+        </li>
+      </ul>
 
     <% else %>
 
@@ -59,7 +66,6 @@
           <%= button_to_sign_in_with(:facebook) %>
         </li>
       </ul>
-      </div>
 
     <% end %>
 
