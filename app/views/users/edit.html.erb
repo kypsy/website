@@ -21,10 +21,6 @@
 <%= form_for @user, url: update_settings_path, html: { class: "form" } do |f| %>
   <div class="row">
     <div class="col-md-6">
-      <div class="form-group">
-        <%= f.label      :name %>
-        <%= f.text_field :name, autocapitalize: "words", class: "form-control" %>
-      </div>
 
       <% if @user.username.blank? %>
         <div class="form-group">
@@ -32,6 +28,11 @@
           <%= f.text_field :username, autocapitalize: "off", autocorrect: "off", class: "form-control" %>
         </div>
       <% end %>
+
+      <div class="form-group">
+        <%= f.label      :name %>
+        <%= f.text_field :name, autocapitalize: "words", class: "form-control" %>
+      </div>
 
       <div class="form-group">
         <%= f.label       :email %>
@@ -44,47 +45,27 @@
       </div>
 
       <div class="form-group">
-        <%= f.label     :bio %>
-        <%= f.text_area :bio, autocapitalize: "sentences", class: "form-control", rows: 8 %>
-      </div>
-
-      <div class="form-group" id="notifications">
-        <h4>Email notifications</h4>
-
-        <div class="checkbox">
-          <label>
-            <%= f.check_box :email_crushes %>
-            <%= f.label     :email_crushes, "Notify me when someone crushes me" %>
-          </label>
-        </div>
-
-        <div class="checkbox">
-          <label>
-            <%= f.check_box :email_messages %>
-            <%= f.label     :email_messages, "Notify me when someone messages me" %>
-          </label>
-        </div>
-      </div>
-    </div>
-
-
-    <div class="col-md-6">
-      <div class="form-group">
-        <h4><%= f.label :my_interests_attributes, t("user.settings.general_interests_label") %></h4>
+        <%= f.label :my_interests_attributes, t("user.settings.general_interests_label") %>
         <p class="form-text text-muted">Choose as many as you want.</p>
         <%= render "/labels/form", f: f, collection: Interest.all %>
       </div>
 
       <div class="form-group activities-group">
-        <h4><%= f.label :your_activities_attributes, t("user.settings.activity_tags_label") %></h4>
+        <%= f.label :your_activities_attributes, t("user.settings.activity_tags_label") %>
         <p class="form-text text-muted">Choose up to three.</p>
         <%= render "/labels/form", f: f, collection: Activity.all %>
       </div>
 
+    </div><!-- .col -->
+
+
+    <div class="col-md-6">
+
       <div class="row">
-        <div class="col-md-6">
+
+        <div class="col-xs-6 ml-3">
           <div class="form-group">
-            <h4><%= f.label :age_range, "My age range" %></h4>
+            <%= f.label :age_range, "My age range" %>
 
             <% AgeRange.all.each do |age_range| %>
               <div class="form-check">
@@ -98,12 +79,13 @@
           </div>
         </div>
 
-        <div class="col-md-6">
+        <div class="col-xs-6 ml-3">
           <div class="form-group">
-            <h4><%= f.label :desired_age_ranges_attributes, "Desired age range" %></h4>
+            <%= f.label :desired_age_ranges_attributes, "Desired age range" %>
             <%= render "/labels/form", f: f, collection: AgeRange.all %>
           </div>
         </div>
+
       </div>
 
 
@@ -126,55 +108,49 @@
       -->
 
       <div class="row" id="social-media">
-        <div class="col-sm-12">
-          <div class="page-header">
-            <h4>Social media profiles</h4>
-          </div>
-        </div>
+        <legend class="col-sm-12">Social media profiles</legend>
 
         <% social_sites.map{|k,v| k}.each do |site| %>
           <div class="col-sm-6">
             <div class="form-group">
               <%# TODO wire this up to user settings instead of one column/method per site %>
-              <%= f.label      "#{site.downcase.gsub(/ /, "")}_username".to_sym, "#{site} Username" %>
+              <%= f.label      "#{site.downcase.gsub(/ /, "")}_username".to_sym, "#{site}&nbsp;Username".html_safe %>
               <%= f.text_field "#{site.downcase.gsub(/ /, "")}_username".to_sym, class: "form-control", placeholder: "#{site} Username" %>
             </div>
           </div>
         <% end %>
       </div>
 
-    </div>
-  </div>
+      <div class="form-group">
+        <%= f.label     :bio, "About Me" %>
+        <%= f.text_area :bio, autocapitalize: "sentences", class: "form-control", rows: 8 %>
+      </div>
 
-  <div class="actions">
+      <div class="form-group" id="notifications">
+        <fieldset>
+          <legend>Email notifications</legend>
+
+          <div class="checkbox">
+            <label>
+              <%= f.check_box :email_crushes %>
+              <%= f.label     :email_crushes, "Notify me when someone crushes me" %>
+            </label>
+          </div>
+
+          <div class="checkbox">
+            <label>
+              <%= f.check_box :email_messages %>
+              <%= f.label     :email_messages, "Notify me when someone messages me" %>
+            </label>
+          </div>
+        </fieldset>
+
+      </div>
+
+    </div><!-- .col -->
+  </div><!-- .row -->
+
+  <div class="actions col-sm-6 col-md-4 ml-auto">
     <%= f.submit "Save Changes", data: { disable_with: "Saving…" }, class: "btn btn-success btn-block btn-lg" %>
   </div>
 <% end %>
-
-
-
-<div id="danger-zone">
-  <h5 class="danger-zone-title">DANGER ZONE</h5>
-
-  <div class="danger-zone-body">
-    <p>
-      If you want to leave this place, that’s your decision.
-      We’ll be sad to see you go, but we can respect that.
-    </p>
-
-    <p>
-      All of your user profile and related data will be immediately deleted.
-      No Twitter or Facebook information will be further stored.
-    </p>
-
-    <p>
-      <b>There is no undo. No regrets.</b>
-    </p>
-
-    <%= button_to "I want to delete my profile",
-                  user_path(@user),
-                  method:  :delete,
-                  data:    { confirm: "Uhhhh… Are you sure you want to delete your profile?".html_safe },
-                  class:   "btn btn-danger btn-block btn-lg" %>
-  </div>
-</div> <!-- #danger-zone -->
