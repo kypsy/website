@@ -1,175 +1,172 @@
-<div class="person">
+<div class="h-card">
 
-  <div class="media">
-    <%= link_to_avatar(@user, @avatar_size) %>
+  <div class="person">
 
-    <div class="media-body">
-      <h4 class="media-body">
-        <% if @user.name.present? %>
-          <span class="p-name fn n"><%= link_to @user.name, person_path(@user.username) %></span>
-          (<span class="p-nickname nickname"><%= link_to @user.username, person_path(@user.username) %></span>)
-        <% else %>
-          <span class="p-name fn n"><%= link_to @user.username, person_path(@user.username) %></span><%= render partial: "/users/age", locals: { user: @user } %>
-        <% end %>
-      </h4>
+    <div class="media">
+      <%= link_to_avatar(@user, @avatar_size) %>
 
-      <p class="p-adr h-adr">
-        <%= link_to google_map_url(@user) do %>
-          <% unless @user.location.blank? %>
-            <span class="p-locality locality"><%= @user.location %></span>
+      <div class="media-body">
+        <h4 class="media-body">
+          <% if @user.name.present? %>
+            <span class="p-name"><%= link_to @user.name, person_path(@user.username) %></span>
+            (<span class="p-nickname"><%= link_to @user.username, person_path(@user.username) %></span>)
+          <% else %>
+            <span class="p-name"><%= link_to @user.username, person_path(@user.username) %></span><%= render "users/age", user: @user %>
           <% end %>
+        </h4>
+
+        <p class="p-adr h-adr">
+          <%= link_to google_map_url(@user) do %>
+            <% unless @user.location.blank? %>
+              <span class="p-locality"><%= @user.location %></span>
+            <% end %>
+          <% end %>
+        </p>
+
+        <% if user_profile? %>
+          <%= render "users/profile_actions", user: @user %>
         <% end %>
-      </p>
-
-      <% if user_profile? %>
-        <%= render partial: "/users/profile_actions", locals: { user: @user } %>
-      <% end %>
-    </div>
-  </div>
-
-</div> <!-- .person -->
-
-
-
-
-<p class="mt-3">
-  <% if @user.label %>
-    <b><%= link_to @user.label.name.downcase, search_path(search: [:labels, @user.label.name]) %></b>
-
-    <br>
-    <br>
-  <% end %>
-
-  <% if labels_list(@user, :interests).present? %>
-    Usually into<br>
-    <%= labels_list(@user, :interests) %>.
-
-    <br>
-    <br>
-  <% end %>
-
-  <% if labels_list(@user, :activities).present? %>
-    I want new friends for<br>
-    <%= labels_list(@user, :activities) %>.
-
-    <br>
-    <br>
-  <% end %>
-
-  <% if @user.age_range.present? && @user.age_range.name != "rather not say" %>
-    I’m <%= @user.age_range.name %> years old.
-
-    <br>
-    <br>
-  <% end %>
-
-  <% if @user.desired_age_ranges.present? %>
-    I’m looking for someone
-    <%= labels_list(@user, :age_ranges) %>
-    years old.
-
-    <br>
-    <br>
-  <% end %>
-</p>
-
-<div class="row">
-
-  <main class="col-md-7 col-sm-12">
-    <% if @user.bio %>
-      <div id="bio" class="text-muted">
-        <%= user_inputed_text(@user.bio) %>
       </div>
+    </div>
+
+  </div> <!-- .person -->
+
+
+  <div class="mt-3">
+    <% if false && @user.label %>
+      <p>
+        <b><%= link_to @user.label.name.downcase, search_path(search: [:labels, @user.label.name]) %></b>
+      </p>
     <% end %>
 
-    <div id="photos">
-      <% @user.photos.each do |photo| %>
-        <%= image_tag photo.image_url(:large).to_s %>
+    <% if labels_list(@user, :interests).present? %>
+      <p>
+        I'm usually into<br >
+        <%= labels_list(@user, :interests, classes: "badge badge-default mr-1") %>
+      </p>
+    <% end %>
 
-        <div class="caption lead">
-          <%= simple_format photo.caption %>
+    <% if labels_list(@user, :activities).present? %>
+      <p>
+        I want new friends for<br>
+        <%= labels_list(@user, :activities, classes: "badge badge-info mr-1") %>
+      </p>
+    <% end %>
+
+    <% if @user.age_range.present? && @user.age_range.name != "rather not say" %>
+      <p>
+        I’m <%= @user.age_range.name %> years old.
+      </p>
+    <% end %>
+
+    <% if @user.desired_age_ranges.present? %>
+      <p>
+        I’m looking for friends that are
+        <%= labels_list(@user, :age_ranges) %>
+        years old.
+      </p>
+    <% end %>
+  </div>
+
+  <div class="row">
+
+    <main class="col-md-7 col-sm-12">
+      <% if @user.bio %>
+        <div id="bio" class="text-muted">
+          <%= user_inputed_text(@user.bio) %>
+        </div>
+      <% end %>
+
+      <div id="photos">
+        <% @user.photos.each do |photo| %>
+          <%= image_tag photo.image_url(:large).to_s %>
+
+          <div class="caption lead">
+            <%= simple_format photo.caption %>
+          </div>
+
+          <div class="actions">
+            <% if mine? %>
+              <%= form_for photo, html: { class: "form-inline", role: "form" } do |f| %>
+                <%= f.hidden_field :avatar, value: true %>
+                <%= f.button "#{fa_icon "circle-o"}&nbsp;&nbsp;Use as profile photo".html_safe, class: "btn btn-default" %>
+              <% end %>
+
+              <%= link_to "#{fa_icon :edit}&nbsp;&nbsp;Edit photo".html_safe, edit_photo_path(photo), class: "btn btn-default" %>
+
+            <% elsif logged_in? %><%# not mine and logged in %>
+
+              <% if flagged?(photo) %>
+                <%= unflag_button photo, class: "delete-flag btn btn-warning" %>
+              <% else %>
+                <%= form_for RedFlag.new, url: flag_path(photo) do |f| %>
+                  <%= f.hidden_field :flaggable_type, value: "Photo" %>
+                  <button class="btn btn-default" type="submit">
+                    <b class="text-warning">
+                      <%= fa_icon "flag-o" %>
+                      &nbsp;&nbsp;Flag this photo as inappropriate
+                    </b>
+                  </button>
+                <% end %>
+              <% end %>
+
+            <% end %>
+          </div> <!-- .actions -->
+
+        <% end %>
+      </div> <!-- #photos -->
+
+    </main>
+
+    <%= render "sidebar" %>
+
+  </div> <!-- .row -->
+
+  <div id="flags">
+    <% if @user && not_mine? %>
+      <div class="row">
+        <div class="col-sm-6">
+          <% if flagged?(@user) %>
+
+            <%= unflag_button @user, class: "delete-flag btn btn-block btn-warning" %>
+
+          <% else %>
+
+            <%= form_for RedFlag.new, url: flag_path(@user.id) do |f| %>
+              <%= f.hidden_field :flaggable_type, value: "User" %>
+
+              <button class="btn btn-default btn-block" type="submit">
+                <b class="text-warning">
+                  <%= fa_icon "flag-o" %>
+                  Flag @<%= @user.username %> as inappropriate
+                </b>
+              </button>
+            <% end %>
+
+          <% end %>
         </div>
 
-        <div class="actions">
-          <% if mine? %>
-            <%= link_to "#{fa_icon :edit}&nbsp;&nbsp;Edit photo".html_safe, edit_photo_path(photo), class: "btn btn-default" %>
+        <div class="col-sm-6">
+          <% if blocked? %>
 
-            <%= form_for photo, html: { class: "form-inline", role: "form" } do |f| %>
-              <%= f.hidden_field :avatar, value: true %>
-              <%= f.button "#{fa_icon "circle-o"}&nbsp;&nbsp;Use as profile photo".html_safe, class: "btn btn-default" %>
+            <%= link_to action_unblock_path(@user.username), method: :delete, class: "btn btn-danger btn-block col-sm-6" do %>
+              <%= fa_icon :ban %> Unblock @<%= @user.username %>
             <% end %>
 
-          <% elsif logged_in? %><%# not mine and logged in %>
+          <% else %>
 
-            <% if flagged?(photo) %>
-              <%= unflag_button photo, class: "delete-flag btn btn-warning" %>
-            <% else %>
-              <%= form_for RedFlag.new, url: flag_path(photo) do |f| %>
-                <%= f.hidden_field :flaggable_type, value: "Photo" %>
-                <button class="btn btn-default" type="submit">
-                  <b class="text-warning">
-                    <%= fa_icon "flag-o" %>
-                    &nbsp;&nbsp;Flag this photo as inappropriate
-                  </b>
-                </button>
-              <% end %>
-            <% end %>
-
-          <% end %>
-        </div> <!-- .actions -->
-
-      <% end %>
-    </div> <!-- #photos -->
-
-  </main>
-
-  <%= render "sidebar" %>
-
-</div> <!-- .row -->
-
-<div id="flags">
-  <% if @user && not_mine? %>
-    <div class="row">
-      <div class="col-sm-6">
-        <% if flagged?(@user) %>
-
-          <%= unflag_button @user, class: "delete-flag btn btn-block btn-warning" %>
-
-        <% else %>
-
-          <%= form_for RedFlag.new, url: flag_path(@user.id) do |f| %>
-            <%= f.hidden_field :flaggable_type, value: "User" %>
-
-            <button class="btn btn-default btn-block" type="submit">
-              <b class="text-warning">
-                <%= fa_icon "flag-o" %>
-                Flag @<%= @user.username %> as inappropriate
+            <%= link_to action_block_path(@user.username), method: :post, class: "btn btn-default btn-block col-sm-6" do %>
+              <b class="text-danger">
+                <%= fa_icon :ban %>
+                Block @<%= @user.username %>
               </b>
-            </button>
-          <% end %>
+            <% end %>
 
-        <% end %>
+          <% end %>
+        </div>
+
       </div>
+    <% end %>
+  </div>
 
-      <div class="col-sm-6">
-        <% if blocked? %>
-
-          <%= link_to action_unblock_path(@user.username), method: :delete, class: "btn btn-danger btn-block col-sm-6" do %>
-            <%= fa_icon :ban %> Unblock @<%= @user.username %>
-          <% end %>
-
-        <% else %>
-
-          <%= link_to action_block_path(@user.username), method: :post, class: "btn btn-default btn-block col-sm-6" do %>
-            <b class="text-danger">
-              <%= fa_icon :ban %>
-              Block @<%= @user.username %>
-            </b>
-          <% end %>
-
-        <% end %>
-      </div>
-
-    </div>
-  <% end %>
-</div>
+</div><!-- .h-card -->

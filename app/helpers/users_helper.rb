@@ -6,24 +6,30 @@ module UsersHelper
     end
   end
 
-  def labels_list(user, type)
-    unless user.send("desired_#{type}").blank?
-      user.send("desired_#{type}").map{ |dd|
-        "<b>#{ link_to dd.name.downcase, search_path(search: [type, dd.name]) }</b>"
-      }.join("<span style='color:#999'>, </span>").html_safe
+  def labels_list(user, type, classes: nil)
+    output = []
+
+    label_type = "desired_#{type}"
+
+    unless user.send(label_type).blank?
+      user.send(label_type).each do |dd|
+        output << link_to(dd.name, search_path(search: [type, dd.name]), class: classes)
+      end
     end
+
+    output.join.html_safe
   end
 
   def social_sites
     {
-      "Twitter"        => "https://twitter.com/@@@",
-      "Facebook"       => "https://facebook.com/@@@",
-      "Instagram"      => "https://instagram.com/@@@",
-      "Tumblr"         => "http://@@@.tumblr.com",
-      "Last FM"        => "http://last.fm/user/@@@",
-      "Spotify"        => "https://open.spotify.com/user/@@@",
-      "Kik"            => "@@@",
-      "Snapchat"       => "@@@"
+      "Twitter"   => "https://twitter.com/@@@",
+      "Facebook"  => "https://facebook.com/@@@",
+      "Instagram" => "https://instagram.com/@@@",
+      "Tumblr"    => "http://@@@.tumblr.com",
+      "Last FM"   => "http://last.fm/user/@@@",
+      "Spotify"   => "https://open.spotify.com/user/@@@",
+      "Kik"       => "@@@",
+      "Snapchat"  => "@@@"
     }
   end
 end

@@ -4,14 +4,6 @@ module ApplicationHelper
     current_user && current_user.admin?
   end
 
-  def opening_body_tag
-    if user_profile?
-      "<body class='h-card vcard'>".html_safe
-    else
-      "<body>".html_safe
-    end
-  end
-
   def strip_links(text)
     text.gsub(/<a /, "<span ").gsub(/<\/a>/, "<\/span>").html_safe
   end
