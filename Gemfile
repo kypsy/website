@@ -90,6 +90,7 @@ end
 
 group :production, :staging do
   gem "newrelic_rpm"
+  gem "rails_12factor"
 end
 
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
