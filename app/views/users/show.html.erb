@@ -42,7 +42,7 @@
     <% if labels_list(@user, :interests).present? %>
       <p>
         I'm usually into<br >
-        <%= labels_list(@user, :interests, classes: "badge badge-default mr-1") %>
+        <%= labels_list(@user, :interests, classes: "badge badge-secondary mr-1") %>
       </p>
     <% end %>
 
@@ -59,7 +59,7 @@
       </p>
     <% end %>
 
-    <% if @user.desired_age_ranges.present? %>
+    <% if @user.desired_age_ranges.present? && @user.desired_age_ranges.map(&:name).join != "rather not say" %>
       <p>
         I’m looking for friends that are
         <%= labels_list(@user, :age_ranges) %>
@@ -89,10 +89,10 @@
             <% if mine? %>
               <%= form_for photo, html: { class: "form-inline", role: "form" } do |f| %>
                 <%= f.hidden_field :avatar, value: true %>
-                <%= f.button "#{fa_icon "circle-o"}&nbsp;&nbsp;Use as profile photo".html_safe, class: "btn btn-default" %>
+                <%= f.button "#{fa_icon "circle-o"}&nbsp;&nbsp;Use as profile photo".html_safe, class: "btn btn-secondary" %>
               <% end %>
 
-              <%= link_to "#{fa_icon :edit}&nbsp;&nbsp;Edit photo".html_safe, edit_photo_path(photo), class: "btn btn-default" %>
+              <%= link_to "#{fa_icon :edit}&nbsp;&nbsp;Edit photo".html_safe, edit_photo_path(photo), class: "btn btn-secondary" %>
 
             <% elsif logged_in? %><%# not mine and logged in %>
 
@@ -101,7 +101,7 @@
               <% else %>
                 <%= form_for RedFlag.new, url: flag_path(photo) do |f| %>
                   <%= f.hidden_field :flaggable_type, value: "Photo" %>
-                  <button class="btn btn-default" type="submit">
+                  <button class="btn btn-secondary" type="submit">
                     <b class="text-warning">
                       <%= fa_icon "flag-o" %>
                       &nbsp;&nbsp;Flag this photo as inappropriate
@@ -128,14 +128,14 @@
         <div class="col-sm-6">
           <% if flagged?(@user) %>
 
-            <%= unflag_button @user, class: "delete-flag btn btn-block btn-warning" %>
+            <%= unflag_button @user, class: "delete-flag btn btn-block btn-warning mb-3" %>
 
           <% else %>
 
             <%= form_for RedFlag.new, url: flag_path(@user.id) do |f| %>
               <%= f.hidden_field :flaggable_type, value: "User" %>
 
-              <button class="btn btn-default btn-block" type="submit">
+              <button class="btn btn-secondary btn-block mb-3" type="submit">
                 <b class="text-warning">
                   <%= fa_icon "flag-o" %>
                   Flag @<%= @user.username %> as inappropriate
@@ -149,13 +149,13 @@
         <div class="col-sm-6">
           <% if blocked? %>
 
-            <%= link_to action_unblock_path(@user.username), method: :delete, class: "btn btn-danger btn-block col-sm-6" do %>
+            <%= link_to action_unblock_path(@user.username), method: :delete, class: "btn btn-danger btn-block mb-3" do %>
               <%= fa_icon :ban %> Unblock @<%= @user.username %>
             <% end %>
 
           <% else %>
 
-            <%= link_to action_block_path(@user.username), method: :post, class: "btn btn-default btn-block col-sm-6" do %>
+            <%= link_to action_block_path(@user.username), method: :post, class: "btn btn-secondary btn-block mb-3" do %>
               <b class="text-danger">
                 <%= fa_icon :ban %>
                 Block @<%= @user.username %>
