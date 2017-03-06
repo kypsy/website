@@ -1,4 +1,36 @@
-<%= render @user %>
+<div class="person">
+
+  <div class="media">
+    <%= link_to_avatar(@user, @avatar_size) %>
+
+    <div class="media-body">
+      <h4 class="media-body">
+        <% if @user.name.present? %>
+          <span class="p-name fn n"><%= link_to @user.name, person_path(@user.username) %></span>
+          (<span class="p-nickname nickname"><%= link_to @user.username, person_path(@user.username) %></span>)
+        <% else %>
+          <span class="p-name fn n"><%= link_to @user.username, person_path(@user.username) %></span><%= render partial: "/users/age", locals: { user: @user } %>
+        <% end %>
+      </h4>
+
+      <p class="p-adr h-adr">
+        <%= link_to google_map_url(@user) do %>
+          <% unless @user.location.blank? %>
+            <span class="p-locality locality"><%= @user.location %></span>
+          <% end %>
+        <% end %>
+      </p>
+
+      <% if user_profile? %>
+        <%= render partial: "/users/profile_actions", locals: { user: @user } %>
+      <% end %>
+    </div>
+  </div>
+
+</div> <!-- .person -->
+
+
+
 
 <p class="mt-3">
   <% if @user.label %>
