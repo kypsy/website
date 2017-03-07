@@ -23,13 +23,8 @@ module UsersHelper
   def social_sites
     {
       "Twitter"   => "https://twitter.com/@@@",
-      "Facebook"  => "https://facebook.com/@@@",
       "Instagram" => "https://instagram.com/@@@",
-      "Tumblr"    => "http://@@@.tumblr.com",
-      "Last FM"   => "http://last.fm/user/@@@",
-      "Spotify"   => "https://open.spotify.com/user/@@@",
-      "Kik"       => "@@@",
-      "Snapchat"  => "@@@"
+      "Snapchat"  => "https://www.snapchat.com/add/@@@"
     }
   end
 end
