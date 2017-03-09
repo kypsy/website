@@ -4,7 +4,7 @@
   <% end %>
 
   <%= link_to settings_path,  class: "btn btn-secondary" do %>
-    <%= fa_icon :pencil %><span class="hidden-xs">&nbsp;&nbsp;Edit profile</span>
+    <%= fa_icon :comment %><span class="hidden-xs">&nbsp;&nbsp;Edit profile</span>
   <% end %>
 
 <% elsif not_mine? %>
@@ -12,7 +12,7 @@
 
     <span class="btn-group">
       <%# MESSAGE BUTTON %>
-      <%= link_to fa_icon(:pencil), new_message_path(username: user.username), class: "btn btn-info message" %>
+      <%= link_to fa_icon(:comment), new_message_path(username: user.username), class: "btn btn-info message" %>
 
       <%# BOOKMARK BUTTON %>
       <% hide_show = im.bookmarking?(user) ? ["block", "none"] : ["none", "block"] %>
