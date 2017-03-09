@@ -51,15 +51,16 @@ Rails.application.routes.draw do
   post "/photos/email",           to: "photos#email"
 
   # People pages
-  get    "/oops",                  to: redirect("/start")
-  patch  "/oops",                  to: 'users#create',  as: :user_create
-  get    "/start",                 to: "users#new",     as: :start
-  get    "/settings",              to: "users#edit",    as: :settings
-  patch  "/settings",              to: "users#update",  as: :update_settings
-  get    "/people/(page/:page)",   to: "users#index",   as: :people
-  get    "/@:username",            to: "users#show",    as: :person, username: /[^\/]+/
-  get    "/@:username",            to: "users#show",    as: :user,   username: /[^\/]+/
-  delete "/@:username",            to: "users#destroy", username: /[^\/]+/
+  get    "/oops",                to: redirect("/start")
+  patch  "/oops",                to: 'users#create',         as: :user_create
+  get    "/start",               to: "users#new",            as: :start
+  get    "/settings",            to: "users#edit",           as: :settings
+  patch  "/settings",            to: "users#update",         as: :update_settings
+  get    "/leave",               to: "users#delete_account", as: :delete_account
+  get    "/people/(page/:page)", to: "users#index",          as: :people
+  get    "/@:username",          to: "users#show",           as: :person, username: /[^\/]+/
+  get    "/@:username",          to: "users#show",           as: :user,   username: /[^\/]+/
+  delete "/@:username",          to: "users#destroy",        username: /[^\/]+/
 
   # Action paths
   post   "/@:username/crush(.:format)",      to: "crushes#create",        as: :crush,               username: /[^\/]+/

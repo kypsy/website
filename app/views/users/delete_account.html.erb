@@ -1,0 +1,29 @@
+<div class="page-header">
+  <h1>Want to delete your account?</h1>
+</div>
+
+<div id="danger-zone">
+  <h5 class="danger-zone-title">DANGER ZONE</h5>
+
+  <div class="danger-zone-body">
+    <p>
+      If you want to leave this place, that’s your decision.
+      We’ll be sad to see you go, but we can respect that.
+    </p>
+
+    <p>
+      All of your user profile and related data will be immediately deleted.
+      No Twitter or Facebook information will be further stored.
+    </p>
+
+    <p>
+      <b>There is no undo. No regrets.</b>
+    </p>
+
+    <%= button_to "I want to delete my profile",
+                  user_path(@user),
+                  method:  :delete,
+                  data:    { confirm: "Uhhhh… Are you sure you want to delete your profile?".html_safe },
+                  class:   "btn btn-danger btn-block btn-lg" %>
+  </div>
+</div> <!-- #danger-zone -->

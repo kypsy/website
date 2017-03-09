@@ -75,6 +75,12 @@ class UsersController < ApplicationController
     end
   end
 
+  def delete_account
+    @title = "Delete Your #{t(:brand)} Account"
+    @slug  = "settings"
+    @user  = current_user
+  end
+
   def destroy
     @user = current_user
     @user.photos.destroy_all

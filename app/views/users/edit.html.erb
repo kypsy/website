@@ -153,4 +153,9 @@
   <div class="actions col-sm-6 col-md-4 ml-auto">
     <%= f.submit "Save Changes", data: { disable_with: "Saving…" }, class: "btn btn-success btn-block btn-lg" %>
   </div>
+
+  <p class="my-5 text-right">
+    If you want delete your account,
+    <%= link_to "you can here.", [:delete_account] %>
+  </p>
 <% end %>
