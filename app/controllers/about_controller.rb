@@ -20,4 +20,8 @@ class AboutController < ApplicationController
     @slug  = "about"
     @title = "Goodbye, old friend! Come back anytime."
   end
+  
+  def well_known_apple_app_site_association
+    render plain: ""
+  end
 end
