@@ -1,6 +1,10 @@
 <ul class="nav nav-tabs">
-  <li class="active"><a href="#message_body" data-toggle="tab">Write</a></li>
-  <li><a href="#preview" data-toggle="tab">Preview</a></li>
+  <li class="nav-item">
+    <a href="#message_body" data-toggle="tab" class="nav-link active">Write</a>
+  </li>
+  <li class="nav-item">
+    <a href="#preview" data-toggle="tab" class="nav-link">Preview</a>
+  </li>
 </ul>
 
 <%= form_for @message, url: messages_path(@user.username), html: { class: "form" } do |f| %>
@@ -17,13 +21,13 @@
     </div>
   </div>
 
-  <div class="row">
+  <div class="row mt-5">
     <div class="col-xs-6">
       <%= link_to "Cancel", @user, class: "btn btn-default btn-lg btn-cancel" %>
     </div>
 
     <div class="col-xs-6">
-      <%= f.submit "Send", data: { disable_with: "Sending..." }, class: "btn btn-success btn-block btn-lg" %>
+      <%= f.submit "Send", data: { disable_with: "Sending…" }, class: "btn btn-success btn-block btn-lg" %>
     </div>
   </div>
 <% end %>
