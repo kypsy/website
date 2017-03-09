@@ -1,4 +1,4 @@
-<div class="h-card">
+<div class="h-card col-md-8 offset-md-2 col-sm-12">
 
   <div class="person">
 
@@ -14,6 +14,18 @@
             <span class="p-name"><%= link_to @user.username, person_path(@user.username) %></span><%= render "users/age", user: @user %>
           <% end %>
         </h4>
+
+
+        <%# TODO pull this out into either the user model settings or a URL model %>
+        <% if show_section?(:social) %>
+          <% social_sites.each do |site, url| %>
+            <% unless @user.send("#{site.gsub(/ /, "")}_username").blank? %>
+                <%= link_to fa_icon("#{site}#{'-square' unless site == 'instagram'}", class: "fa-lg"),
+                            url.gsub(/@@@/, @user.send("#{site.gsub(/ /, "")}_username")), rel: "me" %>
+            <% end %>
+          <% end %>
+        <% end %>
+
 
         <p class="p-adr h-adr">
           <%= link_to google_map_url(@user) do %>
@@ -68,59 +80,54 @@
     <% end %>
   </div>
 
-  <div class="row">
+  <main>
+    <% if @user.bio %>
+      <div id="bio" class="text-muted">
+        <%= user_inputed_text(@user.bio) %>
+      </div>
+    <% end %>
 
-    <main class="col-md-7 col-sm-12">
-      <% if @user.bio %>
-        <div id="bio" class="text-muted">
-          <%= user_inputed_text(@user.bio) %>
+    <div id="photos">
+      <% @user.photos.each do |photo| %>
+        <%= image_tag photo.image_url(:large).to_s %>
+
+        <div class="caption lead">
+          <%= simple_format photo.caption %>
         </div>
-      <% end %>
 
-      <div id="photos">
-        <% @user.photos.each do |photo| %>
-          <%= image_tag photo.image_url(:large).to_s %>
-
-          <div class="caption lead">
-            <%= simple_format photo.caption %>
-          </div>
-
-          <div class="actions">
-            <% if mine? %>
-              <%= form_for photo, html: { class: "form-inline", role: "form" } do |f| %>
-                <%= f.hidden_field :avatar, value: true %>
-                <%= f.button "#{fa_icon "circle-o"}&nbsp;&nbsp;Use as profile photo".html_safe, class: "btn btn-secondary" %>
-              <% end %>
-
-              <%= link_to "#{fa_icon :edit}&nbsp;&nbsp;Edit photo".html_safe, edit_photo_path(photo), class: "btn btn-secondary" %>
-
-            <% elsif logged_in? %><%# not mine and logged in %>
-
-              <% if flagged?(photo) %>
-                <%= unflag_button photo, class: "delete-flag btn btn-warning" %>
-              <% else %>
-                <%= form_for RedFlag.new, url: flag_path(photo) do |f| %>
-                  <%= f.hidden_field :flaggable_type, value: "Photo" %>
-                  <button class="btn btn-secondary" type="submit">
-                    <b class="text-warning">
-                      <%= fa_icon "flag-o" %>
-                      &nbsp;&nbsp;Flag this photo as inappropriate
-                    </b>
-                  </button>
-                <% end %>
-              <% end %>
-
+        <div class="actions">
+          <% if mine? %>
+            <%= form_for photo, html: { class: "form-inline", role: "form" } do |f| %>
+              <%= f.hidden_field :avatar, value: true %>
+              <%= f.button "#{fa_icon "circle-o"}&nbsp;&nbsp;Use as profile photo".html_safe, class: "btn btn-secondary" %>
             <% end %>
-          </div> <!-- .actions -->
 
-        <% end %>
-      </div> <!-- #photos -->
+            <%= link_to "#{fa_icon :edit}&nbsp;&nbsp;Edit photo".html_safe, edit_photo_path(photo), class: "btn btn-secondary" %>
 
-    </main>
+          <% elsif logged_in? %><%# not mine and logged in %>
 
-    <%= render "sidebar" %>
+            <% if flagged?(photo) %>
+              <%= unflag_button photo, class: "delete-flag btn btn-warning" %>
+            <% else %>
+              <%= form_for RedFlag.new, url: flag_path(photo) do |f| %>
+                <%= f.hidden_field :flaggable_type, value: "Photo" %>
+                <button class="btn btn-secondary" type="submit">
+                  <b class="text-warning">
+                    <%= fa_icon "flag-o" %>
+                    &nbsp;&nbsp;Flag this photo as inappropriate
+                  </b>
+                </button>
+              <% end %>
+            <% end %>
 
-  </div> <!-- .row -->
+          <% end %>
+        </div> <!-- .actions -->
+
+      <% end %>
+    </div> <!-- #photos -->
+
+  </main>
+
 
   <div id="flags">
     <% if @user && not_mine? %>

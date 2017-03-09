@@ -22,9 +22,9 @@ module UsersHelper
 
   def social_sites
     {
-      "Twitter"   => "https://twitter.com/@@@",
-      "Instagram" => "https://instagram.com/@@@",
-      "Snapchat"  => "https://www.snapchat.com/add/@@@"
+      "twitter"   => "https://twitter.com/@@@",
+      "instagram" => "https://instagram.com/@@@",
+      "snapchat"  => "https://www.snapchat.com/add/@@@"
     }
   end
 end
