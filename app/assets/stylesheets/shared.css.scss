@@ -1,7 +1,7 @@
 /* masthead and nav... */
 header[role=banner] {
-  border-top: 5px solid orange;
-  border-bottom: 5px solid green;
+  border-top: 5px solid $color-bright-orange;
+  border-bottom: 5px solid $color-bright-green;
 
   h1 {
     text-align: center;
