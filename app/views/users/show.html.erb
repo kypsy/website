@@ -17,7 +17,7 @@
         <h4 class="media-body">
           <% if @user.name.present? %>
             <span class="p-name"><%= link_to @user.name, person_path(@user.username) %></span>
-            (<span class="p-nickname"><%= link_to @user.username, person_path(@user.username) %></span>)
+            (<span class="p-nickname"><%= link_to "@#{@user.username}", person_path(@user.username) %></span>)
           <% else %>
             <span class="p-name"><%= link_to @user.username, person_path(@user.username) %></span><%= render "users/age", user: @user %>
           <% end %>

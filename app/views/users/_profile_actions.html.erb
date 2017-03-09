@@ -41,14 +41,15 @@
       <% hide_show = im.crushing_on?(user) ? ["block", "none"] : ["none", "block"] %>
 
       <%= link_to uncrush_path(user.username),
-                  class:             "crush btn btn-default",
+                  class:             "crush btn btn-secondaryx",
                   "data-username" => user.username,
                   method:            :delete,
                   style:             "display: #{hide_show.first}" do %>
-        <b class="text-danger">
+
+        <strong class="text-danger">
           <%= fa_icon :heart %>
           Un-YASS
-        </b>
+        </strong>
       <% end %>
 
       <%= link_to crush_path(user.username),
