@@ -24,16 +24,18 @@
     <%= yield %>
   </section>
 
-  <footer role="contentinfo" class="container my-5">
-    <ul class="nav flex-column">
-      <li class="nav-item"><%= link_to "About #{t(:brand)}", about_path,   class: "nav-link" %></li>
-      <li class="nav-item"><%= link_to "Terms",              terms_path,   class: "nav-link" %></li>
-      <li class="nav-item"><%= link_to "Privacy Policy",     privacy_path, class: "nav-link" %></li>
+  <footer role="contentinfo" class="my-5 col-md-6 offset-md-3 col-sm-12">
+      <ul class="nav nav-pills nav-fill">
+        <li class="nav-item"><%= link_to "About #{t(:brand)}", about_path,   class: "nav-link" %></li>
+        <li class="nav-item"><%= link_to "Terms",              terms_path,   class: "nav-link" %></li>
+        <li class="nav-item"><%= link_to "Privacy Policy",     privacy_path, class: "nav-link" %></li>
+      </ul>
 
-      <% if logged_in? %>
+    <% if logged_in? %>
+      <ul class="nav nav-pills nav-fill mt-5">
         <li class="nav-item"><%= link_to_unless_current "Sign Out", signout_path, class: "nav-link" %></li>
-      <% end %>
-    </ul>
+      </ul>
+    <% end %>
   </footer>
 
   <%= render partial: "/shared/foot" %>
