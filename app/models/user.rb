@@ -90,6 +90,11 @@ class User < ActiveRecord::Base
     username
   end
 
+  # they like you AND you like them, mutual crush
+  def matches
+    crushers & crushes
+  end
+
   class << self
 
     def search(search)
@@ -151,9 +156,12 @@ class User < ActiveRecord::Base
       provider = Provider.new(name: auth["provider"], uid: auth['uid'])
 
       puts "*"*80
+      puts "in create_for_facebook"
       puts auth.info.inspect
       puts "*"*80
+      puts "auth.info.nickname:"
       puts auth.info.nickname
+      puts "auth.info.name:"
       puts auth.info.name
       puts "*"*80
 
