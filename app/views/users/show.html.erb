@@ -3,7 +3,15 @@
   <div class="person">
 
     <div class="media">
-      <%= link_to_avatar(@user, @avatar_size) %>
+      <div class="media-main">
+        <%= link_to_avatar(@user, @avatar_size) %>
+
+        <%# TODO pull this out into either the user model settings or a URL model %>
+        <p class="mt-2">
+          <%= link_to_social_icons(@user) %>
+        </p>
+      </div>
+
 
       <div class="media-body">
         <h4 class="media-body">
@@ -14,18 +22,6 @@
             <span class="p-name"><%= link_to @user.username, person_path(@user.username) %></span><%= render "users/age", user: @user %>
           <% end %>
         </h4>
-
-
-        <%# TODO pull this out into either the user model settings or a URL model %>
-        <% if show_section?(:social) %>
-          <% social_sites.each do |site, url| %>
-            <% unless @user.send("#{site.gsub(/ /, "")}_username").blank? %>
-                <%= link_to fa_icon("#{site}#{'-square' unless site == 'instagram'}", class: "fa-lg"),
-                            url.gsub(/@@@/, @user.send("#{site.gsub(/ /, "")}_username")), rel: "me" %>
-            <% end %>
-          <% end %>
-        <% end %>
-
 
         <p class="p-adr h-adr">
           <%= link_to google_map_url(@user) do %>

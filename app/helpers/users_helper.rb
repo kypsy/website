@@ -1,11 +1,5 @@
 module UsersHelper
 
-  def show_section?(type)
-    if type == :social
-      ! social_sites.map{ |site, url| @user.send("#{site.downcase.gsub(/ /, "")}_username") }.join.blank?
-    end
-  end
-
   def labels_list(user, type, classes: nil)
     output = []
 
@@ -22,9 +16,28 @@ module UsersHelper
 
   def social_sites
     {
+      "snapchat"  => "https://snapchat.com/add/@@@",
       "twitter"   => "https://twitter.com/@@@",
       "instagram" => "https://instagram.com/@@@",
-      "snapchat"  => "https://www.snapchat.com/add/@@@"
     }
   end
+
+  def link_to_social(site, user)
+    attr_name       = "#{site.gsub(/ /, '')}_username"
+    social_username = user.send(attr_name)
+
+    unless social_username.blank?
+      url        = social_sites[site]
+      link       = url.gsub(/@@@/, social_username)
+      icon_name  = site
+      icon_name += "-square" unless site == "instagram"
+
+      link_to fa_icon(icon_name, class: "fa-lg"), link, rel: "me"
+    end
+  end
+
+  def link_to_social_icons(user)
+    social_sites.keys.map { |site| link_to_social(site, @user) }.compact.join(" ").html_safe
+  end
+
 end
