@@ -3,9 +3,27 @@
     <%= fa_icon "picture-o" %>&nbsp;&nbsp;Add photo
   <% end %>
 
-  <%= link_to settings_path,  class: "btn btn-secondary" do %>
-    <%= fa_icon :comment %><span class="hidden-xs">&nbsp;&nbsp;Edit profile</span>
+  <%= link_to settings_path, class: "btn btn-secondary" do %>
+    <%= fa_icon :gear, class: "fa-lg" %><span class="hidden-xs-down">&nbsp;&nbsp;Edit profile</span>
   <% end %>
+
+<br><br>
+
+  <%= link_to root_path, class: "btn btn-secondary" do %>
+    <%= fa_icon :home, class: "fa-lg" %><span class="hidden-xs-down">&nbsp;&nbsp;Dashboard</span>
+  <% end %>
+
+
+  <%= link_to conversations_path, class: "btn btn-secondary" do %>
+    <%= fa_icon :envelope, class: "fa-lg" %>
+    <% if unread_count %><span class="label label-danger"><%= unread_count %></span><% end %>
+  <% end %>
+
+
+
+  <%= link_to conversations_path do %>
+  <% end %>
+
 
 <% elsif not_mine? %>
   <div class="actions">
@@ -41,7 +59,7 @@
       <% hide_show = im.crushing_on?(user) ? ["block", "none"] : ["none", "block"] %>
 
       <%= link_to uncrush_path(user.username),
-                  class:             "crush btn btn-secondaryx",
+                  class:             "crush btn btn-secondary",
                   "data-username" => user.username,
                   method:            :delete,
                   style:             "display: #{hide_show.first}" do %>

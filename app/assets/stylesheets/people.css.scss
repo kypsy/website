@@ -1,6 +1,6 @@
 /* bootstrap override... */
-@media (max-width: 480px) { body .hidden-xs { display: none   !important; } }
-@media (min-width: 481px) { body .hidden-xs { display: inline !important; } }
+@media (max-width: 480px) { body .hidden-xs-down { display: none   !important; } }
+@media (min-width: 481px) { body .hidden-xs-down { display: inline !important; } }
 /* ...bootstrap override */
 
 main {

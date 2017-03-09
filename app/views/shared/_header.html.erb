@@ -1,6 +1,7 @@
 <nav class="navbar navbar-toggleable-xl navbar-light bg-faded">
   <div class="col-md-6 offset-md-3 col-sm-12">
 
+
     <% if logged_in? %>
 
       <ul class="navbar-nav mr-auto">
@@ -16,46 +17,6 @@
           <%= link_to fa_icon(:search, class: "fa-lg"), people_search_path, class: "nav-link" %>
         </li>
       </ul>
-
-    <% end %>
-
-  </div><!-- .container -->
-</nav>
-
-<header role="banner" class="mb-2 mb-sm-5">
-  <h1 class="my-4 col-md-6 offset-md-3 col-sm-12"><%= t :brand %></h1>
-</header>
-
-
-
-
-
-
-
-<% if false %>
-
-<nav class="navbar navbar-toggleable-xl navbar-light bg-faded mb-2 mb-sm-5">
-  <div class="container">
-
-    <% if logged_in? %>
-      <%= link_to root_path, rel: "home", class: "navbar-brand" do %>
-        <span class="sr-only">Home</span>
-        <%= fa_icon :home, class: "fa-lg" %>
-      <% end %>
-
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <%= link_to fa_icon(:user, class: "fa-lg"), person_path(current_user.username), class: "nav-link" if current_user.username.present? %>
-        </li>
-
-        <li class="nav-item">
-          <%= link_to conversations_path, class: "nav-link" do %>
-            <%= fa_icon :envelope, class: "fa-lg" %>
-            <% if unread_count %><span class="label label-danger"><%= unread_count %></span><% end %>
-          <% end %>
-        </li>
-      </ul>
-
 
     <% else %>
 
@@ -78,7 +39,12 @@
 
     <% end %>
 
+
   </div><!-- .container -->
 </nav>
 
-<% end %>
+
+
+<header role="banner" class="mb-2 mb-sm-5">
+  <h1 class="my-4 col-md-6 offset-md-3 col-sm-12"><%= t :brand %></h1>
+</header>
