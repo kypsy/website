@@ -33,7 +33,17 @@
 
     <% if logged_in? %>
       <ul class="nav nav-pills nav-fill mt-5">
-        <li class="nav-item"><%= link_to_unless_current "Sign Out", signout_path, class: "nav-link" %></li>
+
+        <% if admin? %>
+          <li class="nav-item">
+            <%= link_to "ADMIN Dashboard", admin_dashboard_path, class: "nav-link text-danger" %>
+          </li>
+        <% end %>
+
+        <li class="nav-item">
+          <%= link_to_unless_current "Sign Out", signout_path, class: "nav-link" %>
+        </li>
+
       </ul>
     <% end %>
   </footer>

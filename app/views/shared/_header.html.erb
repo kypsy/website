@@ -54,35 +54,8 @@
             <% if unread_count %><span class="label label-danger"><%= unread_count %></span><% end %>
           <% end %>
         </li>
-
-        <li class="nav-item">
-          <%= link_to fa_icon(:gear, class: "fa-lg"), settings_path, class: "nav-link" %>
-        </li>
       </ul>
 
-      <% if admin? %>
-        <%= link_to admin_dashboard_path, class: "nav-link" do %>
-          <span class="badge badge-pill badge-danger">
-            ADMIN
-            <span class="hidden-xs-down">Dashboard</span>
-          </span>
-        <% end %>
-      <% end %>
-
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item ml-1">
-          <%= link_to fa_icon(:users, class: "fa-lg"), people_path, class: "nav-link mt-sm-1 mt-md-2" %>
-        </li>
-
-        <li class="nav-item ml-1">
-          <%= form_tag "/people", method: :get, class: "form-inline", role: "search" do %>
-            <%= label_tag :search, "Search", class: "sr-only" %>
-            <%= search_field_tag :search, params[:search], class: "form-control mr-sm-2 text-right text-md-left", placeholder: "People search" %>
-
-            <%= button_tag "Search", class: "btn btn-outline-success my-2 my-sm-down-0 hidden-sm-down" %>
-          <% end %>
-        </li>
-      </ul>
 
     <% else %>
 
