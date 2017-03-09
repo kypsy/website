@@ -1,3 +1,18 @@
+/* masthead and nav... */
+header[role=banner] {
+  border-top: 5px solid orange;
+  border-bottom: 5px solid green;
+
+  h1 {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 200;
+    line-height: 1em;
+  }
+}
+/* ...masthead and nav */
+
+
 /* bootstrap additions... */
 .form-inline {
   display: inline-block

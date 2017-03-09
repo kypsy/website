@@ -82,6 +82,7 @@ Rails.application.routes.draw do
   get "/searches",                  to: "searches#index"
   get "/search/*search/page/:page", to: "users#index"
   get "/search/*search",            to: "users#index",   as: :search
+  get "/search",                    to: "users#index",   as: :people_search
 
   # Last ditch effort to catch mistyped @username paths
   get "/:username", to: redirect { |params, request| "/@#{params[:username]}"}
