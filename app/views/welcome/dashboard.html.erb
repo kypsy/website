@@ -1,7 +1,7 @@
-<div class="row">
+<div class="row mb-5">
   <div class="col-sm-12">
     <div class="page-header">
-      <h1>
+      <h1 class="h4">
         Matches
         <small class="d-block d-sm-inline-block">
           you YASSed each other
@@ -32,39 +32,10 @@
 </div><!-- .row -->
 
 
-<div class="row">
+<div class="row mb-5">
   <div class="col-sm-12">
     <div class="page-header">
-      <h1>
-        YASSes
-        <small class="d-block d-sm-inline-block">
-          you YASSed them
-        </small>
-      </h1>
-    </div>
-
-    <% if @crushes && @crushes.any? %>
-      <%= render "/users/listing", users: @crushes %>
-    <% else %>
-      <p>
-        You haven’t crushed on anyone yet.
-        Go find someone that makes you excited and click that heart.
-      </p>
-
-      <!--
-      <p>
-        You can search / sort / filter people by:
-        location, age (range), labels.
-      </p>
-      -->
-    <% end %>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-sm-12">
-    <div class="page-header">
-      <h1>
+      <h1 class="h4">
         Bookmarks
         <small class="d-block d-sm-inline-block">
           you bookmarked them
@@ -76,10 +47,9 @@
       <%= render "/users/listing", users: @bookmarked_users %>
     <% else %>
       <p>
-        You haven’t YASSed on anyone yet.
         Bookmarks are like secret YASSes. It allows you to add them to your list <em>without</em> notifying them.
         Feel free to bookmark at will without consequence. Get wild!
       </p>
     <% end %>
   </div>
-</div>
+</div><!-- .row -->

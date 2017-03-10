@@ -1,11 +1,13 @@
-<% users.in_groups_of(4) do |group| %>
+<% users.in_groups_of(2) do |group| %>
   <div class="row">
     <% group.each do |user| %>
-      <% unless user.nil? %>
-        <div class="col-sm-3">
+
+      <div class="col">
+        <% unless user.nil? %>
           <%= render user %>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
+
     <% end %>
   </div>
 <% end %>
