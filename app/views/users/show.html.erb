@@ -1,17 +1,14 @@
 <div class="h-card">
-
   <div class="person">
 
     <div class="media">
       <div class="media-main">
         <%= link_to_avatar(@user, @avatar_size) %>
 
-        <%# TODO pull this out into either the user model settings or a URL model %>
         <p class="mt-2">
           <%= link_to_social_icons(@user) %>
         </p>
       </div>
-
 
       <div class="media-body">
         <h4 class="media-body">
@@ -170,6 +167,6 @@
 
       </div>
     <% end %>
-  </div>
 
+  </div><!-- .person -->
 </div><!-- .h-card -->
