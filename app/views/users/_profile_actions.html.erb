@@ -4,11 +4,11 @@
     <%= fa_icon "picture-o" %><span class="hidden-xs-down">&nbsp;&nbsp;Add photo</span>
   <% end %>
 
-  <%= link_to settings_path, class: "btn btn-secondary mb-1" do %>
+  <%= link_to settings_path, class: "btn mb-1" do %>
     <%= fa_icon :gear, class: "fa-lg" %><span class="hidden-xs-down">&nbsp;&nbsp;Edit profile</span>
   <% end %>
 
-  <%= link_to conversations_path, class: "btn btn-secondary mb-1" do %>
+  <%= link_to conversations_path, class: "btn mb-1" do %>
     <%= fa_icon :envelope, class: "fa-lg #{'text-danger' if unread_count}" %>
     <% if unread_count %><span class="label label-danger"><%= unread_count %></span><% end %>
     <span class="hidden-xs-down <%= 'text-danger' if unread_count %>">&nbsp;&nbsp;Messages</span>
@@ -49,7 +49,7 @@
       <% hide_show = im.crushing_on?(user) ? ["block", "none"] : ["none", "block"] %>
 
       <%= link_to uncrush_path(user.username),
-                  class:             "crush btn btn-secondary",
+                  class:             "crush btn",
                   "data-username" => user.username,
                   method:            :delete,
                   style:             "display: #{hide_show.first}" do %>
