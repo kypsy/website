@@ -58,11 +58,12 @@ Rails.application.routes.draw do
   get    "/start",               to: "users#new",            as: :start
   get    "/settings",            to: "users#edit",           as: :settings
   patch  "/settings",            to: "users#update",         as: :update_settings
-  get    "/leave",               to: "users#delete_account", as: :delete_account
   get    "/people/(page/:page)", to: "users#index",          as: :people
   get    "/@:username",          to: "users#show",           as: :person, username: /[^\/]+/
   get    "/@:username",          to: "users#show",           as: :user,   username: /[^\/]+/
   delete "/@:username",          to: "users#destroy",        username: /[^\/]+/
+  get    "/leave",               to: "users#delete_account", as: :delete_account
+  get    "/blocked",             to: "users#blocked",        as: :blocked
 
   # Action paths
   post   "/@:username/crush(.:format)",      to: "crushes#create",        as: :crush,               username: /[^\/]+/

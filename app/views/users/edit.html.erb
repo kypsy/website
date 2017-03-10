@@ -1,6 +1,4 @@
-<div class="page-header">
-  <h1>Settings</h1>
-</div>
+<h1>Settings</h1>
 
 <% unless @user.twitter? && @user.facebook? %>
   <div class="buttons">
@@ -19,141 +17,120 @@
 <%= render "errors" %>
 
 <%= form_for @user, url: update_settings_path, html: { class: "form" } do |f| %>
+  <% if @user.username.blank? %>
+    <div class="form-group mb-4">
+      <%= f.label      :username %>
+      <%= f.text_field :username, autocapitalize: "off", autocorrect: "off", class: "form-control" %>
+    </div>
+  <% end %>
+
+  <div class="form-group mb-4">
+    <%= f.label      :name %>
+    <%= f.text_field :name, autocapitalize: "words", class: "form-control" %>
+  </div>
+
+  <div class="form-group mb-4">
+    <%= f.label       :email %>
+    <%= f.email_field :email, autocapitalize: "off", autocorrect: "off", class: "form-control", required: true %>
+  </div>
+
+  <div class="form-group mb-4">
+    <%= f.label      :location %>
+    <%= f.text_field :location, autocapitalize: "words", class: "form-control" %>
+  </div>
+
+  <div class="form-group mb-4">
+    <%= f.label :my_interests_attributes, t("user.settings.general_interests_label") %>
+    <p class="form-text text-muted">Choose as many as you want.</p>
+    <%= render "/labels/form", f: f, collection: Interest.all %>
+  </div>
+
+  <div class="form-group activities-group mb-4">
+    <%= f.label :your_activities_attributes, t("user.settings.activity_tags_label") %>
+    <p class="form-text text-muted">Choose up to three.</p>
+    <%= render "/labels/form", f: f, collection: Activity.all %>
+  </div>
+
+
   <div class="row">
-    <div class="col-md-6">
+    <div class="col">
+      <div class="form-group mb-4">
+        <%= f.label :age_range, "My age range" %>
 
-      <% if @user.username.blank? %>
-        <div class="form-group">
-          <%= f.label      :username %>
-          <%= f.text_field :username, autocapitalize: "off", autocorrect: "off", class: "form-control" %>
-        </div>
-      <% end %>
-
-      <div class="form-group">
-        <%= f.label      :name %>
-        <%= f.text_field :name, autocapitalize: "words", class: "form-control" %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label       :email %>
-        <%= f.email_field :email, autocapitalize: "off", autocorrect: "off", class: "form-control", required: true %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label      :location %>
-        <%= f.text_field :location, autocapitalize: "words", class: "form-control" %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :my_interests_attributes, t("user.settings.general_interests_label") %>
-        <p class="form-text text-muted">Choose as many as you want.</p>
-        <%= render "/labels/form", f: f, collection: Interest.all %>
-      </div>
-
-      <div class="form-group activities-group">
-        <%= f.label :your_activities_attributes, t("user.settings.activity_tags_label") %>
-        <p class="form-text text-muted">Choose up to three.</p>
-        <%= render "/labels/form", f: f, collection: Activity.all %>
-      </div>
-
-    </div><!-- .col -->
-
-
-    <div class="col-md-6">
-
-      <div class="row">
-
-        <div class="col-xs-6 ml-3">
-          <div class="form-group">
-            <%= f.label :age_range, "My age range" %>
-
-            <% AgeRange.all.each do |age_range| %>
-              <div class="form-check">
-                <label class="form-check-label">
-                  <%= f.radio_button :age_range_id, age_range.id, { class: "form-check-input" } %>
-                  <%= age_range.name %>
-                </label>
-              </div>
-            <% end %>
-
+        <% AgeRange.all.each do |age_range| %>
+          <div class="form-check">
+            <label class="form-check-label">
+              <%= f.radio_button :age_range_id, age_range.id, { class: "form-check-input" } %>
+              <%= age_range.name %>
+            </label>
           </div>
-        </div>
-
-        <div class="col-xs-6 ml-3">
-          <div class="form-group">
-            <%= f.label :desired_age_ranges_attributes, "Desired age range" %>
-            <%= render "/labels/form", f: f, collection: AgeRange.all %>
-          </div>
-        </div>
+        <% end %>
 
       </div>
+    </div>
 
-
-      <!--
-      <div class="row">
-        <div class="col-md-6">
-          <div class="form-group">
-            <%= f.label  :label_id, "My Labels" %>
-            <%= f.select :label_id, Label.options_for_select, { include_blank: true }, { class: "form-control" } %>
-          </div>
-        </div>
-
-        <div class="col-md-6">
-          <div class="form-group">
-            <%= f.label :your_labels_attributes, "Desired Labels" %>
-            <%= render "/labels/form", f: f, collection: Label.all %>
-          </div>
-        </div>
+    <div class="col">
+      <div class="form-group mb-4">
+        <%= f.label :desired_age_ranges_attributes, "Desired age range" %>
+        <%= render "/labels/form", f: f, collection: AgeRange.all %>
       </div>
-      -->
+    </div>
+  </div><!-- .row -->
 
-      <div id="social-media" class="mt-3 mb-5">
-        <legend>Social media profiles</legend>
 
-        <% social_sites.map{|k,v| k}.each do |site| %>
-            <div class="form-group">
-              <%# TODO wire this up to user settings instead of one column/method per site %>
-              <%= f.label      "#{site.gsub(/ /, "")}_username".to_sym, "#{site.capitalize} Username" %>
-              <%= f.text_field "#{site.gsub(/ /, "")}_username".to_sym, class: "form-control", placeholder: "#{site.capitalize} Username" %>
-            </div>
+
+  <div id="social-media" class="mt-3 mb-5">
+    <legend>Social media profiles</legend>
+
+    <% social_sites.map{|k,v| k}.each do |site| %>
+      <div class="form-group mb-4">
+        <%# TODO wire this up to user settings instead of one column/method per site %>
+        <%= f.label      "#{site.gsub(/ /, "")}_username".to_sym, "#{site.capitalize} Username" %>
+        <%= f.text_field "#{site.gsub(/ /, "")}_username".to_sym, class: "form-control", placeholder: "#{site.capitalize} Username" %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="form-group mb-4">
+    <%= f.label     :bio, "About Me" %>
+    <%= f.text_area :bio, autocapitalize: "sentences", class: "form-control", rows: 8 %>
+  </div>
+
+  <div class="form-group mt-5" id="notifications">
+    <fieldset>
+      <legend>Email notifications</legend>
+
+      <div class="checkbox">
+        <%= f.label :email_crushes do %>
+          <%= f.check_box :email_crushes, class: "mr-1" %>
+          Notify me when someone YASSes me
         <% end %>
       </div>
 
-      <div class="form-group">
-        <%= f.label     :bio, "About Me" %>
-        <%= f.text_area :bio, autocapitalize: "sentences", class: "form-control", rows: 8 %>
+      <div class="checkbox">
+        <%= f.label :email_messages do %>
+          <%= f.check_box :email_messages, class: "mr-1" %>
+          Notify me when someone messages me
+        <% end %>
       </div>
-
-      <div class="form-group mt-5" id="notifications">
-        <fieldset>
-          <legend>Email notifications</legend>
-
-          <div class="checkbox">
-            <label>
-              <%= f.check_box :email_crushes %>
-              <%= f.label     :email_crushes, "Notify me when someone YASSes me" %>
-            </label>
-          </div>
-
-          <div class="checkbox">
-            <label>
-              <%= f.check_box :email_messages %>
-              <%= f.label     :email_messages, "Notify me when someone messages me" %>
-            </label>
-          </div>
-        </fieldset>
-
-      </div>
-
-    </div><!-- .col -->
-  </div><!-- .row -->
+    </fieldset>
+  </div>
 
   <div class="actions col-sm-6 col-md-4 ml-auto">
     <%= f.submit "Save Changes", data: { disable_with: "Saving…" }, class: "btn btn-success btn-block btn-lg" %>
   </div>
-
-  <p class="my-5 text-right">
-    If you want delete your account,
-    <%= link_to "you can here.", [:delete_account] %>
-  </p>
 <% end %>
+
+<div class="my-5 text-rightx">
+  <h2>Misc</h2>
+  <ul class="list-unstyled">
+    <li>You can view a list of people that you've
+      <%= link_to "blocked.", blocked_path %>
+    </li>
+
+    <li>
+      If you want delete your account,
+      <%= link_to "you can here.", delete_account_path %>
+    </li>
+  </ul>
+</div>

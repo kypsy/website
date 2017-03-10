@@ -81,6 +81,12 @@ class UsersController < ApplicationController
     @user  = current_user
   end
 
+  def blocked
+    @title = "Blocked Users"
+    @slug  = "settings"
+    @user  = current_user
+  end
+
   def destroy
     @user = current_user
     @user.photos.destroy_all
