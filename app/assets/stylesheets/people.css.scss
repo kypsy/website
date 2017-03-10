@@ -16,15 +16,6 @@ main {
   margin-bottom: 5px;
 }
 
-#people .person .u-photo {
-  display: block;
-  clear: both;
-  float: none;
-  width:     260px;
-  height:    auto;
-  max-width: 100%;
-}
-
 .person {
   clear: both;
   padding: 0;
@@ -37,8 +28,7 @@ main {
 }
 
 .person .u-photo {
-  width:  100px;
-  height: 100px;
+  width:  100%;
 }
 
 .person .p-name {
