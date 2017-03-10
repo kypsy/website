@@ -1,31 +1,21 @@
 <% if mine? %>
-  <%= link_to new_photo_path, class: "btn btn-success" do %>
-    <%= fa_icon "picture-o" %>&nbsp;&nbsp;Add photo
+
+  <%= link_to new_photo_path, class: "btn btn-success mb-1" do %>
+    <%= fa_icon "picture-o" %><span class="hidden-xs-down">&nbsp;&nbsp;Add photo</span>
   <% end %>
 
-  <%= link_to settings_path, class: "btn btn-secondary" do %>
+  <%= link_to settings_path, class: "btn btn-secondary mb-1" do %>
     <%= fa_icon :gear, class: "fa-lg" %><span class="hidden-xs-down">&nbsp;&nbsp;Edit profile</span>
   <% end %>
 
-<br><br>
-
-  <%= link_to root_path, class: "btn btn-secondary" do %>
-    <%= fa_icon :home, class: "fa-lg" %><span class="hidden-xs-down">&nbsp;&nbsp;Dashboard</span>
-  <% end %>
-
-
-  <%= link_to conversations_path, class: "btn btn-secondary" do %>
-    <%= fa_icon :envelope, class: "fa-lg" %>
+  <%= link_to conversations_path, class: "btn btn-secondary mb-1" do %>
+    <%= fa_icon :envelope, class: "fa-lg #{'text-danger' if unread_count}" %>
     <% if unread_count %><span class="label label-danger"><%= unread_count %></span><% end %>
+    <span class="hidden-xs-down <%= 'text-danger' if unread_count %>">&nbsp;&nbsp;Messages</span>
   <% end %>
 
+<% else %>
 
-
-  <%= link_to conversations_path do %>
-  <% end %>
-
-
-<% elsif not_mine? %>
   <div class="actions">
 
     <span class="btn-group">
@@ -80,4 +70,5 @@
 
     </span>
   </div><!-- .actions -->
+
 <% end %>

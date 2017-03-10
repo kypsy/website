@@ -1,50 +1,69 @@
-<nav class="navbar navbar-toggleable-xl navbar-light bg-faded">
-  <div class="col-md-6 offset-md-3 col-sm-12 pl-0 pr-0">
+<header role="banner">
+  <nav class="navbar navbar-toggleable-xl navbar-light bg-faded" role="navigation">
+    <div class="col-md-6 offset-md-3 col-sm-12 pl-0 pr-0">
 
+      <% if logged_in? %>
 
-    <% if logged_in? %>
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item mr-auto">
 
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item mr-auto">
-          <%= link_to fa_icon(:user, class: "fa-lg"),   person_path(current_user.username), class: "nav-link" if current_user.username.present? %>
-        </li>
+            <ul class="navbar-nav">
+              <li>
+                <%= link_to fa_icon(:home, class: "fa-lg"), root_path, class: "nav-link" %>
+              </li>
 
-        <li class="nav-item mx-auto">
-          <%= link_to fa_icon(:users, class: "fa-lg"),  people_path, class: "nav-link" %>
-        </li>
+              <li>
+                <%= link_to fa_icon(:user, class: "fa-lg"), person_path(current_user.username), class: "nav-link" if current_user.username.present? %>
+              </li>
+            </ul>
 
-        <li class="nav-item ml-auto">
-          <%= link_to fa_icon(:search, class: "fa-lg"), people_search_path, class: "nav-link" %>
-        </li>
-      </ul>
+          </li>
 
-    <% else %>
+          <li class="nav-item mx-auto">
+            <span class="navbar-brand"><%= t(:brand) %></span>
+          </li>
 
-      <div class="navbar-brand">
-        <%= link_to t(:brand), root_path, rel: "home" %> —
-        <%= t(:tagline) %>
-      </div>
+          <li class="nav-item ml-auto">
 
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item ml-1 hidden-sm-down">
-          <span class="nav-link">Sign in to get started</span>
-        </li>
-        <li class="nav-item ml-1">
-          <%= button_to_sign_in_with(:twitter) %>
-        </li>
-        <li class="nav-item ml-1">
-          <%= button_to_sign_in_with(:facebook) %>
-        </li>
-      </ul>
+            <ul class="navbar-nav">
+              <li>
+                <%= link_to fa_icon(:users, class: "fa-lg"),  people_path, class: "nav-link" %>
+              </li>
 
-    <% end %>
+              <li>
+                <%= link_to fa_icon(:search, class: "fa-lg"), people_search_path, class: "nav-link" %>
+              </li>
+            </ul>
 
+          </li>
 
-  </div><!-- .container -->
-</nav>
+          <li class="nav-item">
+          </li>
+        </ul>
 
+      <% else %>
 
+        <div class="navbar-brand">
+          <%= link_to t(:brand), root_path, rel: "home" %> —
+          <%= t(:tagline) %>
+        </div>
 
-<header role="banner" class="mb-2 mb-sm-5">
-  <h1 class="my-4 col-md-6 offset-md-3 col-sm-12"><%= t :brand %></h1>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item ml-1 hidden-sm-down">
+            <span class="nav-link">Sign in to get started</span>
+          </li>
+
+          <li class="nav-item ml-1">
+            <%= button_to_sign_in_with(:twitter) %>
+          </li>
+
+          <li class="nav-item ml-1">
+            <%= button_to_sign_in_with(:facebook) %>
+          </li>
+        </ul>
+
+      <% end %>
+
+    </div>
+  </nav>
 </header>

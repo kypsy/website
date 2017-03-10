@@ -1,13 +1,14 @@
 /* masthead and nav... */
-header[role=banner] {
+nav[role=navigation] {
   border-top: 5px solid $color-bright-orange;
   border-bottom: 5px solid $color-bright-green;
 
-  h1 {
+  .navbar-brand {
     text-align: center;
     text-transform: uppercase;
     font-weight: 200;
-    line-height: 1em;
+    letter-spacing: 1em;
+    padding-left: 2em;
   }
 }
 /* ...masthead and nav */
