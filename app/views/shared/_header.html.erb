@@ -43,20 +43,24 @@
 
       <% else %>
 
-        <div class="navbar-brand">
-          <%= link_to t(:brand), root_path, rel: "home" %>
+        <div class="navbar-brand mb-2">
+          <%= t(:brand) %>
         </div>
 
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item ml-1 hidden-sm-down">
-            <span class="nav-link">Sign in to get started</span>
+        <ul class="navbar-nav mr-auto ml-auto">
+          <li class="nav-item ml-auto">
+            <span class="nav-link">Sign in with</span>
           </li>
 
-          <li class="nav-item ml-1">
+          <li class="nav-item">
             <%= button_to_sign_in_with(:twitter) %>
           </li>
 
-          <li class="nav-item ml-1">
+          <li class="nav-item">
+            <span class="nav-link">or</span>
+          </li>
+
+          <li class="nav-item mr-auto">
             <%= button_to_sign_in_with(:facebook) %>
           </li>
         </ul>
