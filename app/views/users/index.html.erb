@@ -1,27 +1,17 @@
-<%= form_tag "/people", method: :get, class: "form-inline", role: "search" do %>
-  <%= label_tag :search, "Search", class: "sr-only" %>
-  <%= search_field_tag :search, params[:search], class: "form-control mr-sm-2", placeholder: "People search" %>
+<% if @query %>
+  <h1>
+    <% if %w(labels).include? @column %>
+      <%= link_to @column.capitalize, send("#{@column}_path") %> :
+    <% else %>
+      Search :
+    <% end %>
 
-  <%= button_tag "Search", class: "btn btn-outline-success my-2 my-sm-down-0 hidden-sm-down" %>
+    <%= @query.capitalize %>
+    <small>(<%= @total %>)</small>
+  </h1>
+<% else %>
+  <h1>Everyone</h1>
 <% end %>
-
-
-<div class="page-header">
-  <% if @query %>
-    <h1>
-      <% if %w(labels).include? @column %>
-        <%= link_to @column.capitalize, send("#{@column}_path") %> :
-      <% else %>
-        Search :
-      <% end %>
-
-      <%= @query.capitalize %>
-      <small>(<%= @total %>)</small>
-    </h1>
-  <% else %>
-    <h1>Everyone</h1>
-  <% end %>
-</div>
 
 <%= render "/users/listing", users: @users %>
 

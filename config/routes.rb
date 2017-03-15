@@ -6,6 +6,8 @@ class AdminAuthenticator
 end
 
 Rails.application.routes.draw do
+  get 'search/index'
+
   # No WWW
   constraints(subdomain: "www") do
     get '(*any)' => redirect { |params, request|
@@ -84,8 +86,8 @@ Rails.application.routes.draw do
   get "/labels",                    to: "searches#index",  as: :label,  column: "labels"
   get "/searches",                  to: "searches#index"
   get "/search/*search/page/:page", to: "users#index"
-  get "/search/*search",            to: "users#index",   as: :search
-  get "/search",                    to: "users#index",   as: :people_search
+  get "/search/*search",            to: "users#index",     as: :search
+  get "/search",                    to: "search#index",    as: :people_search
 
   # misc
   get ".well-known/apple-app-site-association", to: "about#well_known_apple_app_site_association"

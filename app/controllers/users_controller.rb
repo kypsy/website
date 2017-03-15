@@ -16,6 +16,11 @@ class UsersController < ApplicationController
 
     @total = @users.length
     @users = @users.listing_order.paginate(page: params[:page] ||= 1)
+
+    # if @total.zero?
+    #   flash[:notice] = "No results for that search. Try something else!"
+    #   return redirect_to people_search_path
+    # end
   end
 
   def show
