@@ -31,7 +31,7 @@ Rails.application.routes.draw do
     resources :red_flags, path: "red-flags"
 
     resources :interests
-    # resources :activities
+    resources :activities
   end
 
   # Static-y pages

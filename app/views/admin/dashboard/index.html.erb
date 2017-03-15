@@ -1,10 +1,6 @@
-<ul class="list-unstyled nav">
-  <li><%= link_to "Interests",  [:admin, :interests],  class: "nav-link" %></li>
-  <li><%#= link_to "Activities", [:admin, :activities], class: "nav-link" %></li>
-</ul>
+<%= render "admin/nav" %>
 
-
-<div class='row'>
+<div class="row">
 
   <%
   {
@@ -15,7 +11,7 @@
     <div class="col">
       <h1 class="h4"><%= title %></h1>
 
-      <table class='table'>
+      <table class="table">
         <% collection.each do |slug, count| %>
           <%= content_tag "tr", class: red_flag_classes(count) do %>
             <td><%= link_to slug, admin_red_flag_path(slug) %></td>

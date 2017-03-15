@@ -48,13 +48,14 @@ class Admin::InterestsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_interest
-      @interest = Interest.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def interest_params
-      params.require(:interest).permit(:name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_interest
+    @interest = Interest.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def interest_params
+    params.require(:interest).permit(:name)
+  end
 end

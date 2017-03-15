@@ -1,0 +1,23 @@
+<%= render "admin/nav" %>
+
+<%= render "admin/page_header", label: "Activity", thing: @activities.first %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Name</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @activities.each do |activity| %>
+      <tr>
+        <td><%= link_to "EDIT", [:edit, :admin, activity], class: "btn btn-sm btn-primary" %></td>
+        <td><%= activity.name %></td>
+        <td><%= link_to "DELETE", [:admin, activity], method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-danger" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
