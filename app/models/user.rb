@@ -3,12 +3,15 @@ class User < ActiveRecord::Base
   include PgSearch
 
   pg_search_scope :text_search,
-    against: {username: "A", location: "B"},
-    using: {tsearch: {dictionary: "english", prefix: true}},
-    ignoring: :accents,
-    associated_against: {
-      label:   [:name]
-    }
+                  against: { username: "A", location: "B" },
+                  using: { tsearch: { dictionary: "english", prefix: true } },
+                  ignoring: :accents,
+                  associated_against: {
+                    label:     [:name],
+                    age_range: [:name],
+                    interest:  [:name],
+                    activity:  [:name]
+                  }
 
   pg_search_scope :field_search, lambda { |query|
     field   = COLUMN_MAPPING[query.keys.first.to_sym]

@@ -1,6 +1,6 @@
 module UserRule
 
-  ALLOWED_SEARCH_COLUMNS = %w(labels)
+  ALLOWED_SEARCH_COLUMNS = %w(interests activities age_ranges)
   DISALLOWED_COLUMNS = [
     :id,
     :visible,
@@ -16,27 +16,39 @@ module UserRule
   ]
 
   COLUMN_MAPPING = {
-    lable: :label
+    interest: :interest,
+    activity: :activity,
+    age_range: :age_ranges
   }
 
   ASSOCIATED_MAPPING = {
-    label: :name
+    interest:  :name,
+    activity:  :name,
+    age_range: :name
   }
 
   SQL_GROUP = {
-    labels: "labels.name"
+    interests:  "interests.name",
+    activities: "activities.name",
+    age_ranges: "age_ranges.name"
   }
 
   ASSOCIATION_NAME = {
-    labels: :label
+    interests: :interest,
+    activities: :activity,
+    age_ranges: :age_range
   }
 
   SELECT = {
-    label: "users.id, label_id"
+    interest:  "users.id, interest_id",
+    activity:  "users.id, activity_id",
+    age_range: "users.id, age_range_id"
   }
 
   COLUMN = {
-    label: :label
+    interest:  :interest,
+    activity:  :activity,
+    age_range: :age_range
   }
 
   def self.column_for(column)
