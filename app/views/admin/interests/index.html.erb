@@ -1,0 +1,21 @@
+<%= render "admin/page_header", label: "Interest", thing: @interests.first %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Name</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @interests.each do |interest| %>
+      <tr>
+        <td><%= link_to "EDIT", [:edit, :admin, interest], class: "btn btn-sm btn-primary" %></td>
+        <td><%= interest.name %></td>
+        <td><%= link_to "DELETE", [:admin, interest], method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-danger" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -29,6 +29,9 @@ Rails.application.routes.draw do
 
     resources :photos, only: [:show, :destroy]
     resources :red_flags, path: "red-flags"
+
+    resources :interests
+    # resources :activities
   end
 
   # Static-y pages

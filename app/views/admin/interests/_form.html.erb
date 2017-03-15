@@ -1,0 +1,10 @@
+<%= form_for [:admin, thing] do |f| %>
+  <%= render "admin/form_errors", thing: thing %>
+
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, autofocus: true, class: "form-control form-control-lg" %>
+  </div>
+
+  <%= render "admin/form_actions", cancel_url: [:admin, :interests] %>
+<% end %>

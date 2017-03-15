@@ -1,0 +1,7 @@
+<%# TODO there's got to be a better way! %>
+<% button_text ||= "Save" %>
+
+<div class="actions">
+  <%= link_to "Cancel", cancel_url, class: "cancel action-cancel" %>
+  <%= button_tag button_text, class: "btn btn-primary btn-lg action-submit" %>
+</div>

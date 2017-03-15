@@ -1,8 +1,10 @@
-<div class='row'>
+<ul class="list-unstyled nav">
+  <li><%= link_to "Interests",  [:admin, :interests],  class: "nav-link" %></li>
+  <li><%#= link_to "Activities", [:admin, :activities], class: "nav-link" %></li>
+</ul>
 
-  <div class='col-sm-4'>
-    <h1>Goals</h1>
-  </div>
+
+<div class='row'>
 
   <%
   {
@@ -10,8 +12,8 @@
     "Flagged Photos" => @flagged_photos
   }.each do |title, collection|
   %>
-    <div class="col-sm-4">
-      <h1><%= title %></h1>
+    <div class="col">
+      <h1 class="h4"><%= title %></h1>
 
       <table class='table'>
         <% collection.each do |slug, count| %>
@@ -24,6 +26,5 @@
 
     </div>
   <% end %>
-
 
 </div><!-- .row -->
