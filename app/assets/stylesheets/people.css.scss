@@ -2,6 +2,14 @@ main {
   margin-bottom: 5em;
 }
 
+#people .person-card {
+  outline: 1px solid red;
+
+  .u-photo {
+    width: 100%;
+  }
+}
+
 #people .media-body {
   display: block;
   clear: both;

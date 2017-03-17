@@ -1,3 +1,4 @@
+<%# Search Results Page %>
 <% if @query %>
   <h1>
     <% if %w(labels).include? @column %>
@@ -9,12 +10,73 @@
     <%= @query.capitalize %>
     <small>(<%= @total %>)</small>
   </h1>
+
+  <%= render "/users/listing", users: users %>
+
+  <div class="col-sm-12" id="pagination">
+    <%= will_paginate users, renderer: BootstrapPagination::Rails %>
+  </div>
+
 <% else %>
-  <h1>Everyone</h1>
+<%# People Matcher Page %>
+
+<% @users.each do |user| %>
+  <div class="h-card person-card mb-5">
+    <%= image_tag(user.avatar(@avatar_size), class: "u-photo", alt: user.username) %>
+
+    <h1>
+      <% if user.name.present? %>
+        <span class="p-name"><%= user.name %></span>
+        (<span class="p-nickname"><%= "@#{user.username}" %></span>)
+      <% else %>
+        <span class="p-name"><%= link_to user.username, person_path(user.username) %></span><%= render "users/age", user: user %>
+      <% end %>
+
+      <small><%= user.age %></small>
+    </h1>
+
+    <% if labels_list(user, :interests).present? %>
+      <p>
+        <%= labels_list(user, :interests, classes: "badge badge-default mr-1", limit: 3) %>
+      </p>
+    <% end %>
+
+    <% if labels_list(user, :activities).present? %>
+      <p>
+        <%= labels_list(user, :activities, classes: "badge badge-info mr-1") %>
+      </p>
+    <% end %>
+
+    <div class="actions row">
+      <div class="col">
+        <%= link_to  people_path, class: "btn btn-lg btn-secondary btn-block" do %>
+          <%= fa_icon "arrow-left", class: "fa-lg mr-2" %>
+          Next
+        <% end %>
+      </div>
+
+      <div class="col">
+        <%= link_to action_bookmark_path(user.username),
+                    method:            :post,
+                    id:                "new_secret_crush",
+                    class:             "bookmark form-inline btn btn-lg btn-primary btn-block",
+                    "data-username" => user.username do %>
+          <%= fa_icon :star, class: "fa-lg" %>
+          Bookmark
+        <% end %>
+      </div>
+
+      <div class="col">
+        <%= link_to crush_path(user.username),
+                    class: "crush btn btn-lg btn-danger btn-block",
+                    "data-username" => user.username,
+                    method:            :post do %>
+          <%= fa_icon :heart, class: "fa-lg mr-2" %>
+          YASS
+        <% end %>
+      </div>
+    </div>
+  </div>
 <% end %>
 
-<%= render "/users/listing", users: @users %>
-
-<div class="col-sm-12" id="pagination">
-  <%= will_paginate @users, renderer: BootstrapPagination::Rails %>
-</div>
+<% end %>

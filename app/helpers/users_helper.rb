@@ -1,6 +1,6 @@
 module UsersHelper
 
-  def labels_list(user, type, classes: nil, join: nil)
+  def labels_list(user, type, classes: nil, separator: nil, limit: 3)
     output = []
 
     label_type = "desired_#{type}"
@@ -11,7 +11,11 @@ module UsersHelper
       end
     end
 
-    output.join(join).html_safe
+    if limit.present?
+      output = output.shuffle[0..limit-1]
+    end
+
+    output.join(separator).html_safe
   end
 
   def social_sites

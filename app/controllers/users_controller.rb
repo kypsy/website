@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   def index
     @title       = "People Using #{t(:brand)}"
     @slug        = "people"
-    @avatar_size = :square
+    @avatar_size = :medium
 
     @users = if logged_in?
       current_user.viewable_users.search(@search)
@@ -15,7 +15,7 @@ class UsersController < ApplicationController
     end
 
     @total = @users.length
-    @users = @users.listing_order.paginate(page: params[:page] ||= 1)
+    @users = @users.listing_order.paginate(page: params[:page] ||= 1).reverse
 
     # if @total.zero?
     #   flash[:notice] = "No results for that search. Try something else!"

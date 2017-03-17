@@ -259,6 +259,12 @@ class User < ActiveRecord::Base
     check_provider "facebook"
   end
 
+  def age
+    if age_range.present? && age_range.name != "rather not say"
+      age_range.name
+    end
+  end
+
   def age_inappropiate?(user)
     !age_appropiate?(user)
   end

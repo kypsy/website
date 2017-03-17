@@ -57,16 +57,16 @@
       </p>
     <% end %>
 
-    <% if @user.age_range.present? && @user.age_range.name != "rather not say" %>
+    <% if @user.age.present? %>
       <p>
-        I’m <%= @user.age_range.name %> years old.
+        I’m <%= @user.age %> years old.
       </p>
     <% end %>
 
     <% if @user.desired_age_ranges.present? && @user.desired_age_ranges.map(&:name).join != "rather not say" %>
       <p>
         I’m looking for friends that are
-        <%= labels_list(@user, :age_ranges, join: ", ") %>
+        <%= labels_list(@user, :age_ranges, separator: ", ") %>
         years old.
       </p>
     <% end %>
