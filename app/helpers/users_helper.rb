@@ -1,6 +1,6 @@
 module UsersHelper
 
-  def labels_list(user, type, classes: nil)
+  def labels_list(user, type, classes: nil, join: nil)
     output = []
 
     label_type = "desired_#{type}"
@@ -11,7 +11,7 @@ module UsersHelper
       end
     end
 
-    output.join.html_safe
+    output.join(join).html_safe
   end
 
   def social_sites
