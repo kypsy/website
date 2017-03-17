@@ -121,10 +121,12 @@
   </main>
 
 
+  <hr />
+
   <div id="flags">
     <% if @user && not_mine? %>
       <div class="row">
-        <div class="col-sm-6">
+        <div class="col">
           <% if flagged?(@user) %>
 
             <%= unflag_button @user, class: "delete-flag btn btn-block btn-warning mb-3" %>
@@ -145,7 +147,7 @@
           <% end %>
         </div>
 
-        <div class="col-sm-6">
+        <div class="col">
           <% if blocked? %>
 
             <%= link_to action_unblock_path(@user.username), method: :delete, class: "btn btn-danger btn-block mb-3" do %>

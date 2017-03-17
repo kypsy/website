@@ -1,6 +1,4 @@
-<div class="page-header">
-  <h1>What’s the story of this photo?</h1>
-</div>
+<h1 class="mb-3">What’s the story of this photo?</h1>
 
 <div id="preview"><%= image_tag @photo.image_url(:medium).to_s %></div>
 
@@ -39,7 +37,7 @@
     </div>
   <% end %>
 
-  <div class="col-12 actions">
+  <div class="actions">
     <%= f.submit "Save Photo", data: {disable_with: "Saving…".html_safe}, class: "btn btn-success btn-block btn-lg" %>
   </div>
 <% end %>
