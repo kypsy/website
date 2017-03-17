@@ -1,17 +1,16 @@
 <div class="h-card">
   <div class="person">
 
+    <%= render "users/profile_actions", user: @user %>
+    <hr />
+
     <div class="media">
       <div class="media-main">
         <%= link_to_avatar(@user, @avatar_size) %>
-
-        <p class="mt-2">
-          <%= link_to_social_icons(@user) %>
-        </p>
       </div>
 
-      <div class="media-body">
-        <h4 class="media-body">
+      <div class="media-body ml-2">
+        <h4 class="media-title mt-2 h6">
           <% if @user.name.present? %>
             <span class="p-name"><%= link_to @user.name, person_path(@user.username) %></span>
             (<span class="p-nickname"><%= link_to "@#{@user.username}", person_path(@user.username) %></span>)
@@ -28,11 +27,11 @@
           <% end %>
         </p>
 
-        <% if user_profile? %>
-          <%= render "users/profile_actions", user: @user %>
-        <% end %>
+        <p class="mt-2">
+          <%= link_to_social_icons(@user) %>
+        </p>
       </div>
-    </div>
+    </div><!-- .media-body -->
 
   </div> <!-- .person -->
 

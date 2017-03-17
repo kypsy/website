@@ -8,10 +8,6 @@ module ApplicationHelper
     text.gsub(/<a /, "<span ").gsub(/<\/a>/, "<\/span>").html_safe
   end
 
-  def user_profile?
-    @slug == "person"
-  end
-
   def cache_key_for_users
     count          = User.count
     max_updated_at = User.maximum(:updated_at).try(:utc).try(:to_s, :number)
@@ -42,7 +38,7 @@ module ApplicationHelper
   end
 
   def link_to_avatar(user, avatar_size=nil)
-    link_to image_tag(user.avatar(avatar_size), class: "u-photo d-flex mr-3", alt: user.username),
+    link_to image_tag(user.avatar(avatar_size), class: "u-photo mr-3", alt: user.username),
             person_path(user.username)
   end
 

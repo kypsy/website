@@ -1,48 +1,57 @@
-<% if mine? %>
+<div class="actions mb-3">
 
-  <%= link_to new_photo_path, class: "btn btn-success mb-1" do %>
-    <%= fa_icon "picture-o" %><span class="hidden-xs-down">&nbsp;&nbsp;Add photo</span>
-  <% end %>
+  <% if mine? %>
 
-  <%= link_to settings_path, class: "btn mb-1" do %>
-    <%= fa_icon :gear, class: "fa-lg" %><span class="hidden-xs-down">&nbsp;&nbsp;Edit profile</span>
-  <% end %>
+    <%= link_to new_photo_path, class: "btn btn-success" do %>
+      <%= fa_icon "picture-o" %>
+      <span class="hidden-xs-down">&nbsp;Add photo</span>
+    <% end %>
 
-  <%= link_to conversations_path, class: "btn mb-1" do %>
-    <%= fa_icon :envelope, class: "fa-lg #{'text-danger' if unread_count}" %>
-    <% if unread_count %><span class="label label-danger"><%= unread_count %></span><% end %>
-    <span class="hidden-xs-down <%= 'text-danger' if unread_count %>">&nbsp;&nbsp;Messages</span>
-  <% end %>
+    <%= link_to settings_path, class: "btn" do %>
+      <%= fa_icon :gear, class: "fa-lg" %>
+      <span class="hidden-xs-down">&nbsp;Edit Profile</span>
+    <% end %>
 
-<% else %>
+    <%= link_to conversations_path, class: "btn" do %>
+      <%= fa_icon :envelope, class: "fa-lg #{'text-danger' if unread_count}" %>
+      <% if unread_count %><span class="label label-danger"><%= unread_count %></span><% end %>
+      <span class="hidden-xs-down <%= 'text-danger' if unread_count %>">&nbsp;View Messages</span>
+    <% end %>
 
-  <div class="actions">
+  <% else %>
 
     <span class="btn-group">
       <%# MESSAGE BUTTON %>
-      <%= link_to fa_icon(:comment), new_message_path(username: user.username), class: "btn btn-info message" %>
+      <%= link_to new_message_path(username: user.username), class: "btn btn-info message" do %>
+        <%= fa_icon(:comment) %>
+        &nbsp; <span class="hidden-xs-down">Send</span> Message
+      <% end %>
 
       <%# BOOKMARK BUTTON %>
       <% hide_show = im.bookmarking?(user) ? ["block", "none"] : ["none", "block"] %>
 
       <%# bookmarked %>
       <div class="btn-group">
-        <%= link_to fa_icon(:star, class: "text-primary"),
-                    action_unbookmark_path(user.username),
+        <%= link_to action_unbookmark_path(user.username),
                     method:            :delete,
                     id:                "unbookmark",
                     class:             "bookmark form-inline btn btn-default",
                     "data-username" => user.username,
-                    style:             "display: #{hide_show.first}" %>
+                    style:             "display: #{hide_show.first}" do %>
+          <%= fa_icon(:star, class: "text-primary") %>
+          <span class="hidden-xs-down">&nbsp;Un-Bookmark</span>
+        <% end %>
       </div>
 
-      <%= link_to fa_icon(:star),
-                  action_bookmark_path(user.username),
+      <%= link_to action_bookmark_path(user.username),
                   method:            :post,
                   id:                "new_secret_crush",
                   class:             "bookmark form-inline btn btn-primary",
                   "data-username" => user.username,
-                  style:             "display: #{hide_show.last}" %>
+                  style:             "display: #{hide_show.last}" do %>
+        <%= fa_icon(:star) %>
+        <span class="hidden-xs-down">&nbsp;Add Bookmark</span>
+      <% end %>
 
 
       <%# CRUSH BUTTON %>
@@ -54,10 +63,7 @@
                   method:            :delete,
                   style:             "display: #{hide_show.first}" do %>
 
-        <strong class="text-danger">
-          <%= fa_icon :heart %>
-          Un-YASS
-        </strong>
+        <span class="text-danger"><%= fa_icon :heart %>&nbsp;Un-YASS</span>
       <% end %>
 
       <%= link_to crush_path(user.username),
@@ -65,10 +71,11 @@
                   "data-username" => user.username,
                   method:            :post,
                   style:             "display: #{hide_show.last}" do %>
-        <%= fa_icon :heart %>&nbsp;&nbsp;YASS
+        <%= fa_icon :heart %>&nbsp;YASS
       <% end %>
 
     </span>
-  </div><!-- .actions -->
 
-<% end %>
+  <% end %>
+
+</div><!-- .actions -->
