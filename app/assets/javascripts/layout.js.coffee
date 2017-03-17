@@ -22,7 +22,14 @@ class UserAction
   crushButton: (method) =>
     elements = ($ ".#{this.className()}[data-username='#{@username}']")
 
-    elements.toggle()
+    if $("html").attr("id") == "people"
+      # People Matcher Page
+      personCard = $(".person-card[data-username='#{@username}']")
+      personCard.hide()
+      # console.log "show current person card"
+    else
+      # Profile Page
+      elements.toggle()
 
     if method == "delete"
       elements.data("method", "post")

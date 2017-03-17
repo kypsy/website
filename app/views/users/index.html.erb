@@ -21,7 +21,7 @@
 <%# People Matcher Page %>
 
 <% @users.each do |user| %>
-  <div class="h-card person-card mb-5">
+  <div class="h-card person-card mb-5" data-username="<%= user.username %>">
     <%= image_tag(user.avatar(@avatar_size), class: "u-photo", alt: user.username) %>
 
     <h1>
@@ -51,7 +51,7 @@
       <div class="col">
         <%= link_to  people_path, class: "btn btn-lg btn-secondary btn-block" do %>
           <%= fa_icon "arrow-left", class: "fa-lg mr-2" %>
-          Next
+          <span class="hidden-xs-down">Next</span>
         <% end %>
       </div>
 
@@ -62,7 +62,7 @@
                     class:             "bookmark form-inline btn btn-lg btn-primary btn-block",
                     "data-username" => user.username do %>
           <%= fa_icon :star, class: "fa-lg" %>
-          Bookmark
+          <span class="hidden-xs-down">Bookmark</span>
         <% end %>
       </div>
 
@@ -72,7 +72,7 @@
                     "data-username" => user.username,
                     method:            :post do %>
           <%= fa_icon :heart, class: "fa-lg mr-2" %>
-          YASS
+          <span class="hidden-xs-down">YASS</span>
         <% end %>
       </div>
     </div>
