@@ -157,16 +157,6 @@ class User < ActiveRecord::Base
     def create_for_facebook(auth)
       provider = Provider.new(name: auth["provider"], uid: auth['uid'])
 
-      puts "*"*80
-      puts "in create_for_facebook"
-      puts auth.info.inspect
-      puts "*"*80
-      puts "auth.info.nickname:"
-      puts auth.info.nickname
-      puts "auth.info.name:"
-      puts auth.info.name
-      puts "*"*80
-
       u = create! do |user|
         user.providers << provider
         provider.handle        = auth.info.nickname || auth.info.name
@@ -178,7 +168,7 @@ class User < ActiveRecord::Base
 
         user.location          = auth["info"]["location"]
 
-        user.username          = available_username(auth["info"]["nickname"])
+        user.username          = available_username(auth["extra"]["raw_info"]["username"])
         user.email             = auth["info"]["email"]
         user.bio               = auth["info"]["description"]
       end
