@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
                   using: { tsearch: { dictionary: "english", prefix: true } },
                   ignoring: :accents,
                   associated_against: {
-                    desired_age_ranges: [:name],
+                    age_range:          [:name],
                     desired_interests:  [:name],
                     desired_activities: [:name]
                   }

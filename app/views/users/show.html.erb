@@ -11,12 +11,8 @@
 
       <div class="media-body ml-2">
         <h4 class="media-title mt-2 h6">
-          <% if @user.name.present? %>
-            <span class="p-name"><%= link_to @user.name, person_path(@user.username) %></span>
-            (<span class="p-nickname"><%= link_to "@#{@user.username}", person_path(@user.username) %></span>)
-          <% else %>
-            <span class="p-name"><%= link_to @user.username, person_path(@user.username) %></span><%= render "users/age", user: @user %>
-          <% end %>
+          <span class="p-name"><%= link_to @user.name, person_path(@user.username) %></span>
+          (<span class="p-nickname"><%= link_to "@#{@user.username}", person_path(@user.username) %></span>)
         </h4>
 
         <p class="p-adr h-adr">
@@ -59,7 +55,7 @@
 
     <% if @user.age.present? %>
       <p>
-        I’m <%= @user.age %> years old.
+        I’m <%= link_to @user.age, search_path(search: "age/#{@user.age}") %> years old.
       </p>
     <% end %>
 

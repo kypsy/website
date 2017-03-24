@@ -1,6 +1,6 @@
 module UserRule
 
-  ALLOWED_SEARCH_COLUMNS = %w(interests activities age_ranges)
+  ALLOWED_SEARCH_COLUMNS = %w()
   DISALLOWED_COLUMNS = [
     :id,
     :visible,
@@ -16,15 +16,15 @@ module UserRule
   ]
 
   COLUMN_MAPPING = {
-    interest: :interest,
-    activity: :activity,
-    age_range: :age_ranges
+    interests:  :desired_interests,
+    activities: :desired_activities,
+    age:        :age_range,
   }
 
   ASSOCIATED_MAPPING = {
-    interest:  :name,
-    activity:  :name,
-    age_range: :name
+    desired_interests:  :name,
+    desired_activities: :name,
+    age_range:          :name,
   }
 
   SQL_GROUP = {
@@ -34,7 +34,7 @@ module UserRule
   }
 
   ASSOCIATION_NAME = {
-    interests: :interest,
+    interests:  :interest,
     activities: :activity,
     age_ranges: :age_range
   }
