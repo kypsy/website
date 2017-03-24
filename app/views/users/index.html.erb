@@ -11,10 +11,10 @@
     <small>(<%= @total %>)</small>
   </h1>
 
-  <%= render "/users/listing", users: users %>
+  <%= render "/users/listing", users: @users %>
 
   <div class="col-sm-12" id="pagination">
-    <%= will_paginate users, renderer: BootstrapPagination::Rails %>
+    <%#= will_paginate @users, renderer: BootstrapPagination::Rails %>
   </div>
 
 <% else %>

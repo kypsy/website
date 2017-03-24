@@ -3,14 +3,13 @@ class User < ActiveRecord::Base
   include PgSearch
 
   pg_search_scope :text_search,
-                  against: { username: "A", location: "B" },
+                  against: { username: "A", location: "B", bio: "C" },
                   using: { tsearch: { dictionary: "english", prefix: true } },
                   ignoring: :accents,
                   associated_against: {
-                    label:     [:name],
-                    age_range: [:name],
-                    interest:  [:name],
-                    activity:  [:name]
+                    desired_age_ranges: [:name],
+                    desired_interests:  [:name],
+                    desired_activities: [:name]
                   }
 
   pg_search_scope :field_search, lambda { |query|
