@@ -166,11 +166,10 @@ class User < ActiveRecord::Base
         user.email_crushes     = true
         user.email_messages    = true
 
-        user.location          = auth["info"]["location"]
+        user.location          = auth["extra"]["raw_info"]["location"]["name"]
 
         user.username          = available_username(auth["extra"]["raw_info"]["username"])
         user.email             = auth["info"]["email"]
-        user.bio               = auth["info"]["description"]
       end
 
       if auth["info"].try(:[], "image")
