@@ -11,12 +11,12 @@ class WelcomeController < ApplicationController
       @matches          = current_user.matches
       @avatar_size      = :square
       @slug     = "people"
-      return render("/welcome/dashboard")
+      return render "/welcome/dashboard", layout: "application"
+    else
+      @slug  = "welcome"
+      @users = User.visible.featured.shuffle.first(12)
+
+      return render layout: "welcome"
     end
-
-    @slug  = "welcome"
-    @users = User.visible.featured.shuffle.first(12)
-
-    render layout: "welcome"
   end
 end
