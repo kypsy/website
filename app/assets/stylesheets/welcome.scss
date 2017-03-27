@@ -4,17 +4,9 @@
 
   margin-top: 1rem;
 
-  background: {
-    image: asset-url("homepage.jpg");
-    repeat: no-repeat;
-    size: cover;
-  }
-  width:  100vw;
-  height: 100vh;
-
   text-align: center;
   text-transform: uppercase;
-  color: white;
+  color: black;
 
   a {
     font-style: normal;
@@ -25,12 +17,13 @@
     color: black;
     text-shadow: white 0 0 50px;
     letter-spacing: .5rem;
+    padding: 1rem 0;
 
     font: {
       family: futura;
       weight: bolder;
       weight: 900;
-      size: 5rem;
+      size: 3rem;
     }
 
     @media screen and (max-device-width: $large-phone) and (orientation: landscape) {
@@ -39,14 +32,21 @@
   }
 
   .tagline {
-    text-shadow: black 0 0 50px;
-    background: rgba(0,0,0,.6);
+    color: #666;
     padding: .5rem;
     font-size: .8rem;
   }
 
   .hero {
     font-style: italic;
+    color: white;
+    padding: 4rem 0;
+
+    background: {
+      image: asset-url("homepage.jpg");
+      repeat: no-repeat;
+      size: cover;
+    }
 
     @media screen and (min-device-width: $large-phone) and (orientation: portrait) {
       margin-top: 5rem;
@@ -143,21 +143,21 @@
 
       span {
         text-shadow: black 0 0 50px;
+
+        a {
+          text-transform: uppercase;
+        }
       }
     }
   }
 
   .links {
-    width: 100%;
-
-    position: absolute;
-    bottom: 0;
-
+    margin-top: 10rem;
     font-size: .8rem;
 
     a {
+      color: #666;
       padding: .5rem;
-      text-shadow: black 0 0 50px;
     }
   }
 }
