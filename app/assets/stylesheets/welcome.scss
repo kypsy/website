@@ -48,13 +48,11 @@
   .hero {
     font-style: italic;
 
-    @media screen and (min-device-width: $large-phone) and (orientation: landscape) {
-      h1 {
-        margin-top: 0rem;
-      }
+    @media screen and (min-device-width: $large-phone) and (orientation: portrait) {
+      margin-top: 5rem;
     }
 
-    @media screen and (min-device-width: $large-phone) and (orientation: portrait) {
+    @media screen and (min-width: $small-tablet) {
       margin-top: 5rem;
     }
 
@@ -62,8 +60,64 @@
     h2 .primary,
     h2 .secondary {
       display: inline-block;
+      font-size: 1.5rem;
       font-weight: 800;
       line-height: 2rem;
+      padding-bottom: 1rem;
+    }
+
+    @media screen and (min-width: $small-phone) and (max-width: $small-tablet) and (orientation: landscape) {
+      h1 {
+        margin-top: 0rem;
+      }
+      h1,
+      h2 .primary,
+      h2 .secondary {
+        font-size:      1.5rem;
+        line-height:    1em;
+        padding-bottom: 0;
+      }
+    }
+
+    @media screen and (min-width: $small-tablet) and (min-height: 500px) {
+      h1,
+      h2 .primary,
+      h2 .secondary {
+        font-size:      2rem;
+        line-height:    2rem;
+        padding-bottom: 1rem;
+      }
+    }
+
+    @media screen and (min-width: $large-tablet) and (min-height: 500px) {
+      h1,
+      h2 .primary,
+      h2 .secondary {
+        font-size:      2.5rem;
+        line-height:    2.5rem;
+        padding-bottom: 1rem;
+      }
+    }
+
+    @media screen and (min-width: $small-laptop) and (min-height: 500px) {
+      h1,
+      h2 .primary,
+      h2 .secondary {
+        font-size:      3rem;
+        line-height:    3rem;
+        padding-bottom: 1.5rem;
+      }
+    }
+
+    @media screen and (min-width: $medium-laptop) and (min-height: 500px) {
+      h1,
+      h2 .primary,
+      h2 .secondary {
+        font-weight:    700;
+        font-size:      4rem;
+        line-height:    4rem;
+        padding-bottom: 2rem;
+      }
     }
 
     h2 {
