@@ -1,3 +1,34 @@
-<p>
-  <b><%= t(:brand).upcase %></b> is where women come to make friends based on specific interests.
+<h1 class="brand"><%= t(:brand).upcase %></h1>
+
+<p class="tagline">
+  where women come to make friends based on specific interests
+</p>
+
+<div class="hero">
+  <header>
+    <h1>Ladies,</h1>
+    <h2>
+      <span class="primary">Let's make some friends</span><br class="hidden-sm-down">
+      <span class="secondary">and have some fun.</span>
+    </h2>
+  </header>
+
+  <p class="join-link">
+    <b>JOIN KYPSY</b><br>
+
+    <span>
+      using
+      <%= link_to "Twitter", "/auth/twitter" %>
+      or
+      <%= link_to "Facebook", "/auth/facebook" %>
+    </span>
+  </p>
+</div>
+
+<p class="links">
+  <%= link_to "About&nbsp;#{t(:brand)}".html_safe,    about_path           %>
+  <%= link_to "Tips&nbsp;and&nbsp;Tricks".html_safe,  tips_path            %>
+  <%= link_to "Terms".html_safe,                      terms_path           %>
+  <%= link_to "Privacy&nbsp;Policy".html_safe,        privacy_path         %>
+  <%= link_to "Code&nbsp;of&nbsp;Conduct".html_safe,  code_of_conduct_path %>
 </p>

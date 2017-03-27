@@ -16,5 +16,7 @@ class WelcomeController < ApplicationController
 
     @slug  = "welcome"
     @users = User.visible.featured.shuffle.first(12)
+
+    render layout: "welcome"
   end
 end
