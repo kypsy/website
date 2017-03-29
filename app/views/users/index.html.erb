@@ -18,65 +18,72 @@
   </div>
 
 <% else %>
-<%# People Matcher Page %>
+  <%# People Matcher Page %>
 
-<% @users.each do |user| %>
-  <div class="h-card person-card mb-5" data-username="<%= user.username %>">
-    <%= image_tag(user.avatar(@avatar_size), class: "u-photo", alt: user.username) %>
+  <% @users.each_with_index do |user, index| %>
+    <div class="h-card person-card mb-5" data-username="<%= user.username %>" <%= 'style="display: none"'.html_safe unless index.zero? %>>
+      <%= image_tag(user.avatar(@avatar_size), class: "u-photo", alt: user.username) %>
 
-    <h1>
-      <% if user.name.present? %>
-        <span class="p-name"><%= user.name %></span>
-        (<span class="p-nickname"><%= "@#{user.username}" %></span>)
-      <% else %>
-        <span class="p-name"><%= link_to user.username, person_path(user.username) %></span><%= render "users/age", user: user %>
+      <h1>
+        <% if user.name.present? %>
+          <span class="p-name"><%= user.name %></span>
+          (<span class="p-nickname"><%= "@#{user.username}" %></span>)
+        <% else %>
+          <span class="p-name"><%= link_to user.username, person_path(user.username) %></span><%= render "users/age", user: user %>
+        <% end %>
+
+        <small><%= user.age %></small>
+      </h1>
+
+      <% if labels_list(user, :interests).present? %>
+        <p>
+          <%= labels_list(user, :interests, classes: "badge badge-default mr-1", limit: 3) %>
+        </p>
       <% end %>
 
-      <small><%= user.age %></small>
-    </h1>
+      <% if labels_list(user, :activities).present? %>
+        <p>
+          <%= labels_list(user, :activities, classes: "badge badge-info mr-1") %>
+        </p>
+      <% end %>
 
-    <% if labels_list(user, :interests).present? %>
-      <p>
-        <%= labels_list(user, :interests, classes: "badge badge-default mr-1", limit: 3) %>
-      </p>
-    <% end %>
+      <div class="actions row">
+        <div class="col">
+          <%= link_to  people_path,
+                       "data-username" => user.username,
+                       class: "next btn btn-lg btn-secondary btn-block" do %>
 
-    <% if labels_list(user, :activities).present? %>
-      <p>
-        <%= labels_list(user, :activities, classes: "badge badge-info mr-1") %>
-      </p>
-    <% end %>
+            <%= fa_icon "arrow-left", class: "fa-lg mr-2" %>
+            <span class="hidden-xs-down">Next</span>
+          <% end %>
+        </div>
 
-    <div class="actions row">
-      <div class="col">
-        <%= link_to  people_path, class: "btn btn-lg btn-secondary btn-block" do %>
-          <%= fa_icon "arrow-left", class: "fa-lg mr-2" %>
-          <span class="hidden-xs-down">Next</span>
-        <% end %>
-      </div>
+        <div class="col">
+          <%= link_to action_bookmark_path(user.username),
+                      method:            :post,
+                      id:                "new_secret_crush",
+                      class:             "bookmark form-inline btn btn-lg btn-primary btn-block",
+                      "data-username" => user.username do %>
+            <%= fa_icon :star, class: "fa-lg" %>
+            <span class="hidden-xs-down">Bookmark</span>
+          <% end %>
+        </div>
 
-      <div class="col">
-        <%= link_to action_bookmark_path(user.username),
-                    method:            :post,
-                    id:                "new_secret_crush",
-                    class:             "bookmark form-inline btn btn-lg btn-primary btn-block",
-                    "data-username" => user.username do %>
-          <%= fa_icon :star, class: "fa-lg" %>
-          <span class="hidden-xs-down">Bookmark</span>
-        <% end %>
-      </div>
-
-      <div class="col">
-        <%= link_to crush_path(user.username),
-                    class: "crush btn btn-lg btn-danger btn-block",
-                    "data-username" => user.username,
-                    method:            :post do %>
-          <%= fa_icon :heart, class: "fa-lg mr-2" %>
-          <span class="hidden-xs-down">YASS</span>
-        <% end %>
+        <div class="col">
+          <%= link_to crush_path(user.username),
+                      class: "crush btn btn-lg btn-danger btn-block",
+                      "data-username" => user.username,
+                      method:            :post do %>
+            <%= fa_icon :heart, class: "fa-lg mr-2" %>
+            <span class="hidden-xs-down">YASS</span>
+          <% end %>
+        </div>
       </div>
     </div>
+  <% end %>
+
+  <div class="h-card person-card mb-5 text-center" style="display: none">
+    <h1>No more people!</h1>
   </div>
-<% end %>
 
 <% end %>
