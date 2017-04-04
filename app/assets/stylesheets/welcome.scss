@@ -163,4 +163,22 @@
       padding: .5rem;
     }
   }
+
+  #about {
+    img {
+      width: auto;
+    }
+
+    p,
+    h2 {
+      text-align: left;
+    }
+
+    p {
+      font-weight: lighter;
+      text-transform: none;
+      color: #666;
+    }
+  }
+
 }

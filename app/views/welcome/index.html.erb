@@ -25,6 +25,30 @@
   </p>
 </div>
 
+
+<h1 class="mt-5 mb-5">About <%= t :brand %></h1>
+
+<div id="about">
+  <div class="row mb-5">
+    <div class="col-12 col-sm-4 offset-sm-1">
+      <a href="/@maxine" title="Maxine’s <%= t(:brand) %> profile">
+        <%= image_tag "//placehold.it/300", alt: "Photo of #{t(:brand)}’s founder, Maxine Jung" %>
+      </a>
+    </div>
+
+    <div class="col-12 col-sm-6">
+      <h2 class="h4">
+        Maxine Jung
+        <small><a href="/@maxine" title="Maxine’s <%= t(:brand) %> profile">@maxine</a></small>
+      </h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    </div>
+  </div> <!-- .row -->
+</div> <!-- #about -->
+
+
+
+
 <p class="links">
   <%= link_to "About&nbsp;#{t(:brand)}".html_safe,    about_path           %>
   <%= link_to "Tips&nbsp;and&nbsp;Tricks".html_safe,  tips_path            %>
