@@ -1,6 +1,6 @@
 <div class="actions mb-3">
 
-  <% if mine? %>
+  <% if mine?(user) %>
 
     <%= link_to new_photo_path, class: "btn btn-success" do %>
       <%= fa_icon "picture-o" %>

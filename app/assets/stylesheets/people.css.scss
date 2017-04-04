@@ -2,30 +2,35 @@ main {
   margin-bottom: 5em;
 }
 
-#people .person-card {
-  .u-photo {
+#people {
+  .person-card .u-photo {
     width: 100%;
   }
-}
 
-#people .media-body {
-  display: block;
-  clear: both;
-  float: none;
-  width: 100%;
-}
+  .media-body {
+    display: block;
+    clear: both;
+    float: none;
+    width: 100%;
+  }
+
+  .media .u-url {
+    display: block;
+    clear: both;
+    float: none;
+    margin-bottom: 5px;
+  }
+
+  .person .u-email {
+    display: none;
+  }
+} /* #people */
+
 
 @media (min-device-width: 640px) {
   #person .media-title {
     font-size: 2rem;
   }
-}
-
-#people .media .u-url {
-  display: block;
-  clear: both;
-  float: none;
-  margin-bottom: 5px;
 }
 
 .person {
@@ -45,10 +50,6 @@ main {
 
 .person .p-name {
   font-weight: bold;
-}
-
-#people .person .u-email {
-  display: none;
 }
 
 /* profile actions... */
@@ -85,4 +86,3 @@ main {
     margin-bottom: .5em;
   }
 }
-/* #people */

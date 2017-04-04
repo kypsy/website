@@ -60,12 +60,12 @@ module ApplicationHelper
     end
   end
 
-  def mine?
-    current_user && current_user == @user
+  def mine?(user)
+    current_user && current_user == user
   end
 
-  def not_mine?
-    current_user && current_user != @user
+  def not_mine?(user)
+    current_user && current_user != user
   end
 
   def google_map_url(user)

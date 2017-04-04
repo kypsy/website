@@ -84,7 +84,7 @@
         </div>
 
         <div class="actions">
-          <% if mine? %>
+          <% if mine?(@user) %>
             <%= form_for photo, html: { class: "form-inline", role: "form" } do |f| %>
               <%= f.hidden_field :avatar, value: true %>
               <%= f.button "#{fa_icon "circle-o"}&nbsp;&nbsp;Use as profile photo".html_safe, class: "btn btn-secondary" %>
@@ -120,7 +120,7 @@
   <hr />
 
   <div id="flags">
-    <% if @user && not_mine? %>
+    <% if @user && not_mine?(@user) %>
       <div class="row">
         <div class="col">
           <% if flagged?(@user) %>
@@ -144,7 +144,7 @@
         </div>
 
         <div class="col">
-          <% if blocked? %>
+          <% if blocked?(@user) %>
 
             <%= link_to action_unblock_path(@user.username), method: :delete, class: "btn btn-danger btn-block mb-3" do %>
               <%= fa_icon :ban %> Unblock @<%= @user.username %>

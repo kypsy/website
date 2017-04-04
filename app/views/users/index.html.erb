@@ -14,7 +14,7 @@
   <%= render "/users/listing", users: @users %>
 
   <div class="col-sm-12" id="pagination">
-    <%#= will_paginate @users, renderer: BootstrapPagination::Rails %>
+    <%#= will_paginate users, renderer: BootstrapPagination::Rails %>
   </div>
 
 <% else %>
@@ -78,7 +78,55 @@
             <span class="hidden-xs-down">YASS</span>
           <% end %>
         </div>
-      </div>
+      </div><!-- .actions -->
+
+      <div id="flags" class="mt-5 mb-5">
+        <% if not_mine?(user) %>
+          <div class="row">
+            <div class="col">
+              <% if flagged?(user) %>
+
+                <%= unflag_button user, class: "delete-flag btn btn-block btn-warning mb-3" %>
+
+              <% else %>
+
+                <%= form_for RedFlag.new, url: flag_path(user.id) do |f| %>
+                  <%= f.hidden_field :flaggable_type, value: "User" %>
+
+                  <button class="btn btn-secondary btn-block mb-3" type="submit">
+                    <b class="text-warning">
+                      <%= fa_icon "flag-o" %>
+                      Flag @<%= user.username %> as inappropriate
+                    </b>
+                  </button>
+                <% end %>
+
+              <% end %>
+            </div>
+
+            <div class="col">
+              <% if blocked?(user) %>
+
+                <%= link_to action_unblock_path(user.username), method: :delete, class: "btn btn-danger btn-block mb-3" do %>
+                  <%= fa_icon :ban %> Unblock @<%= user.username %>
+                <% end %>
+
+              <% else %>
+
+                <%= link_to action_block_path(user.username), method: :post, class: "btn btn-secondary btn-block mb-3" do %>
+                  <b class="text-danger">
+                    <%= fa_icon :ban %>
+                    Block @<%= user.username %>
+                  </b>
+                <% end %>
+
+              <% end %>
+            </div>
+
+          </div>
+        <% end %>
+      </div><!-- #flags -->
+
     </div>
   <% end %>
 
