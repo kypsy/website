@@ -39,6 +39,7 @@ Rails.application.routes.draw do
   get "/terms",           to: "about#terms",           as: :terms
   get "/privacy",         to: "about#privacy",         as: :privacy
   get "/about",           to: "about#us",              as: :about
+  get "/contact",         to: "about#contact",         as: :contact
   get "/tips",            to: "about#tips",            as: :tips
   get "/code-of-conduct", to: "about#code_of_conduct", as: :code_of_conduct
   get "/goodbye",         to: "about#goodbye",         as: :goodbye

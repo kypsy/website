@@ -1,0 +1,69 @@
+<h1 class="mt-5 mb-4">Contact Information</h1>
+
+<table class="table">
+  <tr>
+    <th>
+      <a href="https://twitter.com/<%= t(:social_media_username) %>" class="btn btn-lg btn-default">
+        <%= fa_icon :twitter, class: "fa-lg" %>
+      </a>
+    </th>
+    <td>
+      <h3 class="h4">
+        Twitter
+        <small><a href="https://twitter.com/<%= t(:social_media_username) %>" title="<%= t(:brand) %> on Twitter">@<%= t(:social_media_username) %></a></small>
+      </h3>
+      <p><a href="https://twitter.com/intent/tweet?text=@<%= t(:social_media_username) %>%20">Tweet at us</a>. We're pretty friendly.</p>
+    </td>
+  </tr>
+
+  <tr>
+    <th>
+      <a href="mailto:<%= t(:hq_email) %>" class="btn btn-lg btn-default">
+        <%= fa_icon :inbox, class: "fa-lg" %>
+      </a>
+    </th>
+    <td>
+      <h3 class="h4">
+        Email
+        <small><a href="mailto:<%= t(:hq_email) %>" title=<%= t(:hq_email) %>><%= t(:hq_email) %></a></small>
+      </h3>
+      <p>Want to go old school? That’s fine. We still use and love the emails. Fire away.</p>
+    </td>
+  </tr>
+
+  <tr>
+    <th>
+      <a href="http://instagram.com/<%= t(:social_media_username) %>" class="btn btn-lg btn-default">
+        <%= fa_icon :instagram, class: "fa-lg" %>
+      </a>
+    </th>
+    <td>
+      <h3 class="h4">
+        Instagram
+        <small><a href="http://instagram.com/<%= t(:social_media_username) %>" title="<%= t(:brand) %> on Instagram">@<%= t(:social_media_username) %></a></small>
+      </h3>
+      <p>If you ‘gram up anything about the site or your dating adventures, mention us so we see it.</p>
+    </td>
+  </tr>
+
+  <tr>
+    <th>
+      <a href="http://web.stagram.com/tag/<%= t(:social_media_username) %>" class="btn btn-lg btn-default">
+        <i><b>#</b></i>
+      </a>
+    </th>
+    <td>
+      <h3 class="h4">
+        #Hashtags
+        <small><a href="https://twitter.com/search?q=%23<%= t(:social_media_username) %>" title="#<%= t(:brand) %> on Twitter">#<%= t(:social_media_username) %></a></small>
+      </h3>
+      <p>
+        #Hashtag all the things.
+        <a href="https://twitter.com/search?q=%23<%= t(:social_media_username) %>">  #<%= t(:social_media_username) %> on Twitter</a>.
+        <a href="http://instagram.com/explore/tags/<%= t(:social_media_username) %>">#<%= t(:social_media_username) %> on Instagram</a>.
+        <a href="https://www.facebook.com/hashtag/<%= t(:social_media_username) %>"> #<%= t(:social_media_username) %> on Facebook</a>.
+        PS. Thanks, <a href="http://factoryjoe.com/blog/2007/08/25/groups-for-twitter-or-a-proposal-for-twitter-tag-channels">Chris Messina</a>!
+      </p>
+    </td>
+  </tr>
+</table>

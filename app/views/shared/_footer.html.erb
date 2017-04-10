@@ -1,10 +1,11 @@
 <footer role="contentinfo" class="my-5 col-md-6 offset-md-3 col-sm-12">
   <ul class="list-unstyled">
-    <li><%= link_to "About #{t(:brand)}", about_path,           class: "nav-link d-inline-block" %></li>
-    <li><%= link_to "Tips and Tricks",    tips_path,            class: "nav-link d-inline-block" %></li>
-    <li><%= link_to "Terms",              terms_path,           class: "nav-link d-inline-block" %></li>
-    <li><%= link_to "Privacy Policy",     privacy_path,         class: "nav-link d-inline-block" %></li>
-    <li><%= link_to "Code of Conduct",    code_of_conduct_path, class: "nav-link d-inline-block" %></li>
+    <li><%= link_to "About #{t :brand} and #{t :founder_name}", about_path,           class: "nav-link d-inline-block" %></li>
+    <li><%= link_to "Contact Us",                               contact_path,         class: "nav-link d-inline-block" %></li>
+    <li><%= link_to "Tips and Tricks",                          tips_path,            class: "nav-link d-inline-block" %></li>
+    <li><%= link_to "Terms",                                    terms_path,           class: "nav-link d-inline-block" %></li>
+    <li><%= link_to "Privacy Policy",                           privacy_path,         class: "nav-link d-inline-block" %></li>
+    <li><%= link_to "Code of Conduct",                          code_of_conduct_path, class: "nav-link d-inline-block" %></li>
   </ul>
 
   <% if logged_in? %>
