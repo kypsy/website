@@ -10,7 +10,11 @@ nav[role=navigation] {
     font-weight: 300;
     letter-spacing: 1em;
     padding-left: 2em;
-    color: black;
+
+    a {
+      color: black;
+      text-decoration: none;
+    }
   }
 }
 /* ...masthead and nav */
