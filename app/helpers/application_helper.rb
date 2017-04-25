@@ -47,7 +47,7 @@ module ApplicationHelper
   end
 
   def page_title
-    @title || "#{t(:brand)} : #{t(:tagline)}"
+    @title || t(:brand)
   end
 
   def button_to_sign_in_with(provider)
