@@ -48,13 +48,14 @@
       <% end %>
 
       <div class="actions row">
-        <div class="col">
-          <%= link_to  people_path,
-                       "data-username" => user.username,
-                       class: "next btn btn-lg btn-secondary btn-block" do %>
 
-            <%= fa_icon "arrow-left", class: "fa-lg mr-2" %>
-            <span class="hidden-xs-down">Next</span>
+        <div class="col">
+          <%= link_to crush_path(user.username),
+                      class: "crush btn btn-lg btn-danger btn-block",
+                      "data-username" => user.username,
+                      method:            :post do %>
+            <%= fa_icon :heart, class: "fa-lg mr-2" %>
+            <span class="hidden-xs-down">YASS</span>
           <% end %>
         </div>
 
@@ -70,14 +71,15 @@
         </div>
 
         <div class="col">
-          <%= link_to crush_path(user.username),
-                      class: "crush btn btn-lg btn-danger btn-block",
-                      "data-username" => user.username,
-                      method:            :post do %>
-            <%= fa_icon :heart, class: "fa-lg mr-2" %>
-            <span class="hidden-xs-down">YASS</span>
+          <%= link_to  people_path,
+                       "data-username" => user.username,
+                       class: "next btn btn-lg btn-secondary btn-block" do %>
+
+            <span class="hidden-xs-down">Next</span>
+            <%= fa_icon "arrow-right", class: "fa-lg mr-2" %>
           <% end %>
         </div>
+
       </div><!-- .actions -->
 
       <div id="flags" class="mt-5 mb-5">
