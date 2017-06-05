@@ -15,7 +15,7 @@ class UsersController < ApplicationController
     end
 
     @total = @users.length
-    @users = @users.listing_order.paginate(page: params[:page] ||= 1).reverse
+    @users = @users.listing_order.paginate(page: params[:page] ||= 1)
 
     # if @total.zero?
     #   flash[:notice] = "No results for that search. Try something else!"
