@@ -163,6 +163,10 @@ class User < ActiveRecord::Base
         puts "*"*80
         puts auth.inspect
         puts "*"*80
+        puts auth["extra"].inspect
+        puts "*"*80
+        puts auth["extra"]["raw_info"].inspect
+        puts "*"*80
 
         provider.handle        = auth.info.nickname || auth.info.name
         provider.last_login_at = Time.now
