@@ -159,6 +159,11 @@ class User < ActiveRecord::Base
 
       u = create! do |user|
         user.providers << provider
+
+        puts "*"*80
+        puts auth.inspect
+        puts "*"*80
+
         provider.handle        = auth.info.nickname || auth.info.name
         provider.last_login_at = Time.now
         user.name              = auth["info"]["name"]
