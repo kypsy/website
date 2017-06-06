@@ -165,7 +165,9 @@ class User < ActiveRecord::Base
         puts "*"*80
         puts auth["extra"].inspect
         puts "*"*80
-        puts auth["extra"]["raw_info"].inspect
+        puts auth["info"].inspect
+        puts "*"*80
+        puts auth["raw_info"].inspect
         puts "*"*80
 
         provider.handle        = auth.info.nickname || auth.info.name
