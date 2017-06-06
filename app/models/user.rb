@@ -167,16 +167,12 @@ class User < ActiveRecord::Base
         user.email_crushes     = true
         user.email_messages    = true
 
-        puts "*"*80
-        puts auth["extra"]["raw_info"]["username"]
-        puts "*"*80
-
-        user.username          = available_username(auth["extra"]["raw_info"]["username"])
+        user.username          = available_username(user.name.gsub(" ", ""))
         user.email             = auth["info"]["email"]
       end
 
       if auth["info"].try(:[], "image")
-        u.photos.create(remote_image_url: auth["info"]["image"].sub(/type=square/, "type=large"), avatar: true)
+        u.photos.create(remote_image_url: auth["info"]["image"]), avatar: true)
       end
       u
     end
