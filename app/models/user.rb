@@ -172,7 +172,7 @@ class User < ActiveRecord::Base
       end
 
       if auth["info"].try(:[], "image")
-        u.photos.create(remote_image_url: auth["info"]["image"]), avatar: true)
+        u.photos.create(remote_image_url: auth["info"]["image"], avatar: true)
       end
       u
     end
