@@ -160,24 +160,12 @@ class User < ActiveRecord::Base
       u = create! do |user|
         user.providers << provider
 
-        puts "*"*80
-        puts auth.inspect
-        puts "*"*80
-        puts auth["extra"].inspect
-        puts "*"*80
-        puts auth["info"].inspect
-        puts "*"*80
-        puts auth["raw_info"].inspect
-        puts "*"*80
-
         provider.handle        = auth.info.nickname || auth.info.name
         provider.last_login_at = Time.now
         user.name              = auth["info"]["name"]
 
         user.email_crushes     = true
         user.email_messages    = true
-
-        user.location          = auth["extra"]["raw_info"]["location"]["name"]
 
         user.username          = available_username(auth["extra"]["raw_info"]["username"])
         user.email             = auth["info"]["email"]
