@@ -167,6 +167,10 @@ class User < ActiveRecord::Base
         user.email_crushes     = true
         user.email_messages    = true
 
+        puts "*"*80
+        puts auth["extra"]["raw_info"]["username"]
+        puts "*"*80
+
         user.username          = available_username(auth["extra"]["raw_info"]["username"])
         user.email             = auth["info"]["email"]
       end
