@@ -17,6 +17,13 @@ class MessagesController < ApplicationController
   end
 
   def create
+    puts "@user: "
+    puts @user.inspect
+    puts
+    puts "@conversation: "
+    puts @conversation.inspect
+    puts
+
     message              = current_user.outbound_messages.build(messages_params)
     message.sender       = current_user
     message.recipient    = @user
@@ -34,7 +41,8 @@ class MessagesController < ApplicationController
   private
 
   def find_conversation
-    @conversation = current_user.conversations.with_user(@user).first || Conversation.new()
+    @conversation = current_user.conversations.with_user(@user).first ||
+                    Conversation.new(sender: current_user, recipient: @user)
   end
 
   def messages_params
