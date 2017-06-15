@@ -1,5 +1,6 @@
 <div class="row mb-5">
   <div class="col-sm-12">
+
     <div class="page-header">
       <h1 class="h4">
         Matches
@@ -9,8 +10,8 @@
       </h1>
     </div>
 
-    <% if @matches && @crushers.any? %>
-      <%= render "/users/listing", users: @crushers %>
+    <% if @matches.any? %>
+      <%= render "/users/listing", users: @matches %>
     <% else %>
       <p>
         None... <b>yet</b>!
