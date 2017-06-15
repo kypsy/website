@@ -41,7 +41,7 @@ gem "kgio"
 
 # background
 gem "resque"#, require: "resque/server"
-gem "heroku_resque_autoscaler", github: "bookis/heroku_resque_autoscaler"
+# gem "heroku_resque_autoscaler", github: "bookis/heroku_resque_autoscaler"
 
 # search
 gem "pg_search"
