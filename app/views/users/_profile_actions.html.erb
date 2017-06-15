@@ -4,18 +4,18 @@
 
     <%= link_to new_photo_path, class: "btn btn-success" do %>
       <%= fa_icon "picture-o" %>
-      <span class="hidden-xs-down">&nbsp;Add photo</span>
+      <span class="hidden-xs-down">&nbsp;<%= t "buttons.add_photo_button_text" %></span>
     <% end %>
 
     <%= link_to settings_path, class: "btn" do %>
       <%= fa_icon :gear, class: "fa-lg" %>
-      <span class="hidden-xs-down">&nbsp;Edit Profile</span>
+      <span class="hidden-xs-down">&nbsp;<%= t "buttons.edit_profile_button_text" %></span>
     <% end %>
 
     <%= link_to conversations_path, class: "btn" do %>
       <%= fa_icon :envelope, class: "fa-lg #{'text-danger' if unread_count}" %>
       <% if unread_count %><span class="label label-danger"><%= unread_count %></span><% end %>
-      <span class="hidden-xs-down <%= 'text-danger' if unread_count %>">&nbsp;View Messages</span>
+      <span class="hidden-xs-down <%= 'text-danger' if unread_count %>">&nbsp;<%= t "buttons.view_messages_button_text" %></span>
     <% end %>
 
   <% else %>
@@ -24,7 +24,7 @@
       <%# MESSAGE BUTTON %>
       <%= link_to new_message_path(username: user.username), class: "btn btn-info message" do %>
         <%= fa_icon(:comment) %>
-        &nbsp; <span class="hidden-xs-down">Send</span> Message
+        &nbsp; <span class="hidden-xs-down"><%= t "buttons.send_message_button_text_verb" %></span> <%= t "buttons.send_message_button_text_object" %>
       <% end %>
 
       <%# BOOKMARK BUTTON %>
@@ -39,7 +39,7 @@
                     "data-username" => user.username,
                     style:             "display: #{hide_show.first}" do %>
           <%= fa_icon(:check, class: "text-primary") %>
-          <span class="hidden-xs-down">&nbsp;Un-Bookmark</span>
+          <span class="hidden-xs-down">&nbsp;<%= t "buttons.unbookmark_button_text" %></span>
         <% end %>
       </div>
 
@@ -50,7 +50,7 @@
                   "data-username" => user.username,
                   style:             "display: #{hide_show.last}" do %>
         <%= fa_icon(:check) %>
-        <span class="hidden-xs-down">&nbsp;Add Bookmark</span>
+        <span class="hidden-xs-down">&nbsp;<%= t "buttons.add_bookmark_button_text" %></span>
       <% end %>
 
 
@@ -63,7 +63,7 @@
                   method:            :delete,
                   style:             "display: #{hide_show.first}" do %>
 
-        <span class="text-danger"><%= fa_icon :heart %>&nbsp;Un-YASS</span>
+        <span class="text-danger"><%= fa_icon :heart %>&nbsp;<%= t "buttons.unyass_button_text" %></span>
       <% end %>
 
       <%= link_to crush_path(user.username),
@@ -71,7 +71,7 @@
                   "data-username" => user.username,
                   method:            :post,
                   style:             "display: #{hide_show.last}" do %>
-        <%= fa_icon :heart %>&nbsp;YASS
+        <%= fa_icon :heart %>&nbsp;<%= t "buttons.yass_button_text" %>
       <% end %>
 
     </span>

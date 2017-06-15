@@ -6,15 +6,15 @@
 
 <div class="hero">
   <header>
-    <h1>Ladies,</h1>
+    <h1><%= t "homepage.salutation" %></h1>
     <h2>
-      <span class="primary">Let's make some friends</span><br class="hidden-sm-down">
-      <span class="secondary">and have some fun.</span>
+      <span class="primary"><%= t "homepage.main_message_first_line" %></span><br class="hidden-sm-down">
+      <span class="secondary"><%= t "homepage.main_message_second_line" %></span>
     </h2>
   </header>
 
   <p class="join-link">
-    <b>ENTER KYPSY</b><br>
+    <b><%= t "homepage.enter_button_text" %></b><br>
 
     <span>
       using
@@ -27,7 +27,7 @@
 
 
 <p class="links">
-  <%= link_to "About&nbsp;#{t(:brand)}".html_safe,    about_path           %>
+  <%= link_to "About&nbsp;#{t :brand}".html_safe,     about_path           %>
   <%= link_to "Tips&nbsp;and&nbsp;Tricks".html_safe,  tips_path            %>
   <%= link_to "Terms".html_safe,                      terms_path           %>
   <%= link_to "Privacy&nbsp;Policy".html_safe,        privacy_path         %>

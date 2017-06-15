@@ -12,6 +12,34 @@ en:
   hq_phone: (555) 867-5309
   hq_email: maxine@kypsy.com
 
+  homepage:
+    salutation: Ladies,
+    main_message_first_line: Let's make some friends
+    main_message_second_line: and have some fun.
+    enter_button_text: ENTER KYPSY
+
+  people:
+    no_more_people: No more people!
+
+  buttons:
+    unflag_button_text: Unflag
+    flag_button_text: Flag
+    flag_as_what_button_text: as inappropriate
+    yass_button_text: YASS
+    unyass_button_text: UN-YASS
+    unbookmark_button_text: Un-Bookmark
+    add_bookmark_button_text: Add Bookmark
+    bookmark_button_text: Bookmark
+    unblock_button_text: Un-Block
+    block_button_text: Block
+    next_button_text: Next
+    signout_link_text: Sign Out
+
+    add_photo_button_text: Add photo
+    edit_profile_button_text: Edit Profile
+    view_messages_button_text: View Messages
+    send_message_button_text_verb: Send
+    send_message_button_text_object: Message
 
   user:
     settings:

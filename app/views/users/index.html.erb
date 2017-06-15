@@ -53,9 +53,9 @@
           <%= link_to crush_path(user.username),
                       class: "crush btn btn-lg btn-danger btn-block",
                       "data-username" => user.username,
-                      method:            :post do %>
+                      method: :post do %>
             <%= fa_icon :heart, class: "fa-lg mr-2" %>
-            <span class="hidden-xs-down">YASS</span>
+            <span class="hidden-xs-down"><%= t "buttons.yass_button_text" %></span>
           <% end %>
         </div>
 
@@ -66,16 +66,16 @@
                       class:             "bookmark form-inline btn btn-lg btn-primary btn-block",
                       "data-username" => user.username do %>
             <%= fa_icon :check, class: "fa-lg" %>
-            <span class="hidden-xs-down">Bookmark</span>
+            <span class="hidden-xs-down"><%= t "buttons.bookmark_button_text" %></span>
           <% end %>
         </div>
 
         <div class="col">
-          <%= link_to  people_path,
-                       "data-username" => user.username,
-                       class: "next btn btn-lg btn-secondary btn-block" do %>
+          <%= link_to people_path,
+                      "data-username" => user.username,
+                      class: "next btn btn-lg btn-secondary btn-block" do %>
 
-            <span class="hidden-xs-down">Next</span>
+            <span class="hidden-xs-down"><%= t "buttons.next_button_text" %></span>
             <%= fa_icon "arrow-right", class: "fa-lg mr-2" %>
           <% end %>
         </div>
@@ -98,7 +98,7 @@
                   <button class="btn btn-secondary btn-block mb-3" type="submit">
                     <b class="text-warning">
                       <%= fa_icon "flag-o" %>
-                      Flag @<%= user.username %> as inappropriate
+                      <%= t "buttons.flag_button_text" %> @<%= user.username %> <%= t "buttons.flag_as_what_button_text" %>
                     </b>
                   </button>
                 <% end %>
@@ -110,7 +110,7 @@
               <% if blocked?(user) %>
 
                 <%= link_to action_unblock_path(user.username), method: :delete, class: "btn btn-danger btn-block mb-3" do %>
-                  <%= fa_icon :ban %> Unblock @<%= user.username %>
+                  <%= fa_icon :ban %> <%= t "buttons.unblock_button_text" %> @<%= user.username %>
                 <% end %>
 
               <% else %>
@@ -118,7 +118,7 @@
                 <%= link_to action_block_path(user.username), method: :post, class: "btn btn-secondary btn-block mb-3" do %>
                   <b class="text-danger">
                     <%= fa_icon :ban %>
-                    Block @<%= user.username %>
+                    <%= t "buttons.block_button_text" %> @<%= user.username %>
                   </b>
                 <% end %>
 
@@ -133,7 +133,7 @@
   <% end %>
 
   <div class="h-card person-card mb-5 text-center" style="display: none">
-    <h1>No more people!</h1>
+    <h1><%= t "people.no_more_people" %></h1>
   </div>
 
 <% end %>

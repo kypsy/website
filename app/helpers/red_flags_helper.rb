@@ -14,7 +14,7 @@ module RedFlagsHelper
 
   def unflag_button(obj, options={})
     flag = current_user.red_flag_reports.find_by(flaggable_id: obj.id, flaggable_type: obj.class.to_s)
-    link_to "#{fa_icon :flag}&nbsp;&nbsp;Unflag as inappropriate".html_safe,
+    link_to "#{fa_icon :flag}&nbsp;&nbsp;#{t 'buttons.unflag_button_text'} #{t 'buttons.flag_as_what_button_text'}".html_safe,
             flag_path(flag.id),
             { method: :delete }.merge(options)
   end
