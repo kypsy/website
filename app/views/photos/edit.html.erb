@@ -42,33 +42,8 @@
 
 
 
-<section id="danger-zone">
-  <h5 class="danger-zone-title">DANGER ZONE</h5>
-
-  <div class="danger-zone-body">
-    <p>
-      Maybe you think that you’re making a stupid face in this picture.
-      Or that your face is stupid.
-      Or “<i>who has hair like that anymore? That’s so last year.</i>”
-    </p>
-
-    <p>
-      First, you’re probably wrong.
-      Your face isn’t stupid.
-      You should probably leave the photo up.
-      It adds character and helps tell your story.
-      <em>But</em>, if you <i>must</i> delete it, no hard feelings.
-      Maybe add another in its place.
-    </p>
-
-    <p>
-      <b>There is no undo. No regrets.</b>
-    </p>
-
-    <%= button_to "I Want to Delete My Photo",
-                  @photo,
-                  method:  :delete,
-                  data:    { confirm: "Are you SURE? Like for sure, for sure? There is NO UNDO." },
-                  class:   "btn btn-danger btn-block btn-lg" %>
-  </div>
-</section>
+<%= button_to "Delete My Photo",
+              @photo,
+              method:  :delete,
+              data:    { confirm: "Are you SURE? Like for sure, for sure? There is NO UNDO." },
+              class:   "btn btn-danger btn-block btn-lg" %>
