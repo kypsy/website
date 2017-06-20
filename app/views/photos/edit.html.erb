@@ -1,5 +1,3 @@
-<h1 class="mb-3">What’s the story of this photo?</h1>
-
 <div id="preview"><%= image_tag @photo.image_url(:medium).to_s %></div>
 
 <div id="controls">
@@ -32,7 +30,7 @@
     <div class="checkbox">
       <label>
         <%= f.check_box :avatar %>
-        Want to use this as your avatar?
+        Use as my profile photo
       </label>
     </div>
   <% end %>
