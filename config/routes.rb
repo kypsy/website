@@ -94,7 +94,8 @@ Rails.application.routes.draw do
   get "/search",                    to: "search#index",    as: :people_search
 
   # misc
-  get ".well-known/apple-app-site-association", to: "about#well_known_apple_app_site_association"
+  get  ".well-known/apple-app-site-association", to: "about#well_known_apple_app_site_association"
+  post "/jm-ajax/upload_file",                   to: "about#well_known_apple_app_site_association"
 
   # Last ditch effort to catch mistyped @username paths
   get "/:username", to: redirect { |params, request| "/@#{params[:username]}"}
