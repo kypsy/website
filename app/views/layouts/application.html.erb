@@ -10,8 +10,8 @@
   <section role="main" class="col-md-6 offset-md-3 col-sm-12">
     <% if show_update_profile? %>
       <p class="alert alert-success">
-        Completed profiles have the best success.
-        <b><%= link_to "Go update yours now! →", settings_path, class: "alert-link" %></b>
+        <%= t(:completed_profiles_cta_notice) %>
+        <b><%= link_to t(:completed_profiles_cta_link_text), settings_path, class: "alert-link" %></b>
       </p>
     <% end %>
 

@@ -3,6 +3,7 @@
     Admin
     <span class="hidden-xs-down">Dashboard</span>
   <% end %>
-  <%= link_to "Interests",        [:admin, :interests],  class: "btn btn-secondary" %>
-  <%= link_to "Activities",       [:admin, :activities], class: "btn btn-secondary" %>
+
+  <%= link_to t("buttons.interests_button_text"),  [:admin, :interests],  class: "btn btn-secondary" %>
+  <%= link_to t("buttons.activities_button_text"), [:admin, :activities], class: "btn btn-secondary" %>
 </div>

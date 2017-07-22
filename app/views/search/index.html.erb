@@ -1,11 +1,11 @@
-<h1>Search</h1>
+<h1><%= t("search.heading_text") %></h1>
 
 <%= form_tag "/people", method: :get, class: "form row", role: "search" do %>
   <%= label_tag :search, "Search", class: "sr-only" %>
   <div class="col-8">
     <div class="form-group">
-      <%= search_field_tag :search, params[:search], class: "form-control", placeholder: "People search" %>
-      </div>
+      <%= search_field_tag :search, params[:search], class: "form-control", placeholder: t("search.search_field_placeholder_text") %>
+    </div>
   </div>
 
   <div class="col-4">
@@ -14,19 +14,19 @@
   <hr>
 <% end %>
 
-<h1 class="mb-3">Filters</h1>
+<h1 class="mb-3"><%= t("search.filters_heading_text") %></h1>
 
-<h2>General Interests</h2>
+<h2><%= t("search.general_interests_heading_text") %></h2>
 <% Interest.all.each do |interest| %>
   <%= link_to interest.name, search_path(search: [:interests, interest.name]), class: "badge badge-default mr-1" %>
 <% end %>
 
-<h2 class="mt-4">Activities</h2>
+<h2 class="mt-4"><%= t("search.activities_heading_text") %></h2>
 <% Activity.all.each do |activity| %>
   <%= link_to activity.name, search_path(search: [:activities, activity.name]), class: "badge badge-success mr-1" %>
 <% end %>
 
-<h2 class="mt-4">Age Ranges</h2>
+<h2 class="mt-4"><%= t("search.age_ranges_heading_text") %></h2>
 <% AgeRange.all.each do |age_range| %>
   <%= link_to age_range.name, search_path(search: [:age_ranges, age_range.name]), class: "badge badge-primary mr-1" %>
 <% end %>

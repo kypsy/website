@@ -41,14 +41,14 @@
 
     <% if labels_list(@user, :interests).present? %>
       <p>
-        I'm usually into<br >
+        <%= t("user.profile.interests_intro") %><br >
         <%= labels_list(@user, :interests, classes: "badge badge-default mr-1") %>
       </p>
     <% end %>
 
     <% if labels_list(@user, :activities).present? %>
       <p>
-        I’m looking for friends for<br>
+        <%= t("user.profile.activities_intro") %><br>
         <%= labels_list(@user, :activities, classes: "badge badge-info mr-1") %>
       </p>
     <% end %>

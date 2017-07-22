@@ -1,27 +1,15 @@
-<h1>Want to delete your account?</h1>
+<h1><%= t("user.delete_account.heading_text") %></h1>
 
 <div id="danger-zone">
-  <h5 class="danger-zone-title">DANGER ZONE</h5>
+  <h5 class="danger-zone-title"><%= t("user.delete_account.danger_zone_heading_text") %></h5>
 
   <div class="danger-zone-body">
-    <p>
-      If you want to leave this place, that’s your decision.
-      We’ll be sad to see you go, but we can respect that.
-    </p>
+    <%= render_markdown t("user.delete_account.explanation") %>
 
-    <p>
-      All of your user profile and related data will be immediately deleted.
-      No Twitter or Facebook information will be further stored.
-    </p>
-
-    <p>
-      <b>There is no undo. No regrets.</b>
-    </p>
-
-    <%= button_to "I want to delete my profile",
+    <%= button_to t("buttons.delete_profile_button_text"),
                   user_path(@user),
                   method:  :delete,
-                  data:    { confirm: "Uhhhh… Are you sure you want to delete your profile?".html_safe },
+                  data:    { confirm: t("user.delete.delete_confirmation") },
                   class:   "btn btn-danger btn-block btn-lg" %>
   </div>
 </div> <!-- #danger-zone -->

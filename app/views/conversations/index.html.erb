@@ -1,9 +1,9 @@
 <h1>Conversations</h1>
 
 <% if @conversations.blank? %>
-  <p class="alert alert-info">
-    You don’t have any conversations started. <b>Go message someone!</b>
-  </p>
+  <div class="alert alert-info">
+    <%= render_markdown t("inbox.no_conversations") %>
+  </div>
 <% else %>
   <div class="row">
     <ol class="conversations">

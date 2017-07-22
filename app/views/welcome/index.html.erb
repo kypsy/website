@@ -25,11 +25,10 @@
   </p>
 </div>
 
-
 <p class="links">
-  <%= link_to "About&nbsp;#{t :brand}".html_safe,     about_path           %>
-  <%= link_to "Tips&nbsp;and&nbsp;Tricks".html_safe,  tips_path            %>
-  <%= link_to "Terms".html_safe,                      terms_path           %>
-  <%= link_to "Privacy&nbsp;Policy".html_safe,        privacy_path         %>
-  <%= link_to "Code&nbsp;of&nbsp;Conduct".html_safe,  code_of_conduct_path %>
+  <%= link_to t("homepage.links.about", brand: t(:brand)), about_path           %>
+  <%= link_to t("homepage.links.tips_and_tricks"),         tips_path            %>
+  <%= link_to t("homepage.links.terms"),                   terms_path           %>
+  <%= link_to t("homepage.links.privacy_policy"),          privacy_path         %>
+  <%= link_to t("homepage.links.code_of_conduct"),         code_of_conduct_path %>
 </p>

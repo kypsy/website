@@ -1,9 +1,9 @@
 <ul class="nav nav-tabs">
   <li class="nav-item">
-    <a href="#message_body" data-toggle="tab" class="nav-link active">Write</a>
+    <a href="#message_body" data-toggle="tab" class="nav-link active"><%= t("inbox.write_tab_text") %></a>
   </li>
   <li class="nav-item">
-    <a href="#preview" data-toggle="tab" class="nav-link">Preview</a>
+    <a href="#preview" data-toggle="tab" class="nav-link"><%= t("inbox.preview_tab_text") %></a>
   </li>
 </ul>
 
@@ -17,7 +17,7 @@
                       class:          "form-control tab-pane active",
                       required:       true,
                       rows:           6,
-                      placeholder:    "Say something nice and more than ‘hey...’".html_safe %>
+                      placeholder:    t("inbox.message_body_placeholder").html_safe %>
     </div>
   </div>
 

@@ -3,9 +3,9 @@
 
     <div class="page-header">
       <h1 class="h4">
-        Matches
+        <%= t("dashboard.matches_heading_less") %>
         <small class="d-block d-sm-inline-block">
-          you YASSed each other
+          <%= t("dashboard.matches_heading_more") %>
         </small>
       </h1>
     </div>
@@ -13,20 +13,14 @@
     <% if @matches.any? %>
       <%= render "/users/listing", users: @matches %>
     <% else %>
-      <p>
-        None... <b>yet</b>!
-        Hang in there, champ.
-        It’ll happen.
-      </p>
+      <%= render_markdown t("dashboard.no_matches_yet") %>
 
-      <p>
-        Better profiles get more YASSes. True fact. Try these things:
-      </p>
+      <%= render_markdown t("dashboard.no_matches_yet_tip_heading") %>
 
       <ul>
-        <li><strong>Add more and bigger photos.</strong> Use good ones. (Not blurry, not dark. Of your face.)</li>
-        <li><strong>Write a good bio.</strong> Try aiming at least 500 words. (Use punctuation and line breaks too.) </li>
-        <li><strong>Fill out your settings.</strong> Location. <em>Your</em> interests. Activity tags.</li>
+        <li><%= t("dashboard.no_matches_yet_tip_1") %></li>
+        <li><%= t("dashboard.no_matches_yet_tip_2") %></li>
+        <li><%= t("dashboard.no_matches_yet_tip_3") %></li>
       </ul>
     <% end %>
   </div>
@@ -37,9 +31,9 @@
   <div class="col-sm-12">
     <div class="page-header">
       <h1 class="h4">
-        Bookmarks
+        <%= t("dashboard.bookmarks_heading_less") %>
         <small class="d-block d-sm-inline-block">
-          you bookmarked them
+          <%= t("dashboard.bookmarks_heading_more") %>
         </small>
       </h1>
     </div>
@@ -47,10 +41,7 @@
     <% if @bookmarked_users && @bookmarked_users.any? %>
       <%= render "/users/listing", users: @bookmarked_users %>
     <% else %>
-      <p>
-        Bookmarks are like secret YASSes. It allows you to add them to your list <em>without</em> notifying them.
-        Feel free to bookmark at will without consequence. Get wild!
-      </p>
+      <%= t("dashboard.bookmarks_explanation") %>
     <% end %>
   </div>
 </div><!-- .row -->

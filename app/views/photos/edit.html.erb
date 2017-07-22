@@ -41,9 +41,8 @@
 <% end %>
 
 
-
-<%= button_to "Delete My Photo",
+<%= button_to t("photos.delete_button_text"),
               @photo,
               method:  :delete,
-              data:    { confirm: "Are you SURE? Like for sure, for sure? There is NO UNDO." },
+              data:    { confirm: t("photos.delete_button_confirmation_text") },
               class:   "btn btn-danger btn-block btn-lg" %>

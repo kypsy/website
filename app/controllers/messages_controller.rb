@@ -5,7 +5,7 @@ class MessagesController < ApplicationController
 
   def new
     @slug  = "messages"
-    @title =  t("titles.inbox", brand: t(:brand))
+    @title =  t("titles.messages", brand: t(:brand))
 
     if !@conversation.new_record?
       redirect_to conversation_path(@user.username)

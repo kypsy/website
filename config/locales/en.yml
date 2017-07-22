@@ -12,6 +12,12 @@ en:
   hq_phone: (555) 867-5309
   hq_email: maxine@kypsy.com
 
+  completed_profiles_cta_notice: Completed profiles have the best success.
+  completed_profiles_cta_link_text: Go update yours now! →
+
+  signin_with: Enter Kypsy using
+  social_posting_notice: "**%{brand}** does not ever post to your Twitter or Facebook for you."
+
   titles:
     terms: Terms &amp; Conditions on %{brand}
     privacy: Privacy Policy on %{brand)}
@@ -19,9 +25,9 @@ en:
     goodbye: Goodbye, old friend! Come back anytime.
     tips: Pro Tips™ for using the site
     inbox: Inbox on %{brand}
+    messages: Messenger on %{brand}
     conversation: Conversation with %{username} on %{brand}
     welcome: People Using %{brand}
-    inbox: Messenger on %{brand}
     new_photo: Photo Uploader on %{brand}
     edit_photo: Photo Editor on %{brand}
     users: People Using %{brand}
@@ -36,6 +42,25 @@ en:
     main_message_first_line: Let’s make some friends
     main_message_second_line: and have some fun.
     enter_button_text: ENTER KYPSY
+
+    links:
+      about: About %{brand}
+      tips_and_tricks: Tips and Tricks
+      terms: Terms
+      privacy_policy: Privacy Policy
+      code_of_conduct: Code of Conduct
+
+  dashboard:
+    no_matches_yet: None... **yet**! Hang in there, champ. It’ll happen.
+    no_matches_yet_tip_heading: "Better profiles get more YASSes. True fact. Try these things:"
+    no_matches_yet_tip_1: "**Add more and bigger photos.** Use good ones. (Not blurry, not dark. Of your face.)"
+    no_matches_yet_tip_2: "**Write a good bio.** Try aiming at least 500 words. (Use punctuation and line breaks too.)"
+    no_matches_yet_tip_3: "**Fill out your settings.** Location. <em>Your</em> interests. Activity tags."
+    matches_heading_less: Matches
+    matches_heading_more: you YASSed each other
+    bookmarks_heading_less: Bookmarks
+    bookmarks_heading_more: you bookmarked them
+    bookmarks_explanation: Bookmarks are like secret YASSes. It allows you to add them to your list _without_ notifying them. Feel free to bookmark at will without consequence. Get wild!
 
   people:
     no_more_people: No more people!
@@ -53,6 +78,10 @@ en:
     block_button_text: Block
     next_button_text: Next
     signout_link_text: Sign Out
+    save_button_text: Save
+    interests_button_text: Interests
+    activities_button_text: Activities
+    delete_profile_button_text: I want to delete my profile
 
     add_photo_button_text: Add photo
     edit_profile_button_text: Edit Profile
@@ -66,6 +95,8 @@ en:
 
   photos:
     not_your_photo: "Oops, not your photo :("
+    delete_button_text: Delete My Photo
+    delete_button_confirmation_text: Are you SURE? Like for sure, for sure? There is NO UNDO.
 
   red_flags:
     flagged: Flagged!
@@ -77,9 +108,20 @@ en:
 
   search:
     no_results: No results for that search. Try something else!
+    heading_text: Search
+    search_field_placeholder_text: People search
+    filters_heading_text: Filters
+    general_interests_heading_text: General Interests
+    activities_heading_text: Activities
+    age_ranges_heading_text: Age Ranges
 
   inbox:
+    no_conversations: You don’t have any conversations started. **Go message someone!**
     conversation_deleted: Conversation deleted.
+    write_tab_text: Write
+    preview_tab_text: Preview
+    message_body_placeholder: Say something nice and more than ‘hey...’
+    new_conversation_heading: New Conversation
 
   user:
     nonexistent_user: That user doesn’t exist.
@@ -90,8 +132,46 @@ en:
     blocked_user_notice: "Blocked! You will no longer see @%{username} unless you go directly to their profile page. (Or you can <a href=’/@%{username}/unblock’ class=’unblock’ data-method=’delete’>unblock @%{username}</a> now.)"
     unblocked_user_notice: "Un-blocked! You’ll now see @%{username} normally as you would anyone else."
 
+    profile:
+      interests_intro: I'm usually into
+      I’m looking for friends for_intro: I'm usually into
+
+    start:
+      heading_text: Before we start we just need to know a few things about you.
+
     settings:
+      heading_text: Settings
       general_interests_label: What are you usually into?
       activity_tags_label: What do you want to do with a new friend?
-
+      general_interests_note: Choose as many as you want.
+      activity_tags_note: Choose up to three.
+      bio_label: About Me
       auth_connect_note: Connecting both your Twitter and Facebook accounts makes it easier to fill out your profile. If Twitter or Facebook ever has downtime, you can use the other to sign in to Kypsy.
+      social_media_profiles: Social media profiles
+      email_notifications_heading_text: Email notifications
+      email_crushes_label_text: Notify me when someone YASSes me
+      email_messages_label_text: Notify me when someone messages me
+      misc_heading_text: Misc
+      misc_link_to_blocked: You can view a list of people that you've [blocked](/blocked).
+      misc_link_to_leave: If you want delete your account, [you can here](/leave).
+
+
+    blocked:
+      heading_text: Blocked Accounts
+      explanation: These are accounts that you have blocked. If you need to see their profile again or want to unblock them, you can view their profile below.
+
+    delete_account:
+      heading_text: Want to delete your account?
+      danger_zone_heading_text: DANGER ZONE
+      explanation: If you want to leave this place, that’s your decision. We’ll be sad to see you go, but we can respect that. All of your user profile and related data will be immediately deleted. No Twitter or Facebook information will be further stored. **There is no undo. No regrets.**
+      delete_confirmation: Uhhhh… Are you sure you want to delete your profile?
+
+
+
+  footer:
+    footer_link_about: About %{brand} and %{founder_name}
+    footer_link_contact_us: Contact Us
+    footer_link_tips_and_tricks: Tips and Tricks
+    footer_link_terms: Terms
+    footer_link_privacy_policy: Privacy Policy
+    footer_link_code_of_conduct: Code of Conduct

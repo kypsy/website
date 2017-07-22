@@ -1,10 +1,6 @@
-<h1>Blocked Accounts</h1>
+<h1><%= t("user.blocked.heading_text") %></h1>
 
-<p>
-  These are accounts that you have blocked.
-  If you need to see their profile again or want to unblock them,
-  you can view their profile below.
-</p>
+<%= render_markdown t("user.blocked.explanation") %>
 
 <ul class="mb-5">
   <% current_user.blocks.each do |block| %>
@@ -13,4 +9,3 @@
     </li>
   <% end %>
 </ul>
-

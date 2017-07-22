@@ -70,4 +70,15 @@ class ApplicationController < ActionController::Base
     # end
   end
 
+  def render_markdown(text)
+    unless text.blank?
+      Kramdown::Document.new(
+        text,
+        input: :kramdown,
+        remove_block_html_tags: false,
+        transliterated_header_ids: true
+      ).to_html.html_safe
+    end
+  end
+  helper_method :render_markdown
 end
