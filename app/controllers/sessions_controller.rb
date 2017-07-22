@@ -22,7 +22,7 @@ class SessionsController < ApplicationController
 
   def destroy
     cookies.delete :kypsy_auth_token
-    redirect_to root_url, notice: "Signed out. Bye, for now!"
+    redirect_to root_url, notice: t("sessions.signed_out")
   end
 
   def failure

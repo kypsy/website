@@ -7,11 +7,11 @@ class BookmarksController < ApplicationController
     bookmark = current_user.bookmarks.find_or_initialize_by(bookmarkee_id: @user.id)
     if bookmark.save
       respond_to do |format|
-        format.html { redirect_to back_or(person_path(@user.username)), notice: "Bookmark added."}
+        format.html { redirect_to back_or(person_path(@user.username)), notice: t("bookmarks.added_notice")}
         format.json { render json: @user.as_json }
       end
     else
-      redirect_to back_or(root_path), notice: "There was a problem bookmarking this user. Maybe, try it again?"
+      redirect_to back_or(root_path), notice: t("bookmarks.error_notice")
     end
   end
 

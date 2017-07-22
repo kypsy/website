@@ -59,7 +59,7 @@ class PhotosController < ApplicationController
 
   def confirm_photo_belongs_to_user
     unless @photo.user == current_user
-      redirect_to root_path, notice: "Oops, not your photo :("
+      redirect_to root_path, notice: t("photos.not_your_photo")
     end
   end
 

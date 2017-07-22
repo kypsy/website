@@ -18,7 +18,7 @@ class UsersController < ApplicationController
     @users = @users.listing_order.paginate(page: params[:page] ||= 1)
 
     # if @total.zero?
-    #   flash[:notice] = "No results for that search. Try something else!"
+    #   flash[:notice] = t("search.no_results")
     #   return redirect_to people_search_path
     # end
   end
@@ -32,7 +32,7 @@ class UsersController < ApplicationController
       @title = "@#{@user.username}’s Profile on #{t(:brand)}"
       @crush = Crush.new
     else
-      redirect_to root_path, notice: "That user doesn't exist."
+      redirect_to root_path, notice: t("user.nonexistent_user")
     end
   end
 
@@ -73,7 +73,7 @@ class UsersController < ApplicationController
   def update
     @user = current_user
     if current_user.update(user_params)
-      redirect_to(person_path(current_user.username), notice: "Your settings were successfully updated.")
+      redirect_to(person_path(current_user.username), notice: t("user.settings_updated"))
     else
       @label_assignements = @user.your_labels.label_assignments
       render action: "edit"
@@ -97,7 +97,7 @@ class UsersController < ApplicationController
     @user.photos.destroy_all
     @user.destroy
     cookies.delete :kypsy_auth_token
-    redirect_to root_path, notice: "Profile deleted. We'll miss you. Come on back any time."
+    redirect_to root_path, notice: t("users.deleted")
   end
 
   private

@@ -44,7 +44,7 @@ class ApplicationController < ActionController::Base
 
   def restrict_blocked_user(user, path=nil)
     path ||= root_path
-    redirect_to path, notice: "@#{user.username} is not available to message." if current_user.block_with_user?(user)
+    redirect_to path, notice: t("user.restrict_blocked_user_notice", username: user.username) if current_user.block_with_user?(user)
   end
 
   def require_login

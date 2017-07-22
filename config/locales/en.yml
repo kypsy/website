@@ -41,7 +41,33 @@ en:
     send_message_button_text_verb: Send
     send_message_button_text_object: Message
 
+  bookmarks:
+    added_notice: Bookmark added.
+    error_notice: There was a problem bookmarking this user. Maybe, try it again?
+
+  photos:
+    not_your_photo: "Oops, not your photo :("
+
+  red_flags:
+    flagged: Flagged!
+    already_flagged: Already flagged
+    unflagged: Unflagged!
+
+  sessions:
+    signed_out: Signed out. Bye, for now!
+
+  search:
+    no_results: No results for that search. Try something else!
+
   user:
+    nonexistent_user: That user doesn't exist.
+    settings_updated: Your settings were successfully updated.
+    profile_deleted: Profile deleted. We'll miss you. Come on back any time.
+
+    restrict_blocked_user_notice: "@%{username} is not available to message."
+    blocked_user_notice: "Blocked! You will no longer see @%{username} unless you go directly to their profile page. (Or you can <a href='/@%{username}/unblock' class='unblock' data-method='delete'>unblock @%{username}</a> now.)"
+    unblocked_user_notice: "Un-blocked! You'll now see @%{username} normally as you would anyone else."
+
     settings:
       general_interests_label: What are you usually into?
       activity_tags_label: What do you want to do with a new friend?

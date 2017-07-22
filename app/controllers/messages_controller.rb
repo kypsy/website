@@ -17,13 +17,6 @@ class MessagesController < ApplicationController
   end
 
   def create
-    puts "@user: "
-    puts @user.inspect
-    puts
-    puts "@conversation: "
-    puts @conversation.inspect
-    puts
-
     message              = current_user.outbound_messages.build(messages_params)
     message.sender       = current_user
     message.recipient    = @user
