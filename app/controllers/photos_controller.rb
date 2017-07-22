@@ -7,7 +7,7 @@ class PhotosController < ApplicationController
 
   def new
     @slug  = "settings"
-    @title = "Photo Uploader on #{t(:brand)}"
+    @title = t("titles.new_photo", brand: t(:brand))
     @user  = current_user
     @facebook = Social::Facebook.new(current_user)
     @photo = Photo.new
@@ -24,7 +24,7 @@ class PhotosController < ApplicationController
 
   def edit
     @slug  = "settings"
-    @title = "Photo Editor on #{t(:brand)}"
+    @title = t("titles.edit_photo", brand: t(:brand))
   end
 
   def update

@@ -12,9 +12,28 @@ en:
   hq_phone: (555) 867-5309
   hq_email: maxine@kypsy.com
 
+  titles:
+    terms: Terms &amp; Conditions on %{brand}
+    privacy: Privacy Policy on %{brand)}
+    about: About Us, The Site and Code of Conduct
+    goodbye: Goodbye, old friend! Come back anytime.
+    tips: Pro Tips™ for using the site
+    inbox: Inbox on %{brand}
+    conversation: Conversation with %{username} on %{brand}
+    welcome: People Using %{brand}
+    inbox: Messenger on %{brand}
+    new_photo: Photo Uploader on %{brand}
+    edit_photo: Photo Editor on %{brand}
+    users: People Using %{brand}
+    profile: "@%{@user.username}’s Profile on %{brand}"
+    getting_started: "Getting Started on %{brand}"
+    settings: "Your Settings on %{brand}"
+    delete_account: "Delete Your %{brand} Account"
+    blocked_users: Blocked Users
+
   homepage:
     salutation: Ladies,
-    main_message_first_line: Let's make some friends
+    main_message_first_line: Let’s make some friends
     main_message_second_line: and have some fun.
     enter_button_text: ENTER KYPSY
 
@@ -59,14 +78,17 @@ en:
   search:
     no_results: No results for that search. Try something else!
 
+  inbox:
+    conversation_deleted: Conversation deleted.
+
   user:
-    nonexistent_user: That user doesn't exist.
+    nonexistent_user: That user doesn’t exist.
     settings_updated: Your settings were successfully updated.
-    profile_deleted: Profile deleted. We'll miss you. Come on back any time.
+    profile_deleted: Profile deleted. We’ll miss you. Come on back any time.
 
     restrict_blocked_user_notice: "@%{username} is not available to message."
-    blocked_user_notice: "Blocked! You will no longer see @%{username} unless you go directly to their profile page. (Or you can <a href='/@%{username}/unblock' class='unblock' data-method='delete'>unblock @%{username}</a> now.)"
-    unblocked_user_notice: "Un-blocked! You'll now see @%{username} normally as you would anyone else."
+    blocked_user_notice: "Blocked! You will no longer see @%{username} unless you go directly to their profile page. (Or you can <a href=’/@%{username}/unblock’ class=’unblock’ data-method=’delete’>unblock @%{username}</a> now.)"
+    unblocked_user_notice: "Un-blocked! You’ll now see @%{username} normally as you would anyone else."
 
     settings:
       general_interests_label: What are you usually into?

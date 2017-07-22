@@ -3,29 +3,29 @@ class AboutController < ApplicationController
 
   def terms
     @slug  = "about"
-    @title = "Terms &amp; Conditions on #{t(:brand)}"
+    @title = t("titles.terms", brand: t(:brand))
   end
 
   def privacy
     @slug = "privacy"
-    @title = "Privacy Policy on #{t(:brand)}"
+    @title = t("titles.privacy", brand: t(:brand))
   end
 
   def us
     @slug  = "about"
-    @title = "About Us, The Site and Code of Conduct"
+    @title = t("titles.about")
   end
 
   def goodbye
     @slug  = "about"
-    @title = "Goodbye, old friend! Come back anytime."
+    @title = t("titles.goodbye")
   end
 
   def tips
     @slug  = "tips"
-    @title = "Pro Tips™ for using the site"
+    @title = t("titles.tips")
   end
-  
+
   def well_known_apple_app_site_association
     render plain: ""
   end

@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_action      :search_term,               only: :index
 
   def index
-    @title       = "People Using #{t(:brand)}"
+    @title       = t("titles.users", brand: t(:brand))
     @slug        = "people"
     @avatar_size = :medium
 
@@ -29,7 +29,7 @@ class UsersController < ApplicationController
     find_user_by_username
 
     if @user
-      @title = "@#{@user.username}’s Profile on #{t(:brand)}"
+      @title = t("titles.profile", username: @user.username, brand: t(:brand))
       @crush = Crush.new
     else
       redirect_to root_path, notice: t("user.nonexistent_user")
@@ -38,7 +38,7 @@ class UsersController < ApplicationController
 
   def new
     @slug  = "settings"
-    @title = "Getting Started on #{t(:brand)}"
+    @title = t("titles.getting_started", brand: t(:brand))
     @user  = current_user
 
     if @user.nil? or @user.visible?
@@ -64,7 +64,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @title = "Your Settings on #{t(:brand)}"
+    @title = t("titles.settings", brand: t(:brand))
     @slug  = "settings"
     @user  = current_user
     @label_assignements = @user.your_labels.label_assignments
@@ -81,13 +81,13 @@ class UsersController < ApplicationController
   end
 
   def delete_account
-    @title = "Delete Your #{t(:brand)} Account"
+    @title = t("titles.delete_account")
     @slug  = "settings"
     @user  = current_user
   end
 
   def blocked
-    @title = "Blocked Users"
+    @title = t("titles.blocked_users")
     @slug  = "settings"
     @user  = current_user
   end
