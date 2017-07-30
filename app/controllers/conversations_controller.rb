@@ -14,7 +14,7 @@ class ConversationsController < ApplicationController
     end
 
     @slug     = "messages"
-    @title    = t("titles.conversation", username: @conversation.counterpart(current_user).username}, brand: t(:brand)})
+    @title    = t("titles.conversation", username: @conversation.counterpart(current_user).username, brand: t(:brand))
     @messages = @conversation.messages.order('created_at asc')
     @message  = current_user.outbound_messages.build(recipient_id: @user.id, conversation_id: @conversation.id)
   end
