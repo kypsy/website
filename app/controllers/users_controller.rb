@@ -17,8 +17,6 @@ class UsersController < ApplicationController
     @total = @users.length
     @users = @users.listing_order.paginate(page: params[:page] ||= 1)
 
-    @users = [current_user, User.last]
-
     # if @total.zero?
     #   flash[:notice] = t("search.no_results")
     #   return redirect_to people_search_path
