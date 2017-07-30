@@ -45,12 +45,22 @@
     <%= f.label :my_interests_attributes, t("user.settings.general_interests_label") %>
     <p class="form-text text-muted"><%= t("user.settings.general_interests_note") %></p>
     <%= render "/labels/form", f: f, collection: Interest.all %>
+
+    <%= fields_for @interest do |ff| %>
+      <%= ff.label :name, "Other" %>
+      <%= ff.text_field :name %>
+    <% end %>
   </div>
 
   <div class="form-group activities-group mb-4">
     <%= f.label :your_activities_attributes, t("user.settings.activity_tags_label") %>
     <p class="form-text text-muted"><%= t("user.settings.activity_tags_note") %></p>
     <%= render "/labels/form", f: f, collection: Activity.all %>
+
+    <%= fields_for @activity do |ff| %>
+      <%= ff.label :name, "Other" %>
+      <%= ff.text_field :name %>
+    <% end %>
   </div>
 
 

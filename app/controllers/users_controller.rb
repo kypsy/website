@@ -64,6 +64,8 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @interest = Interest.new
+    @activity = Activity.new
     @title = t("titles.settings", brand: t(:brand))
     @slug  = "settings"
     @user  = current_user
@@ -71,11 +73,29 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = current_user
+    # "other" Interest
+    if params[:interest][:name].present?
+      @interest = Interest.create(name: params[:interest][:name])
+
+      if @interest.present?
+        current_user.interests << @interest
+      end
+    end
+
+    # "other" Activity
+    if params[:activity][:name].present?
+      @activity = Activity.create(name: params[:activity][:name])
+
+      if @activity.present?
+        current_user.activities << @activity
+      end
+    end
+
+    # save settings
     if current_user.update(user_params)
       redirect_to(person_path(current_user.username), notice: t("user.settings_updated"))
     else
-      @label_assignements = @user.your_labels.label_assignments
+      @label_assignements = current_user.your_labels.label_assignments
       render action: "edit"
     end
   end
