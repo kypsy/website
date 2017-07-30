@@ -3,6 +3,23 @@ main {
 }
 
 #people {
+  .preview-photos {
+    margin: 3rem 0 2rem 0;
+  }
+
+  .preview-photo {
+    width: 50%;
+    outline: 10px solid black;
+    margin: 0;
+    padding: 0;
+    float: left;
+  }
+
+  .preview-photo img {
+    width: 100%;
+  }
+
+
   .person-card .u-photo {
     width: 100%;
   }

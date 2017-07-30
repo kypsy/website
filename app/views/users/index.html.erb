@@ -22,7 +22,24 @@
 
   <% @users.each_with_index do |user, index| %>
     <div class="h-card person-card mb-5" data-username="<%= user.username %>" <%= 'style="display: none"'.html_safe unless index.zero? %>>
-      <%= image_tag(user.avatar(@avatar_size), class: "u-photo", alt: user.username) %>
+
+      <div class="preview-photos clearfix">
+        <% user.preview_photos.in_groups_of(2).each do |row_urls| %>
+          <div class="preview-photos-row">
+
+            <% row_urls.each do |url| %>
+              <div class="preview-photo">
+                <% if url.blank? %>
+                  <%= image_tag "placeholder.png" %>
+                <% else %>
+                  <%= image_tag url %>
+                <% end %>
+              </div>
+            <% end %>
+
+          </div>
+        <% end %>
+      </div>
 
       <h1>
         <% if user.name.present? %>

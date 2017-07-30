@@ -299,6 +299,24 @@ class User < ActiveRecord::Base
     end
   end
 
+  def preview_photos
+    result = [self.avatar(:square)]
+
+    self.photos.order("updated_at desc").limit(5).each do |photo|
+      result << photo.image_url(:square).to_s
+    end
+
+    result = result.uniq[0..3]
+
+    if result.length != 4
+      while result.length != 4
+        result << nil
+      end
+    end
+
+    result
+  end
+
   private
 
   def placeholder_avatar_url
