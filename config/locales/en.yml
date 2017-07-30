@@ -16,25 +16,25 @@ en:
   completed_profiles_cta_link_text: Go update yours now! →
 
   signin_with: Enter Kypsy using
-  social_posting_notice: "**%{brand}** does not ever post to your Twitter or Facebook for you."
+  social_posting_notice: "**Kypsy** does not ever post to your Twitter or Facebook for you."
 
   titles:
-    terms: Terms &amp; Conditions on %{brand}
-    privacy: Privacy Policy on %{brand)}
+    terms: Terms &amp; Conditions on Kypsy
+    privacy: Privacy Policy on Kypsy
     about: About Us, The Site and Code of Conduct
     goodbye: Goodbye, old friend! Come back anytime.
     tips: Pro Tips™ for using the site
-    inbox: Inbox on %{brand}
-    messages: Messenger on %{brand}
-    conversation: Conversation with %{username} on %{brand}
-    welcome: People Using %{brand}
-    new_photo: Photo Uploader on %{brand}
-    edit_photo: Photo Editor on %{brand}
-    users: People Using %{brand}
-    profile: "@%{@user.username}’s Profile on %{brand}"
-    getting_started: "Getting Started on %{brand}"
-    settings: "Your Settings on %{brand}"
-    delete_account: "Delete Your %{brand} Account"
+    inbox: Inbox on Kypsy
+    messages: Messenger on Kypsy
+    conversation: Conversation with @%{username} on Kypsy
+    welcome: People Using Kypsy
+    new_photo: Photo Uploader on Kypsy
+    edit_photo: Photo Editor on Kypsy
+    users: People Using Kypsy
+    profile: "@%{@user.username}’s Profile on Kypsy"
+    getting_started: "Getting Started on Kypsy"
+    settings: "Your Settings on Kypsy"
+    delete_account: "Delete Your Kypsy Account"
     blocked_users: Blocked Users
 
   homepage:
@@ -44,7 +44,7 @@ en:
     enter_button_text: ENTER KYPSY
 
     links:
-      about: About %{brand}
+      about: About Kypsy
       tips_and_tricks: Tips and Tricks
       terms: Terms
       privacy_policy: Privacy Policy
@@ -169,7 +169,7 @@ en:
 
 
   footer:
-    footer_link_about: About %{brand} and %{founder_name}
+    footer_link_about: About Kypsy and %{founder_name}
     footer_link_contact_us: Contact Us
     footer_link_tips_and_tricks: Tips and Tricks
     footer_link_terms: Terms

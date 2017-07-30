@@ -8,7 +8,7 @@ describe "tests user experience", type: :feature, js: true do
     visit "/"
     expect(page).to have_content t(:brand)
 
-    first(:link, "Thousands of People are on #{t(:brand)}").click
+    first(:link, "Thousands of People are on Kypsy").click
     expect(page).to have_content "Everyone"
   end
 
